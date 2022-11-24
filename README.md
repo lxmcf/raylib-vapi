@@ -2,21 +2,21 @@
 
 # Raylib VAPI
 
-Bindings for for [Vala](https://vala.dev/) to use the simple and easy to use graphics library [Raylib](https://github.com/raysan5/raylib).
+Bindings for [Vala](https://vala.dev/) to use the simple and easy to use graphics library [Raylib](https://github.com/raysan5/raylib).
 
 ## Description
 Ralib VAPI currently supports the core module of Raylib using a C style API for ease of code porting.
 
-Some VAPI's will be released to follow a more [OOP design](https://en.wikipedia.org/wiki/Object-oriented_programming) as well if you wish to use them in a more traditional Vala style;
+Some VAPI's will be released to follow a more [OOP design](https://en.wikipedia.org/wiki/Object-oriented_programming) as well if you wish to use them in a more traditional Vala style.
 
 ## Supported Modules
 
 | Module  | Supported          | OOP Available      | VAPI Name   | Version |
 |:-------:|:------------------:|:------------------:|:-----------:|:-------:|
 | core    | :heavy_check_mark: | :x:                | raylib.vapi | 4.2     |
-| rlgl    | :x:                | :x:                |             |         |
+| rlgl    | :construction:     | :x:                | rlgl.vapi   | 4.0     |
 | raymath | :x:                | :x:                |             |         |
-| raudio  | :x:                | :x:                |             |         |
+| raudio  | :heavy_check_mark: | :x:                | raudio.vapi | 1.1     |
 | raygui  | :x:                | :x:                |             |         |
 | rpng    | :x:                | :x:                |             |         |
 | res     | :x:                | :x:                |             |         |
@@ -47,9 +47,11 @@ public static int main (string[] args) {
 
 ## Compiling Included Examples
 ```bash
+cd examples
+
 meson build -C build
 
-cd build/examples/
+cd build/
 
 Camera3D/application        # To run the 3D camera example
                             # or

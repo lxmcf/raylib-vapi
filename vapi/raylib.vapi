@@ -222,7 +222,7 @@ namespace Raylib {
     [SimpleType]
     [CCode (cname = "RenderTexture")]
     public struct RenderTexture {
-        public uint id;                         // OpenGL framebuffer object id
+        public uint id;                           // OpenGL framebuffer object id
 
         public unowned Texture2D texture;         // Color buffer attachment texture
         public unowned Texture2D depth;           // Depth buffer attachment texture
@@ -230,7 +230,12 @@ namespace Raylib {
 
     [SimpleType]
     [CCode (cname = "RenderTexture2D")]
-    public struct RenderTexture2D : RenderTexture { }
+    public struct RenderTexture2D : RenderTexture {
+        public uint id;                           // OpenGL framebuffer object id
+
+        public unowned Texture2D texture;         // Color buffer attachment texture
+        public unowned Texture2D depth;           // Depth buffer attachment texture
+    }
 
     [SimpleType]
     [CCode (cname = "NPatchInfo")]
@@ -280,7 +285,14 @@ namespace Raylib {
 
     [SimpleType]
     [CCode (cname = "Camera")]
-    public struct Camera : Camera3D { }
+    public struct Camera : Camera3D {
+        public unowned Vector3 position;        // Camera position
+        public unowned Vector3 target;          // Camera target it looks-at
+        public unowned Vector3 up;              // Camera up vector (rotation over its axis)
+
+        public float fovy;                      // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
+        public int projection;                  // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+    }
 
     [SimpleType]
     [CCode (cname = "Camera2D")]
@@ -2170,7 +2182,7 @@ namespace Raylib {
     public static bool is_audio_device_ready ();
 
     [CCode (cname = "SetMasterVolume")]
-    public static void set_aster_volume (float volume);
+    public static void set_master_volume (float volume);
 
     // Wave/Sound loading/unloading functions
     [CCode (cname = "LoadWave")]
@@ -2318,7 +2330,7 @@ namespace Raylib {
     public static void resume_audio_stream (AudioStream stream);
 
     [CCode (cname = "IsAudioStreamPlaying")]
-    public static bool is_audio_stream_playing(AudioStream stream);
+    public static bool is_audio_stream_playing (AudioStream stream);
 
     [CCode (cname = "StopAudioStream")]
     public static void stop_audio_stream (AudioStream stream);
