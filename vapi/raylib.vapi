@@ -1091,22 +1091,22 @@ namespace Raylib {
     public static Shader load_shader_from_memory (string vertex_shader, string fragment_shader);
 
     [CCode (cname = "GetShaderLocation")]
-    public int get_shader_location (string uniform_name);
+    public int get_shader_location (Shader shader, string uniform_name);
 
     [CCode (cname = "GetShaderLocationAttrib")]
-    public int get_shader_location_attribute (string attribute_name);
+    public int get_shader_location_attribute (Shader shader, string attribute_name);
 
     [CCode (cname = "SetShaderValue")]
-    public void set_shader_value (int location, void* value, ShaderUniformDataType type);
+    public void set_shader_value (Shader shader, int location, void* value, ShaderUniformDataType type);
 
     [CCode (cname = "SetShaderValueV")]
-    public void set_shader_value_vector (int location, void* value, ShaderUniformDataType type, int count);
+    public void set_shader_value_vector (Shader shader, int location, void* value, ShaderUniformDataType type, int count);
 
     [CCode (cname = "SetShaderValueMatrix")]
-    public void set_shader_value_matrix (int location, Matrix matrix);
+    public void set_shader_value_matrix (Shader shader, int location, Matrix matrix);
 
     [CCode (cname = "SetShaderValueTexture")]
-    public void set_shader_value_texture (int location, Texture2D texture);
+    public void set_shader_value_texture (Shader shader, int location, Texture2D texture);
 
     [CCode (cname = "UnloadShader")]
     public void unload_shader (Shader shader);
