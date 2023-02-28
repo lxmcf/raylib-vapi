@@ -362,42 +362,47 @@ namespace Raylib {
         public Vector3 scale;           // Scale
     }
 
+    [SimpleType]
     [CCode (cname = "BoneInfo")]
     public struct BoneInfo {
-        public string name;             // Bone name
+        public unowned string name;     // Bone name
         public int parent;              // Bone parent
     }
 
+    [SimpleType]
     [CCode (cname = "Model")]
     public struct Model {
-        public Matrix transform;        // Local transform matrix
+        public Matrix transform;                // Local transform matrix
 
-        public int meshCount;           // Number of meshes                                                             // vala-lint=naming-convention
-        public int materialCount;       // Number of materials                                                          // vala-lint=naming-convention
-        public Mesh[] meshes;           // Meshes array
-        public Material[] materials;    // Materials array
-        public int[] meshMaterial;      // Mesh material number                                                         // vala-lint=naming-convention
+        public int meshCount;                   // Number of meshes                                                             // vala-lint=naming-convention
+        public int materialCount;               // Number of materials                                                          // vala-lint=naming-convention
+        public unowned Mesh[] meshes;           // Meshes array
+        public unowned Material[] materials;    // Materials array
+        public unowned int[] meshMaterial;      // Mesh material number                                                         // vala-lint=naming-convention
 
         // Animation data
-        public int boneCount;           // Number of bones                                                              // vala-lint=naming-convention
-        public BoneInfo[] bones;        // Bones information (skeleton)
-        public Transform[] bindPose;    // Bones base transformation (pose)                                             // vala-lint=naming-convention
+        public int boneCount;                   // Number of bones                                                              // vala-lint=naming-convention
+        public unowned BoneInfo[] bones;        // Bones information (skeleton)
+        public unowned Transform[] bindPose;    // Bones base transformation (pose)                                             // vala-lint=naming-convention
     }
 
+    [SimpleType]
     [CCode (cname = "ModelAnimation")]
     public struct ModelAnimation {
-        public int boneCount;           // Number of bones                                                              // vala-lint=naming-convention
-        public int frameCount;          // Number of animation frames                                                   // vala-lint=naming-convention
-        public BoneInfo[] bones;        // Bones information (skeleton)
-        public Transform[,] framePoses; // Poses array by frame                                                         // vala-lint=naming-convention
+        public int boneCount;                   // Number of bones                                                              // vala-lint=naming-convention
+        public int frameCount;                  // Number of animation frames                                                   // vala-lint=naming-convention
+        public unowned BoneInfo[] bones;        // Bones information (skeleton)
+        public unowned Transform[,] framePoses; // Poses array by frame                                                         // vala-lint=naming-convention
     }
 
+    [SimpleType]
     [CCode (cname = "Ray")]
     public struct Ray {
         public Vector3 position;        // Ray position (origin)
         public Vector3 direction;       // Ray direction
     }
 
+    [SimpleType]
     [CCode (cname = "RayCollision")]
     public struct RayCollision {
         public bool hit;                // Did the ray hit something?
@@ -406,12 +411,14 @@ namespace Raylib {
         public Vector3 normal;          // Surface normal of hit
     }
 
+    [SimpleType]
     [CCode (cname = "BoundingBox")]
     public struct BoundingBox {
         public Vector3 min;            // Minimum vertex box-corner
         public Vector3 max;            // Maximum vertex box-corner
     }
 
+    [SimpleType]
     [CCode (cname = "Wave")]
     public struct Wave {
         public uint frameCount;         // Total number of frames (considering channels)                                // vala-lint=naming-convention
@@ -421,12 +428,15 @@ namespace Raylib {
         public void *data;              // Buffer data pointer
     }
 
+    [SimpleType]
     [CCode (cname = "rAudioBuffer")]
     public struct AudioBuffer { }
 
+    [SimpleType]
     [CCode (cname = "rAudioProcessor")]
     public struct AudioProcessor { }
 
+    [SimpleType]
     [CCode (cname = "AudioStream")]
     public struct AudioStream {
         public AudioBuffer buffer;          // Pointer to internal data used by the audio system
@@ -437,12 +447,14 @@ namespace Raylib {
         public uint channels;               // Number of channels (1-mono, 2-stereo, ...)
     }
 
+    [SimpleType]
     [CCode (cname = "Sound")]
     public struct Sound {
         public AudioStream stream;      // Audio stream
         public uint frameCount;         // Total number of frames (considering channels)                                // vala-lint=naming-convention
     }
 
+    [SimpleType]
     [CCode (cname = "Music")]
     public struct Music {
         public AudioStream stream;      // Audio stream
@@ -453,6 +465,7 @@ namespace Raylib {
         public void* ctxData;           // Audio context data, depends on type                                          // vala-lint=naming-convention
     }
 
+    [SimpleType]
     [CCode (cname = "VrDeviceInfo")]
     public struct VrDeviceInfo {
         public int hResolution;                // Horizontal resolution in pixels                                       // vala-lint=naming-convention
@@ -467,6 +480,7 @@ namespace Raylib {
         public float chromaAbCorrection[4];    // Chromatic aberration correction parameters                            // vala-lint=naming-convention
     }
 
+    [SimpleType]
     [CCode (cname = "VrStereoConfig")]
     public struct VrStereoConfig {
         public Matrix projection[2];           // VR projection matrices (per eye)
@@ -479,11 +493,12 @@ namespace Raylib {
         public float scaleIn[2];               // VR distortion scale in                                                // vala-lint=naming-convention
     }
 
+    [SimpleType]
     [CCode (cname = "FilePathList")]
     public struct FilePathList {
         public uint capacity;                   // Filepaths max entries
         public uint count;                      // Filepaths entries count
-        public string[] paths;                  // Filepaths entries
+        public unowned string[] paths;          // Filepaths entries
     }
 
     [Flags]
@@ -2088,7 +2103,7 @@ namespace Raylib {
     public static Mesh generate_mesh_sphere (float radius, int rings, int slices);
 
     [CCode (cname = "GenMeshHemiSphere")]
-    public static Mesh generate_mesh_hemiSphere (float radius, int rings, int slices);
+    public static Mesh generate_mesh_hemisphere (float radius, int rings, int slices);
 
     [CCode (cname = "GenMeshCylinder")]
     public static Mesh generate_mesh_cylinder (float radius, float height, int slices);
@@ -2269,7 +2284,7 @@ namespace Raylib {
     public static Music load_music_stream_from_memory (string file_type, uchar[] data);
 
     [CCode (cname = "UnloadMusicStream")]
-    public static void unload_usic_stream (Music music);
+    public static void unload_music_stream (Music music);
 
     [CCode (cname = "PlayMusicStream")]
     public static void play_music_stream (Music music);
