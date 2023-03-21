@@ -13,10 +13,10 @@ Some VAPI's will be released to follow a more [OOP design](https://en.wikipedia.
 
 | Module  | Supported          | OOP Available      | VAPI Name   | Version |
 |:-------:|:------------------:|:------------------:|:-----------:|:-------:|
-| core    | :heavy_check_mark: | :x:                | raylib.vapi | 4.2     |
+| raylib  | :heavy_check_mark: | :x:                | raylib.vapi | 4.5     |
 | rlgl    | :construction:     | :x:                | rlgl.vapi   | 4.0     |
 | raymath | :x:                | :x:                |             |         |
-| raudio  | :heavy_check_mark: | :x:                | raudio.vapi | 1.1     |
+| raudio  | :x:                | :x:                |             |         |
 | raygui  | :x:                | :x:                |             |         |
 | rpng    | :x:                | :x:                |             |         |
 | res     | :x:                | :x:                |             |         |

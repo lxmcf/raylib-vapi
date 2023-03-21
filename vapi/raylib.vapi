@@ -1,5 +1,14 @@
 [CCode (cprefix = "", cheader_filename = "raylib.h")]
 namespace Raylib {
+    [CCode (cname = "RAYLIB_VERSION_MAJOR")]
+    public const string VERSION_MAJOR;
+
+    [CCode (cname = "RAYLIB_VERSION_MINOR")]
+    public const string VERSION_MINOR;
+
+    [CCode (cname = "RAYLIB_VERSION_PATCH")]
+    public const string VERSION_PATCH;
+
     [CCode (cname = "RAYLIB_VERSION")]
     public const string VERSION;
 
@@ -290,7 +299,7 @@ namespace Raylib {
         public unowned Vector3 target;          // Camera target it looks-at
         public unowned Vector3 up;              // Camera up vector (rotation over its axis)
 
-        public float fovy;                      // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
+        public float fovy;                      // Camera field-of-view aperture in Y (degrees) in perspective, used as near plane width in orthographic
         public int projection;                  // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
     }
 
@@ -813,7 +822,8 @@ namespace Raylib {
         ADD_COLORS,              // Blend textures adding colors (alternative)
         SUBTRACT_COLORS,         // Blend textures subtracting colors (alternative)
         ALPHA_PREMULTIPLY,       // Blend premultiplied textures considering alpha
-        CUSTOM                   // Blend textures using custom src/dst factors (use rlSetBlendMode())
+        CUSTOM,                   // Blend textures using custom src/dst factors (use rlSetBlendMode())
+        BLEND_CUSTOM_SEPARATE    // Blend textures using custom rgb/alpha separate src/dst factors (use rlSetBlendFactorsSeparate())
     }
 
     [Flags]
@@ -929,6 +939,9 @@ namespace Raylib {
 
     [CCode (cname = "SetWindowIcon")]
     public static void set_window_icon (Image image);
+
+    [CCode (cname = "SetWindowIcons")]
+    public static void set_window_icons (Image[] image);
 
     [CCode (cname = "SetWindowTitle")]
     public static void set_window_title (string title);
@@ -1105,6 +1118,9 @@ namespace Raylib {
     [CCode (cname = "LoadShaderFromMemory")]
     public static Shader load_shader_from_memory (string vertex_shader, string fragment_shader);
 
+    [CCode (cname = "IsShaderReady")]
+    public static bool is_shader_ready (Shader shader);
+
     [CCode (cname = "GetShaderLocation")]
     public int get_shader_location (Shader shader, string uniform_name);
 
@@ -1171,9 +1187,9 @@ namespace Raylib {
     [CCode (cname = "TakeScreenshot")]
     public static void take_screenshot (string filename);
 
-
     [CCode (cname = "SetConfigFlags")]
     public static void set_config_flags (ConfigFlags flags);
+
 
     [CCode (cname = "TraceLog")]
     public static void trace_log (TraceLogLevel level, string text, ...);
@@ -1182,13 +1198,14 @@ namespace Raylib {
     public static void set_trace_log_level (TraceLogLevel level);
 
     [CCode (cname = "MemAlloc")]
-    public static void* memory_allocate (int size);
+    public static void* memory_allocate (uint size);
 
     [CCode (cname = "MemRealloc")]
-    public static void* memory_realocate (void* pointer, int size);
+    public static void* memory_realocate (void* pointer, uint size);
 
     [CCode (cname = "MemFree")]
     public static void memory_free (void* pointer);
+
 
     [CCode (cname = "OpenURL")]
     public static void open_url (string url);
@@ -1210,12 +1227,106 @@ namespace Raylib {
     [CCode (cname = "SetSaveFileTextCallback")]
     public static void set_save_file_text_callback (SaveFileTextCallback callback);
 
-    //  File management functions
-    //  TODO: Actually add this
+    // Files management functions
+    [CCode (cname = "LoadFileData")]
+    public static uchar[] load_file_data (string filename, out uint bytes_read);
+
+    [CCode (cname = "UnloadFileData")]
+    public static void unload_file_data (uchar[] data);
+
+    [CCode (cname = "SaveFileData")]
+    public static bool save_file_data (string filename, void* data, out uint bytes_to_write);
+
+    [CCode (cname = "ExportDataAsCode")]
+    public static bool export_data_as_code (uchar[] data, string filename);
+
+    [CCode (cname = "LoadFileText")]
+    public static string load_file_text (string filename);
+
+    [CCode (cname = "UnloadFileText")]
+    public static void unload_file_text (string text);
+
+    [CCode (cname = "SaveFileText")]
+    public static bool save_file_text (string filename, string text);
+
+    [CCode (cname = "FileExists")]
+    public static bool file_exists (string filename);
+
+    [CCode (cname = "DirectoryExists")]
+    public static bool directory_exists (string directory);
+
+    [CCode (cname = "IsFileExtension")]
+    public static bool is_file_extension (string filename, string extension);
+
+    [CCode (cname = "GetFileLength")]
+    public static int get_file_length (string filename);
+
+    [CCode (cname = "GetFileExtension")]
+    public static string get_file_extension (string filename);
+
+    [CCode (cname = "Getfilename")]
+    public static string get_filename (string file);
+
+    [CCode (cname = "GetfilenameWithoutExt")]
+    public static string get_filename_without_extension (string file);
+
+    [CCode (cname = "GetDirectoryPath")]
+    public static string get_directory_path (string file);
+
+    [CCode (cname = "GetPrevDirectoryPath")]
+    public static string get_previous_directory_path (string directory);
+
+    [CCode (cname = "GetWorkingDirectory")]
+    public static string get_work_directory ();
+
+    [CCode (cname = "GetApplicationDirectory")]
+    public static string get_application_directory ();
+
+    [CCode (cname = "ChangeDirectory")]
+    public static bool change_directory (string dir);
+
+    [CCode (cname = "IsPathFile")]
+    public static bool is_path_file (string path);
+
+    [CCode (cname = "LoadDirectoryFiles")]
+    public static FilePathList load_directory_files (string directory);
+
+    [CCode (cname = "LoadDirectoryFilesEx")]
+    public static FilePathList load_directory_files_ext (string basePath, string filter, bool scan_sub_directories);
+
+    [CCode (cname = "UnloadDirectoryFiles")]
+    public static void unload_directory_files (FilePathList files);
+
+    [CCode (cname = "IsFileDropped")]
+    public static bool is_file_dropped ();
+
+    [CCode (cname = "FilePathList")]
+    public static FilePathList load_dropped_files ();
+
+    [CCode (cname = "UnloadDroppedFiles")]
+    public static void unload_dropped_files (FilePathList files);
+
+    [CCode (cname = "GetFileModTime")]
+    public static long get_fil_modified_time (string filename);
+
+    // Compression/Encoding functionality
+    [CCode (cname = "CompressData")]
+    public static uchar[] compress_data (uchar[] data, out int size);
+
+    [CCode (cname = "DecompressData")]
+    public static uchar[] decompress_data (uchar[] compressed_data, out int size);
+
+    [CCode (cname = "EncodeDataBase64")]
+    public static char[] encode_data_base64 (uchar[] data, out int size);
+
+    [CCode (cname = "DecodeDataBase64")]
+    public static uchar[] decode_data_base64 (uchar[] data, out int size);
 
     //------------------------------------------------------------------------------------
     // Input Handling Functions (Module: core)
     //------------------------------------------------------------------------------------
+
+    // Input-related functions: keyboard
     [CCode (cname = "IsKeyPressed")]
     public static bool is_key_pressed (KeyboardKey key);
 
@@ -1237,6 +1348,7 @@ namespace Raylib {
     [CCode (cname = "GetCharPressed")]
     public static int get_char_pressed ();
 
+    // Input-related functions: gamepads
     [CCode (cname = "IsGamepadAvailable")]
     public static bool is_gamepad_available (int gamepad);
 
@@ -1267,6 +1379,7 @@ namespace Raylib {
     [CCode (cname = "SetGamepadMappings")]
     public static int set_gamepad_mappings (string mappings);
 
+    // Input-related functions: mouse
     [CCode (cname = "IsMouseButtonPressed")]
     public static bool is_mouse_button_pressed (MouseButton button);
 
@@ -1309,6 +1422,7 @@ namespace Raylib {
     [CCode (cname = "SetMouseCursor")]
     public static void set_mouse_cursor (MouseCursor cursor);
 
+    // Input-related functions: touch
     [CCode (cname = "GetTouchX")]
     public static int get_touch_x ();
 
@@ -1354,23 +1468,12 @@ namespace Raylib {
     //------------------------------------------------------------------------------------
     // Camera System Functions (Module: rcamera)
     //------------------------------------------------------------------------------------
-    [CCode (cname = "SetCameraMode")]
-    public static void set_camera_mode (Camera camera, CameraMode mode);
-
     [CCode (cname = "UpdateCamera")]
-    public static void update_camera (Camera? camera);
+    public static void update_camera (Camera? camera, CameraMode mode);
 
-    [CCode (cname = "SetCameraPanControls")]
-    public static void set_camera_pan_control (KeyboardKey key);
+    [CCode (cname = "UpdateCameraPro")]
+    public static void update_camera_pro (Camera? camera, Vector3 movement, Vector3 rotation, float zoom);
 
-    [CCode (cname = "SetCameraAltControl")]
-    public static void set_camera_alt_control (KeyboardKey key);
-
-    [CCode (cname = "SetCameraZoomControl")]
-    public static void set_camera_zoom_control (KeyboardKey key);
-
-    [CCode (cname = "SetCameraMoveControls")]
-    public static void set_camera_move_controls (KeyboardKey front, KeyboardKey back, KeyboardKey right, KeyboardKey left, KeyboardKey up, KeyboardKey down);
 
     //------------------------------------------------------------------------------------
     // Basic Shapes Drawing Functions (Module: shapes)
@@ -1508,6 +1611,9 @@ namespace Raylib {
     [CCode (cname = "CheckCollisionPointTriangle")]
     public static bool check_collision_point_triangle (Vector2 point, Vector2 point1, Vector2 point2, Vector2 point3);
 
+    [CCode (cname = "CheckCollisionPointPoly")]
+    public static bool check_collision_point_poly (Vector2 point, Vector2[] points);
+
     [CCode (cname = "CheckCollisionLines")]
     public static bool check_collision_lines (Vector2 start1, Vector2 end1, Vector2 start2, Vector2 end2, Vector2[] collision_point);
 
@@ -1541,6 +1647,9 @@ namespace Raylib {
     [CCode (cname = "LoadImageFromScreen")]
     public static Image load_image_from_screen ();
 
+    [CCode (cname = "IsImageReady")]
+    public static bool is_image_ready (Image image);
+
     [CCode (cname = "UnloadImage")]
     public static void unload_image (Image image);
 
@@ -1569,8 +1678,14 @@ namespace Raylib {
     [CCode (cname = "GenImageWhiteNoise")]
     public static Image generate_image_white_noise (int width, int height, float factor);
 
+    [CCode (cname = "GenImagePerlinNoise")]
+    public static Image generate_image_perlin_noise (int width, int height, int offset_x, int offset_y, float scale);
+
     [CCode (cname = "GenImageCellular")]
     public static Image generate_image_cellular (int width, int height, int tile_size);
+
+    [CCode (cname = "GenImageText")]
+    public static Image generate_image_text (int width, int height, string text);
 
     // Image manipulation functions
     [CCode (cname = "ImageCopy")]
@@ -1605,6 +1720,9 @@ namespace Raylib {
 
     [CCode (cname = "ImageAlphaPremultiply")]
     public static void image_alpha_premultiply (Image? image);
+
+    [CCode (cname = "ImageBlurGaussian")]
+    public static void image_blur_gaussian (Image? image, int blur_size);
 
     [CCode (cname = "ImageResize")]
     public static void image_resize (Image? image, int width, int height);
@@ -1693,6 +1811,12 @@ namespace Raylib {
     [CCode (cname = "ImageDrawCircleV")]
     public static void image_draw_circle_vector (Image? image, Vector2 center, int radius, Color color);
 
+    [CCode (cname = "ImageDrawCircleLines")]
+    public static void image_draw_circle_lines (Image? image, int center_x, int center_y, int radius, Color color);
+
+    [CCode (cname = "ImageDrawCircleLinesV")]
+    public static void image_draw_circle_lines_vector (Image? image, Vector2 center, int radius, Color color);
+
     [CCode (cname = "ImageDrawRectangle")]
     public static void image_draw_rectangle (Image? image, int x, int y, int width, int height, Color color);
 
@@ -1728,8 +1852,14 @@ namespace Raylib {
     [CCode (cname = "LoadRenderTexture")]
     public static RenderTexture2D load_render_texture (int width, int height);
 
+    [CCode (cname = "IsTextureReady")]
+    public static bool is_texture_ready (Texture2D texture);
+
     [CCode (cname = "UnloadTexture")]
     public static void unload_texture (Texture2D texture);
+
+    [CCode (cname = "IsRenderTextureReady")]
+    public static bool is_render_texture_ready (RenderTexture2D target);
 
     [CCode (cname = "UnloadRenderTexture")]
     public static void unload_render_texture (RenderTexture2D target);
@@ -1740,6 +1870,7 @@ namespace Raylib {
     [CCode (cname = "UpdateTextureRec")]
     public static void update_texture_rectangle (Texture2D texture, Rectangle rectangle, void* pixels);
 
+
     // Texture configuration functions
     [CCode (cname = "GenTextureMipmaps")]
     public static void generate_texture_mipmaps (Texture2D? texture);
@@ -1749,6 +1880,7 @@ namespace Raylib {
 
     [CCode (cname = "SetTextureWrap")]
     public static void set_texture_wrap (Texture2D texture, TextureWrap wrap);
+
 
     // Texture drawing functions
     [CCode (cname = "DrawTexture")]
@@ -1763,20 +1895,12 @@ namespace Raylib {
     [CCode (cname = "DrawTextureRec")]
     public static void draw_texture_rectangle (Texture2D texture, Rectangle source, Vector2 position, Color tint);
 
-    [CCode (cname = "DrawTextureQuad")]
-    public static void draw_texture_quad (Texture2D texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint);
-
-    [CCode (cname = "DrawTextureTiled")]
-    public static void draw_texture_tiled (Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, float scale, Color tint);
-
     [CCode (cname = "DrawTexturePro")]
     public static void draw_texture_pro (Texture2D texture, Rectangle source, Rectangle destination, Vector2 origin, float rotation, Color tint);
 
     [CCode (cname = "DrawTextureNPatch")]
     public static void draw_texture_npatch (Texture2D texture, NPatchInfo info, Rectangle destination, Vector2 origin, float rotation, Color tint);
 
-    [CCode (cname = "DrawTexturePoly")]
-    public static void draw_texture_poly (Texture2D texture, Vector2 center, Vector2* points, Vector2* texcoords, int point_ount, Color tint);
 
     // Color/pixel related functions
     [CCode (cname = "Fade")]
@@ -1795,7 +1919,16 @@ namespace Raylib {
     public static Vector3 color_to_hsv (Color color);
 
     [CCode (cname = "ColorFromHSV")]
-    public static Color color_form_hsv (float hue, float saturation, float value);
+    public static Color color_from_hsv (float hue, float saturation, float value);
+
+    [CCode (cname = "ColorTint")]
+    public static Color color_tint (Color color, Color tint);
+
+    [CCode (cname = "ColorBrightness")]
+    public static Color color_brightness (Color color, float factor);
+
+    [CCode (cname = "ColorContrast")]
+    public static Color color_contrast (Color color, float contrast);
 
     [CCode (cname = "ColorAlpha")]
     public static Color color_alpha (Color color, float alpha);
@@ -1834,6 +1967,9 @@ namespace Raylib {
 
     [CCode (cname = "LoadFontFromMemory")]
     public static Font load_font_from_memory (string file_type, uchar file_data, int font_size, int[] font_characters);
+
+    [CCode (cname = "IsFontReady")]
+    public static bool is_font_ready (Font font);
 
     [CCode (cname = "LoadFontData")]
     public static GlyphInfo? load_font_data (uchar[] file_data, int font_size, int[] font_characters, FontType type);
@@ -1886,23 +2022,32 @@ namespace Raylib {
     public static Rectangle get_glyph_atlas_rectangle (Font font, int codepoint);
 
     // Text codepoints management functions (unicode characters)
+    [CCode (cname = "LoadUTF8")]
+    public static string load_utf8 (int[] codepoints);
+
+    [CCode (cname = "UnloadUTF8")]
+    public static void unload_utf8 (string text);
+
     [CCode (cname = "LoadCodepoints")]
-    public static int[] load_codepoints (string text, out int count);
+    public static int[] load_codepoints (string text);
 
     [CCode (cname = "UnloadCodepoints")]
-    public static void unload_codepoints (out int codepoints);
+    public static void unload_codepoints (int[] codepoints, out int length);
 
     [CCode (cname = "GetCodepointCount")]
     public static int get_codepoint_count (string text);
 
     [CCode (cname = "GetCodepoint")]
-    public static int get_codepoint (string text, out int bytes_processed);
+    public static int get_codepoint (string text, out int size);
+
+    [CCode (cname = "GetCodepointNext")]
+    public static int get_codepoint_next (string text, out int size);
+
+    [CCode (cname = "GetCodepointPrevious")]
+    public static int get_codepoint_previous (string text, out int size);
 
     [CCode (cname = "CodepointToUTF8")]
-    public static string codepoint_to_utf8 (int codepoint, out int byte_size);
-
-    [CCode (cname = "TextCodepointsToUTF8")]
-    public static string text_codepoints_to_utf8 (int[] codepoints);
+    public static string codepoint_to_utf8 (int codepoint, out int size);
 
     // Text strings management functions (no UTF-8 strings, only byte chars)
     // NOTE: Some strings allocate memory internally for returned strings, just be careful!
@@ -1928,7 +2073,7 @@ namespace Raylib {
     public static string text_insert (string text, string insert, int position);
 
     [CCode (cname = "TextJoin")]
-    public static string text_join (string[] text_list, int count, string delimiter);
+    public static string text_join (string[] text_list, string delimiter);
 
     [CCode (cname = "TextSplit")]
     public static string[] text_split (string text, char delimiter, out int count);
@@ -1983,12 +2128,6 @@ namespace Raylib {
     [CCode (cname = "DrawCubeWiresV")]
     public static void draw_cube_wires_vector (Vector3 position, Vector3 size, Color color);
 
-    [CCode (cname = "DrawCubeTexture")]
-    public static void draw_cube_texture (Texture2D texture, Vector3 position, float width, float height, float length, Color color);
-
-    [CCode (cname = "DrawCubeTextureRec")]
-    public static void draw_cube_texture_rectangle (Texture2D texture, Rectangle source, Vector3 position, float width, float height, float length, Color color);
-
     [CCode (cname = "DrawSphere")]
     public static void draw_sphere (Vector3 center_position, float radius, Color color);
 
@@ -2009,6 +2148,12 @@ namespace Raylib {
 
     [CCode (cname = "DrawCylinderWiresEx")]
     public static void draw_cylinder_wires_ext (Vector3 start, Vector3 end, float start_adius, float end_radius, int sides, Color color);
+
+    [CCode (cname = "DrawCapsule")]
+    public static void draw_capsule (Vector3 start, Vector3 end, float radius, int slices, int rings, Color color);
+
+    [CCode (cname = "DrawCapsuleWires")]
+    public static void draw_capsule_wires (Vector3 start, Vector3 end, float radius, int slices, int rings, Color color);
 
     [CCode (cname = "DrawPlane")]
     public static void draw_plane (Vector3 center, Vector2 size, Color color);
@@ -2125,10 +2270,13 @@ namespace Raylib {
 
     // Material loading/unloading functions
     [CCode (cname = "LoadMaterials")]
-    public static Material? load_materials (string filename, out int material_count);
+    public static Material[] load_materials (string filename, out int material_count);
 
     [CCode (cname = "LoadMaterialDefault")]
     public static Material load_material_default ();
+
+    [CCode (cname = "IsMaterialReady")]
+    public static bool is_material_ready (Material material);
 
     [CCode (cname = "UnloadMaterial")]
     public static void unload_material (Material material);
@@ -2206,11 +2354,17 @@ namespace Raylib {
     [CCode (cname = "LoadWaveFromMemory")]
     public static Wave load_wave_from_memory (string file_type, uchar[] file_data);
 
+    [CCode (cname = "IsWaveReady")]
+    public static bool is_wave_ready (Wave wave);
+
     [CCode (cname = "LoadSound")]
     public static Sound load_sound (string filename);
 
     [CCode (cname = "LoadSoundFromWave")]
     public static Sound load_sound_from_wave (Wave wave);
+
+    [CCode (cname = "IsSoundReady")]
+    public static bool is_sound_ready (Sound sound);
 
     [CCode (cname = "UpdateSound")]
     public static void update_sound (Sound sound, void* data, int sample_ount);
@@ -2239,15 +2393,6 @@ namespace Raylib {
 
     [CCode (cname = "ResumeSound")]
     public static void resume_sound (Sound sound);
-
-    [CCode (cname = "PlaySoundMulti")]
-    public static void play_sound_multi (Sound sound);
-
-    [CCode (cname = "StopSoundMulti")]
-    public static void stop_sound_multi ();
-
-    [CCode (cname = "GetSoundsPlaying")]
-    public static int get_sounds_playing ();
 
     [CCode (cname = "IsSoundPlaying")]
     public static bool is_sound_playing (Sound sound);
@@ -2282,6 +2427,9 @@ namespace Raylib {
 
     [CCode (cname = "LoadMusicStreamFromMemory")]
     public static Music load_music_stream_from_memory (string file_type, uchar[] data);
+
+    [CCode (cname = "IsMusicReady")]
+    public static bool is_music_ready (Music music);
 
     [CCode (cname = "UnloadMusicStream")]
     public static void unload_music_stream (Music music);
@@ -2325,6 +2473,9 @@ namespace Raylib {
     // AudioStream management functions
     [CCode (cname = "LoadAudioStream")]
     public static AudioStream load_audio_stream (uint sample_rate, uint sample_size, uint channels);
+
+    [CCode (cname = "IsAudioStreamReady")]
+    public static bool is_audio_stream_ready (AudioStream stream);
 
     [CCode (cname = "UnloadAudioStream")]
     public static void unload_audio_stream (AudioStream stream);
@@ -2371,4 +2522,11 @@ namespace Raylib {
 
     [CCode (cname = "DetachAudioStreamProcessor")]
     public static void detach_audio_stream_processor (AudioStream stream, AudioCallback processor);
+
+
+    [CCode (cname = "AttachAudioMixedProcessor")]
+    public static void attach_audio_mixed_processor (AudioCallback processor);
+
+    [CCode (cname = "DetachAudioMixedProcessor")]
+    public static void detach_audio_mixed_processor (AudioCallback processor);
 }
