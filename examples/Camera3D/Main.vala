@@ -24,13 +24,11 @@ public static int main (string[] args) {
         colors[i] = { (uchar)get_random_value (20, 255), (uchar)get_random_value (10, 55), 30, 255 };
     }
 
-    set_camera_mode (camera, CameraMode.FIRST_PERSON);
-
     set_target_fps (60);
 
     // Main game loop
     while (!window_should_close ()) {
-        update_camera (camera);
+        update_camera (camera, CameraMode.FIRST_PERSON);
 
         begin_drawing ();
 
