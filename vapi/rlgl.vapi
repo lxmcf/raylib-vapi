@@ -753,10 +753,10 @@ namespace Rlgl {
     public static void rl_unload_render_batch (RenderBatch batch);                              // Unload render batch system
 
     [CCode (cname = "rlDrawRenderBatch")]
-    public static void rl_draw_render_batch (unowned RenderBatch batch);                        // Draw render batch data (Update->Draw->Reset)
+    public static void rl_draw_render_batch (RenderBatch batch);                        // Draw render batch data (Update->Draw->Reset)
 
     [CCode (cname = "rlSetRenderBatchActive")]
-    public static void rl_set_render_batch_active (unowned RenderBatch batch);                  // Set the active render batch for rlgl (NULL for default internal)
+    public static void rl_set_render_batch_active (RenderBatch batch);                  // Set the active render batch for rlgl (NULL for default internal)
 
     [CCode (cname = "rlDrawRenderBatchActive")]
     public static void rl_draw_render_batch_active ();                                          // Update and draw internal render batch

@@ -20,6 +20,7 @@ Some VAPI's will be released to follow a more [OOP design](https://en.wikipedia.
 | raygui  | :x:                | :x:                |             |         |
 | rpng    | :x:                | :x:                |             |         |
 | res     | :x:                | :x:                |             |         |
+| physac  | :construction:     | :x:                | physac.vapi | 1.1     |
 
 ## Example
 ```csharp
@@ -42,6 +43,8 @@ public static int main (string[] args) {
     }
 
     close_window ();
+
+    return 0;
 }
 ```
 
