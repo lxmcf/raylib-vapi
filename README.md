@@ -19,6 +19,7 @@ Some VAPI's will be released to follow a more [OOP design](https://en.wikipedia.
 | raudio  | :x:                | :x:                |             |         |
 | raygui  | :x:                | :x:                |             |         |
 | rpng    | :x:                | :x:                |             |         |
+| rini    | :heavy_check_mark: | :x:                | rini.vapi   | 1.0     |
 | res     | :x:                | :x:                |             |         |
 | physac  | :construction:     | :x:                | physac.vapi | 1.1     |
 
