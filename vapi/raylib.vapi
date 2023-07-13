@@ -1113,10 +1113,10 @@ namespace Raylib {
     // Shader management functions
     // NOTE: Shader functionality is not available on OpenGL 1.1
     [CCode (cname = "LoadShader")]
-    public static Shader load_shader (string vertex_filename, string fragment_filename);
+    public static Shader load_shader (string? vertex_filename, string? fragment_filename);
 
     [CCode (cname = "LoadShaderFromMemory")]
-    public static Shader load_shader_from_memory (string vertex_shader, string fragment_shader);
+    public static Shader load_shader_from_memory (string? vertex_shader, string? fragment_shader);
 
     [CCode (cname = "IsShaderReady")]
     public static bool is_shader_ready (Shader shader);
