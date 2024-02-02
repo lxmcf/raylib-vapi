@@ -14,7 +14,7 @@ cc = meson.get_compiler ('c')
 # Compiler arguments
 valac_arguments = [
     '--vapidir', vapi_dir,
-    '--profile=posix'
+    #'--profile=posix'
 ]
 
 cc_arguments = [
@@ -26,13 +26,18 @@ add_project_arguments (cc_arguments, language: 'c')
 
 project_dependency = [
     valac.find_library ('raylib', dirs: vapi_dir),
-    valac.find_library ('rlgl', dirs: vapi_dir),
-    valac.find_library ('physac', dirs: vapi_dir),
+    dependency('glib-2.0'),
+    dependency('gobject-2.0'),
+    #valac.find_library ('rlgl', dirs: vapi_dir),
+    #valac.find_library ('physac', dirs: vapi_dir),
 
     cc.find_library ('raylib'),
     cc.find_library ('m')
 ]
 
-subdir ('examples/Camera3D')
-subdir ('examples/SmoothPixel')
-subdir ('examples/Physac')
+#subdir ('examples/Camera3D')
+#subdir ('examples/SmoothPixel')
+#subdir ('examples/Physac')
+subdir('src/lib')
+
+executable('raylib-test', sources: [raylib_oop_src, 'src/tests/main.vala'], dependencies: project_dependency)
