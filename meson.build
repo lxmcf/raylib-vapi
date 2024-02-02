@@ -40,4 +40,4 @@ project_dependency = [
 #subdir ('examples/Physac')
 subdir('src/lib')
 
-executable('raylib-test', sources: [raylib_oop_src, 'src/tests/main.vala'], dependencies: project_dependency)
+executable('raylib-test', sources: [raylib_oop_src, 'src/tests/window.vala'], dependencies: project_dependency)

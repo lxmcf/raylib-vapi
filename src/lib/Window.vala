@@ -18,6 +18,9 @@ namespace Raylib {
 				public void end_drawing() {
 					Raylib.end_drawing();
 				}
+				public void clear_background(Raylib.Color color) {
+					Raylib.clear_background(color);
+				}
 				/* Properties */
 
 				/**
