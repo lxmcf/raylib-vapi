@@ -12,7 +12,8 @@ void println(string msg) {
 /* Quickly refreshes the screen. Also serves as a test to see if the draw methods are working. */
 void quick_draw(Window win) {
 	win.begin_drawing();
-	win.clear_background(Color.WHITE);
+	var someKindofYellow = Color.Custom.from_html_code("#ff00af23");
+	win.clear_background(someKindofYellow);
 	win.end_drawing();
 }
 
@@ -41,6 +42,7 @@ void check_fullscreen(Window window) {
 int main() {
 	println("Checking Window object...");
 	var window = new Window(320, 240, "Test");
+
 	quick_draw(window);
 	Thread.usleep(1000000);
 	println("Checking methods...");

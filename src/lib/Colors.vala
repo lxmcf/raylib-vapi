@@ -4,7 +4,7 @@ using Raylib.OOP.Util;
 namespace Raylib {
 	namespace OOP {
 		namespace Color {
-			class Custom : GLib.Object {
+			public class Custom : GLib.Object {
 				public static Raylib.Color from_rgba(uint8 r, uint8 g, uint8 b, uint8 a) {
 					return({r,g,b,a});
 				}

@@ -40,4 +40,10 @@ project_dependency = [
 #subdir ('examples/Physac')
 subdir('src/lib')
 
-executable('raylib-test', sources: [raylib_oop_src, 'src/tests/window.vala'], dependencies: project_dependency)
+raylib_oop_lib = shared_library(
+  'raylib_vala',
+  sources: raylib_oop_src,
+  dependencies: project_dependency,
+)
+raylib_oop_dep = declare_dependency(link_with: raylib_oop_lib, dependencies: project_dependency)
+executable('window', sources: 'src/tests/window.vala', dependencies: [raylib_oop_dep, project_dependency])
