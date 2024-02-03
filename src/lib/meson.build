@@ -3,4 +3,5 @@ raylib_oop_src = [
   'src/lib/Window.vala',
   'src/lib/Colors.vala',
   'src/lib/Util.vala',
+  'src/lib/Music.vala',
 ]
