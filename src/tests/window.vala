@@ -1,7 +1,6 @@
 using GLib;
-using Raylib.OOP;
-using Raylib.OOP.Core;
-using Raylib.OOP.Shapes;
+using RaylibOOP;
+using RaylibOOP.Core;
 
 void println(string msg) {
 	/* We put a [Test] at the start, to differentiate output from Raylib, from the test. */
@@ -19,6 +18,7 @@ void quick_draw(Window win) {
 
 void check_ready(Window window) {
 	println("Checking if ready...");
+	println(@"Window is ready: $(window.ready)");
 }
 
 void check_fullscreen(Window window) {
@@ -42,7 +42,8 @@ void check_fullscreen(Window window) {
 int main() {
 	println("Checking Window object...");
 	var window = new Window(320, 240, "Test");
-
+	println("Checking properties...");
+	check_ready(window);
 	quick_draw(window);
 	Thread.usleep(1000000);
 	println("Checking methods...");
