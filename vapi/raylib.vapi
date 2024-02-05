@@ -2366,6 +2366,9 @@ namespace Raylib {
     [CCode (cname = "LoadSoundFromWave")]
     public static Sound load_sound_from_wave (Wave wave);
 
+	[CCode (cname = "LoadSoundAlias")]
+	public static Sound load_sound_alias(Sound source);
+
     [CCode (cname = "IsSoundReady")]
     public static bool is_sound_ready (Sound sound);
 
