@@ -2347,6 +2347,9 @@ namespace Raylib {
     [CCode (cname = "SetMasterVolume")]
     public static void set_master_volume (float volume);
 
+	[CCode (cname = "GetMasterVolume")]
+	public static float get_master_volume ();
+
     // Wave/Sound loading/unloading functions
     [CCode (cname = "LoadWave")]
     public static Wave load_wave (string filename);

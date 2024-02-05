@@ -1,6 +1,15 @@
 using Raylib;
 namespace RaylibOOP {
 	namespace Audio {
+		namespace MasterVolume {
+			public float get() {
+				return(get_master_volume());
+			}
+			public void set(float volume) {
+				set_master_volume(volume);
+				return;
+			}
+		}
 		namespace FileType {
 			const string WAV  = ".wav";
 			const string OGG  = ".ogg";
