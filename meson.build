@@ -47,3 +47,5 @@ raylib_oop_lib = shared_library(
 )
 raylib_oop_dep = declare_dependency(link_with: raylib_oop_lib, dependencies: project_dependency)
 executable('window', sources: 'src/tests/window.vala', dependencies: [raylib_oop_dep, project_dependency])
+executable('sound', sources: 'src/tests/sound.vala', dependencies: [raylib_oop_dep, project_dependency])
+executable('music', sources: 'src/tests/music.vala', dependencies: [raylib_oop_dep, project_dependency])

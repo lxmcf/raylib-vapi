@@ -6,7 +6,7 @@ namespace RaylibOOP {
 			/* Variables */
 			private string windowTitle;
 			public Window(int width, int height, string title) {
-				stderr.printf("The OOP interface is not done. Here be dragons.\n");
+				stderr.printf("WARN: The OOP interface is not done. Here be dragons!\n");
 				this.title = title;
 				Raylib.init_window(width, height, this.title);
 			}
@@ -75,6 +75,23 @@ namespace RaylibOOP {
 			*/
 			public bool resized {
 				get { return(Raylib.is_window_resized()); }
+			}
+			/**
+			* Master volume of the window
+			*/
+			public float master_volume {
+				get {
+					return(Raylib.get_master_volume());
+				}
+				set {
+					float volume = value;
+					if(volume > 1.0f) {
+						volume = 1.0f;
+					} else if(volume < 0.0f) {
+						volume = 0.0f;
+					}
+					Raylib.set_master_volume(volume);
+				}
 			}
 			/**
 			* Title of the window
