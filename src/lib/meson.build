@@ -5,4 +5,5 @@ raylib_oop_src = [
   'src/lib/Util.vala',
   'src/lib/Audio.vala',
   'src/lib/Music.vala',
+	'src/lib/Sound.vala',
 ]

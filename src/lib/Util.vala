@@ -1,6 +1,6 @@
 namespace RaylibOOP {
 	namespace Util {
-		uint8 hex_to_uint8(char a) {
+		public uint8 hex_to_uint8(char a) {
 			uint8 base10_a;
 			switch(a.tolower()) {
 				case 'a':

@@ -1,14 +1,17 @@
 using Raylib;
 namespace RaylibOOP {
 	namespace Audio {
+		/**
+		* File Types for use with loading audio data from memory.
+		*/
 		namespace FileType {
-			const string WAV  = ".wav";
-			const string OGG  = ".ogg";
-			const string MP3  = ".mp3";
-			const string QOA  = ".qoa";
-			const string FLAC = ".flac";
-			const string XM   = ".xm";
-			const string MOD  = ".mod";
+			public const string WAV  = ".wav";
+			public const string OGG  = ".ogg";
+			public const string MP3  = ".mp3";
+			public const string QOA  = ".qoa";
+			public const string FLAC = ".flac";
+			public const string XM   = ".xm";
+			public const string MOD  = ".mod";
 		}
 	}
 }

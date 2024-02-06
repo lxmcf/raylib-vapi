@@ -5,10 +5,15 @@ namespace RaylibOOP {
 		public class Window : GLib.Object {
 			/* Variables */
 			private string windowTitle;
+			/* Constructor */
 			public Window(int width, int height, string title) {
 				stderr.printf("WARN: The OOP interface is not done. Here be dragons!\n");
-				this.title = title;
-				Raylib.init_window(width, height, this.title);
+				this.windowTitle = title;
+				Raylib.init_window(width, height, this.windowTitle);
+			}
+			/* Destroyer */
+			~Window() {
+				close_window();
 			}
 			/* Methods */
 			public void begin_drawing() {
@@ -27,6 +32,14 @@ namespace RaylibOOP {
 			*/
 			public bool ready {
 				get { return(Raylib.is_window_ready()); }
+			}
+			/**
+			* If window should close.
+			*/
+			public bool should_close {
+				get {
+					return(Raylib.window_should_close());
+				}
 			}
 			/**
 			* Is window fullscreen.

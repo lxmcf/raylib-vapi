@@ -14,7 +14,7 @@ int main(string[] args) {
 	window.master_volume = 0.5f;
 	print(@"Master Volume: $(window.master_volume)\n");
 	music.playing = true;
-	while(music.playing == true) {
+	while(music.playing == true && !window.should_close) {
 		window.begin_drawing();
 		switch(get_key_pressed()) {
 			case KeyboardKey.Q:
@@ -31,9 +31,11 @@ int main(string[] args) {
 				break;
 			case KeyboardKey.W:
 				music.volume += 0.1f;
+				print(@"Music Volume: $(music.volume)\n");
 				break;
 			case KeyboardKey.S:
 				music.volume -= 0.1f;
+				print(@"Music Volume: $(music.volume)\n");
 				break;
 			default:
 				break;
@@ -42,6 +44,8 @@ int main(string[] args) {
 		window.end_drawing();
 	}
 	music = null; // Test if destroy works.
+	Thread.usleep(1000000);
+	window = null;
 	Thread.usleep(1000000);
 	return(0);
 }
