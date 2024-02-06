@@ -110,10 +110,3 @@ executable(
 		project_dependency,
 	],
 )
-executable(
-	'test-vapi',
-	sources: 'src/tests/test.vala',
-	dependencies: [
-		project_dependency,
-	],
-)

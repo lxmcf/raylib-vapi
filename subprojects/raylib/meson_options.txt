@@ -1,0 +1,5 @@
+# Only valid if platform is set to 'desktop'
+option('native_glfw', type: 'boolean', value: false)
+
+option('gl_api', type: 'combo', choices: ['1.1', '2.1', '3.3', '4.3', 'es2', 'es3'], value: '3.3')
+option('platform', type: 'combo', choices: ['desktop', 'desktop_sdl', 'drm'], value: 'desktop')

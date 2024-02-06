@@ -2,31 +2,59 @@ using Raylib;
 
 namespace RaylibOOP {
 	namespace Core {
+		internal uint8 numOfWindows = 0;
 		public class Window : GLib.Object {
 			/* Variables */
 			private string windowTitle;
 			/* Constructor */
 			public Window(int width, int height, string title) {
+				if(numOfWindows > 0) {
+					error("You cannot create more than 1 window object. Please set the last one to null!");
+				}
 				stderr.printf("WARN: The OOP interface is not done. Here be dragons!\n");
 				this.windowTitle = title;
 				Raylib.init_window(width, height, this.windowTitle);
+				numOfWindows++;
 			}
 			/* Destroyer */
 			~Window() {
 				close_window();
+				numOfWindows--;
 			}
 			/* Methods */
+			/* Draw Related */
+			/**
+			* Setup canvas (framebuffer) to start drawing
+			*/
 			public void begin_drawing() {
 				Raylib.begin_drawing();
 			}
+			/**
+			* End canvas drawing and swap buffers (double buffering)
+			*/
 			public void end_drawing() {
 				Raylib.end_drawing();
 			}
+			/**
+			* Begin 2D mode with custom camera (2D)
+			*/
+			public void begin_2D(Raylib.Camera2D camera) {
+				Raylib.begin_mode_2D(camera);
+				return;
+			}
+			/**
+			* Ends 2D mode with custom camera
+			*/
+			public void end_2D() {
+				Raylib.end_mode_2D();
+			}
+			/**
+			* Set background color (framebuffer clear color)
+			*/
 			public void clear_background(Raylib.Color color) {
 				Raylib.clear_background(color);
 			}
 			/* Properties */
-
 			/**
 			* If window is ready.
 			*/

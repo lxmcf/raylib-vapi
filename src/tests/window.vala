@@ -48,5 +48,7 @@ int main() {
 	Thread.usleep(1000000);
 	println("Checking methods...");
 	check_fullscreen(window);
+	/* Finally, check if number of windows detection works */
+	var window_two = new Window(320, 240, "This should crash the program.");
 	return(0);
 }

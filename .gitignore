@@ -1,3 +1,5 @@
 build/
 misc/
 compile_commands.json
+.cache/
+.ccls-cache/
