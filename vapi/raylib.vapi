@@ -1330,6 +1330,9 @@ namespace Raylib {
     [CCode (cname = "IsKeyPressed")]
     public static bool is_key_pressed (KeyboardKey key);
 
+	[CCode (cname = "IsKeyPressedRepeat")]
+	public static bool is_key_pressed_repeat (KeyboardKey key);
+
     [CCode (cname = "IsKeyDown")]
     public static bool is_key_down (KeyboardKey key);
 
