@@ -3,13 +3,16 @@ project(
 	'c',
 	version: '5.0.0',
 	default_options: [
-		'c_std=c99'
+		'c_std=c99',
+		'warning_level=1',
+		'optimization=1'
 	]
 )
 
 pkg = import('pkgconfig')
 cc = meson.get_compiler('c')
 version = meson.project_version()
+os = build_machine.system()
 
 # Debug stuff.
 # Doing this because the debug defaults for Meson are really bad.
@@ -39,24 +42,18 @@ endif
 
 deps = []
 
-if build_machine.system() == 'windows'
+if os == 'windows'
 	deps += [
 		cc.find_library('winmm', required: true),
 		cc.find_library('opengl32', required: true),
 		cc.find_library('shell32', required: true),
 		cc.find_library('gdi32', required: true),
 	]
-elif build_machine.system() == 'darwin'
+elif os == 'darwin'
 	error('OS not implemented.')
 else
 	deps += [
-		dependency('x11'),
-		dependency('xcursor'),
-		dependency('xrandr'),
-		dependency('xinerama'),
-		dependency('xi'),
 		dependency('threads'),
-		dependency('gl'),
 		cc.find_library('m', required: false),
 		cc.find_library('dl', required: false),
 		cc.find_library('rt', required: false),
@@ -100,6 +97,16 @@ if platform == 'desktop'
 			'source/src/external/glfw/deps/mingw'
 		]
 		src += 'source/src/rglfw.c'
+		if os != 'windows' and os != 'darwin'
+			deps += [
+				dependency('gl'),
+				dependency('x11'),
+				dependency('xcursor'),
+				dependency('xrandr'),
+				dependency('xinerama'),
+				dependency('xi'),
+			]
+		endif
 	endif
 elif platform == 'desktop_sdl'
 	c_args += '-DPLATFORM_DESKTOP_SDL'
@@ -112,6 +119,7 @@ elif platform == 'drm'
 	deps += dependency('libdrm', required: true)
 	deps += dependency('gbm', required: true)
 	deps += dependency('egl', required: true)
+	deps += dependency('gl', required: true)
 endif
 # Required defines
 c_args += [
@@ -123,7 +131,6 @@ c_args += [
 	'-DSUPPORT_FILEFORMAT_XM',
 	'-DSUPPORT_FILEFORMAT_MOD',
 	'-DBUILD_LIBTYPE_SHARED',
-	'-O1',
 	'-D_GNU_SOURCE',
 	'-Wno-missing-braces',
 	'-Werror=pointer-arith',
@@ -144,4 +151,11 @@ lib = shared_library(
 raylib_dep = declare_dependency(
 	link_with: lib,
 	include_directories: incdir,
+)
+
+# For testing if the library built correctly.
+raylib_exe = executable(
+	'bunnymark',
+	sources: 'bunnymark/main.c',
+	dependencies: raylib_dep,
 )
