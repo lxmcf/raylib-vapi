@@ -41,7 +41,7 @@ namespace RaylibOOP {
 					return(this.vector.y);
 				}
 				set {
-					this.vector.y = y;
+					this.vector.y = value;
 				}
 			}
 		}
