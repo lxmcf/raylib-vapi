@@ -186,6 +186,28 @@ namespace RaylibOOP {
 					Raylib.set_exit_key(value);
 				}
 			}
+			/**
+			* Screen width
+			*/
+			public int width {
+				get {
+					return(Raylib.get_screen_width());
+				}
+				set {
+					Raylib.set_window_size(value, Raylib.get_screen_height());
+				}
+			}
+			/**
+			* Screen Height
+			*/
+			public int height {
+				get {
+					return(Raylib.get_screen_height());
+				}
+				set {
+					Raylib.set_window_size(Raylib.get_screen_width(), value);
+				}
+			}
 		}
 	}
 }
