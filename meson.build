@@ -110,3 +110,11 @@ executable(
 		project_dependency,
 	],
 )
+executable(
+	'bunnymark',
+	sources: 'src/tests/bunnymark.vala',
+	dependencies: [
+		raylib_oop_dep,
+		project_dependency,
+	],
+)

@@ -6,6 +6,8 @@ namespace RaylibOOP {
 		public class Window : GLib.Object {
 			/* Variables */
 			private string windowTitle;
+			internal int targetFPS = 60;
+			internal Raylib.KeyboardKey exitKey = Raylib.KeyboardKey.ESCAPE;
 			/* Constructor */
 			public Window(int width, int height, string title) {
 				if(numOfWindows > 0) {
@@ -22,7 +24,13 @@ namespace RaylibOOP {
 				numOfWindows--;
 			}
 			/* Methods */
-			/* Draw Related */
+			/**
+			* Draws current framerate at coordinates.
+			*/
+			public void draw_fps(int x, int y) {
+				Raylib.draw_fps(x, y);
+				return;
+			}
 			/**
 			* Setup canvas (framebuffer) to start drawing
 			*/
@@ -144,6 +152,38 @@ namespace RaylibOOP {
 				set {
 					this.windowTitle = value;
 					Raylib.set_window_title(this.windowTitle);
+				}
+			}
+			/**
+			* Current Frames per Second of the Window.
+			*/
+			public int fps {
+				get {
+					return(Raylib.get_fps());
+				}
+			}
+			/**
+			* Target FPS of the Window.
+			*/
+			public int target_fps {
+				get {
+					return(this.targetFPS);
+				}
+				set {
+					Raylib.set_target_fps(value);
+					this.targetFPS = value;
+				}
+			}
+			/**
+			* The exit key of the window.
+			*/
+			public Raylib.KeyboardKey exit_key {
+				get {
+					return(this.exitKey);
+				}
+				set {
+					this.exitKey = value;
+					Raylib.set_exit_key(value);
 				}
 			}
 		}
