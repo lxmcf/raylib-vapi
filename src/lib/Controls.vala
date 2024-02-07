@@ -1,4 +1,5 @@
-using Raylib;
+using RaylibOOP;
+using RaylibOOP.Shapes;
 
 namespace RaylibOOP {
 	namespace Input {
@@ -178,6 +179,22 @@ namespace RaylibOOP {
 			public static int char_pressed {
 				get {
 					return(Raylib.get_char_pressed());
+				}
+			}
+		}
+		public class Mouse : GLib.Object {
+			private Mouse() {
+				return;
+			}
+			/* Properties */
+			public static Vector2 position {
+				owned get {
+					Raylib.Vector2 a = Raylib.get_mouse_position();
+					return(new Vector2(a.x, a.y));
+				}
+				set {
+					Vector2 a = value;
+					Raylib.set_mouse_position((int)Math.ceilf(a.x), (int)Math.ceilf(a.y));
 				}
 			}
 		}
