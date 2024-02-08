@@ -40,9 +40,12 @@ public class Main : GLib.Object {
 
 		/* Print Namespace */
 		if(namespace != null) {
-			o.printf("namespace %s {\n", namespace);
+			o.printf("namespace %s {\n\t", namespace);
 		}
 		o.printf("const uint8[] %s = {\n\t", variable);
+		if(namespace != null) {
+			o.putc('\t');
+		}
 		/* Get bytes from input file */
 		var i = FileStream.open(inputFile, "rb");
 		/* Get size of input file */
@@ -59,13 +62,20 @@ public class Main : GLib.Object {
 			/* Make sure we line break every 80 characters */
 			if(c >= 80) {
 				o.printf("\n\t");
+				if(namespace != null) {
+					o.printf("\t");
+				}
 				c = 0;
 			}
 			c += 5;
 			/* Print out hexidecimal */
 			o.printf("%03d, ", b);
 		}
-		o.printf("\n};\n");
+		o.putc('\n');
+		if(namespace != null) {
+			o.printf("\t");
+		}
+		o.printf("};\n");
 		if(namespace != null) {
 			o.printf("}\n");
 		}
