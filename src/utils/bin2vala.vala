@@ -63,11 +63,7 @@ public class Main : GLib.Object {
 			}
 			c += 5;
 			/* Print out hexidecimal */
-			if(b == 0) {
-				o.printf("000, "); /* Satiate my OCD */
-			} else {
-				o.printf("%03d, ", b);
-			}
+			o.printf("%03d, ", b);
 		}
 		o.printf("\n};\n");
 		if(namespace != null) {
