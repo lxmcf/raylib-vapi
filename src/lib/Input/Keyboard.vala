@@ -126,31 +126,31 @@ namespace RaylibOOP {
 			/**
 			* Check if a key has been pressed once.
 			*/
-			public static bool is_key_pressed(int key) {
+			public static bool is_pressed(int key) {
 				return(Raylib.is_key_pressed(key));
 			}
 			/**
 			* Check if a key has been pressed again (Only PLATFORM_DESKTOP)
 			*/
-			public static bool is_key_pressed_repeat(int key) {
+			public static bool is_pressed_repeat(int key) {
 				return(Raylib.is_key_pressed_repeat(key));
 			}
 			/**
 			* Check if a key is being pressed.
 			*/
-			public static bool is_key_down(int key) {
+			public static bool is_down(int key) {
 				return(Raylib.is_key_down(key));
 			}
 			/**
 			* Check if a key has been released once.
 			*/
-			public static bool is_key_released(int key) {
+			public static bool is_released(int key) {
 				return(Raylib.is_key_released(key));
 			}
 			/**
 			* Check if a key is NOT being pressed.
 			*/
-			public static bool is_key_up(int key) {
+			public static bool is_up(int key) {
 				return(Raylib.is_key_up(key));
 			}
 			/* Properties */

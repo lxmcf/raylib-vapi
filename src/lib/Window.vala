@@ -1,5 +1,3 @@
-using Raylib;
-
 namespace RaylibOOP {
 	namespace Core {
 		public errordomain WindowError {
@@ -11,7 +9,7 @@ namespace RaylibOOP {
 			private string windowTitle;
 			internal int targetFPS = 60;
 			internal bool initialized = false; /* Checks if this object has been initialized, or if it error'd */
-			internal Raylib.KeyboardKey exitKey = Raylib.KeyboardKey.ESCAPE;
+			internal Input.Keyboard.Key exitKey = Input.Keyboard.Key.ESCAPE;
 			/* Constructor */
 			public Window(int width, int height, string title) throws WindowError {
 				if(numOfWindows > 0) {
@@ -33,6 +31,12 @@ namespace RaylibOOP {
 				numOfWindows--;
 			}
 			/* Methods */
+			/**
+			* Set window state: not minimized/maximized (only PLATFORM_DESKTOP)
+			*/
+			public void restore() {
+				Raylib.restore_window();
+			}
 			/**
 			* Draws current framerate at coordinates.
 			*/
@@ -107,6 +111,15 @@ namespace RaylibOOP {
 				}
 			}
 			/**
+			* Borderless windowed (only PLATFORM_DESKTOP)
+			*/
+			public bool borderless {
+				get { return(Raylib.is_window_state(Raylib.ConfigFlags.BORDERLESS_WINDOWED_MODE)); }
+				set {
+					Raylib.set_window_state(Raylib.ConfigFlags.BORDERLESS_WINDOWED_MODE);
+				}
+			}
+			/**
 			* Is window hidden.
 			*/
 			public bool hidden {
@@ -123,12 +136,24 @@ namespace RaylibOOP {
 			*/
 			public bool minimized {
 				get { return(Raylib.is_window_minimized()); }
+				set {
+					if(value == true)
+						Raylib.set_window_state(Raylib.ConfigFlags.WINDOW_MINIMIZED);
+					else
+						Raylib.clear_window_state(Raylib.ConfigFlags.WINDOW_MINIMIZED);
+				}
 			}
 			/**
 			* Is window maximized.
 			*/
 			public bool maximized {
 				get { return(Raylib.is_window_maximized()); }
+				set {
+					if(value == true)
+						Raylib.set_window_state(Raylib.ConfigFlags.WINDOW_MAXIMIZED);
+					else
+						Raylib.clear_window_state(Raylib.ConfigFlags.WINDOW_MAXIMIZED);
+				}
 			}
 			/**
 			* Is window focused.
@@ -194,7 +219,7 @@ namespace RaylibOOP {
 			/**
 			* The exit key of the window.
 			*/
-			public Raylib.KeyboardKey exit_key {
+			public Input.Keyboard.Key exit_key {
 				get {
 					return(this.exitKey);
 				}

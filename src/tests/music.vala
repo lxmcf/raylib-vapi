@@ -1,5 +1,6 @@
 using RaylibOOP;
-using Raylib;
+using RaylibOOP.Core;
+using RaylibOOP.Input;
 
 int main(string[] args) {
 	if(args[1] == null) {
@@ -7,7 +8,12 @@ int main(string[] args) {
 		Process.exit(1);
 	}
 	string filetype = args[1];
-	var window = new Core.Window(320, 240, "Test Audio");
+	Window window;
+	try {
+		window = new Core.Window(320, 240, "Test Audio");
+	} catch(WindowError e) {
+		error("Ruh roh.");
+	}
 	var music = new Audio.Music(@"../src/tests/resources/music.$(filetype)");
 	/* Check if master volume works */
 	print(@"Master Volume: $(window.master_volume)\n");
@@ -16,24 +22,24 @@ int main(string[] args) {
 	music.playing = true;
 	while(music.playing == true && !window.should_close) {
 		window.begin_drawing();
-		switch(get_key_pressed()) {
-			case KeyboardKey.Q:
+		switch(Keyboard.key_pressed) {
+			case Keyboard.Key.Q:
 				music.playing = false;
 				break;
 			/* Master Volume */
-			case KeyboardKey.UP:
+			case Keyboard.Key.UP:
 				window.master_volume += 0.1f;
 				print(@"Master Volume: $(window.master_volume)\n");
 				break;
-			case KeyboardKey.DOWN:
+			case Keyboard.Key.DOWN:
 				window.master_volume -= 0.1f;
 				print(@"Master Volume: $(window.master_volume)\n");
 				break;
-			case KeyboardKey.W:
+			case Keyboard.Key.W:
 				music.volume += 0.1f;
 				print(@"Music Volume: $(music.volume)\n");
 				break;
-			case KeyboardKey.S:
+			case Keyboard.Key.S:
 				music.volume -= 0.1f;
 				print(@"Music Volume: $(music.volume)\n");
 				break;

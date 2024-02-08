@@ -1,0 +1,200 @@
+- [x] void InitWindow(int width, int height, const char *title); # Implemented: `new Window`
+- [x] void CloseWindow(void); # Implemented: `Window = null`
+- [x] bool WindowShouldClose(void); # Implemented: `Window.should_close`
+- [x] bool IsWindowReady(void); # Implemented: `Window.ready`
+- [x] bool IsWindowFullscreen(void); # Implemented: `Window.fullscreen`
+- [x] bool IsWindowHidden(void); # Implemented: `Window.hidden`
+- [x] bool IsWindowMinimized(void); # Implemented: `Window.minimized`
+- [x] bool IsWindowMaximized(void); # Implemented: `Window.maximized`
+- [x] bool IsWindowFocused(void); # Implemented: `Window.focused`
+- [x] bool IsWindowResized(void); # Implemented: `Window.resized`
+- ❌ bool IsWindowState(unsigned int flag); # Unneeded
+- ❌ void SetWindowState(unsigned int flags); # Unneeded
+- ❌ void ClearWindowState(unsigned int flags); # Unneeded
+- [x] void ToggleFullscreen(void); # Implemented: `Window.fullscreen`
+- [x] void ToggleBorderlessWindowed(void); # Implemented: `Window.borderless`
+- [x] void MaximizeWindow(void); # Implemented: `Window.maximized`
+- [x] void MinimizeWindow(void); # Implemented: `Window.minimized`
+- [x] void RestoreWindow(void); # Implemented: `Window.restore`
+- [ ] void SetWindowIcon(Image image);
+- [ ] void SetWindowIcons(Image *images, int count);
+- [x] void SetWindowTitle(const char *title); # Implemented: `Window.title`
+- [ ] void SetWindowPosition(int x, int y);
+- [ ] void SetWindowMonitor(int monitor);
+- [ ] void SetWindowMinSize(int width, int height);
+- [ ] void SetWindowMaxSize(int width, int height);
+- [ ] void SetWindowSize(int width, int height);
+- [ ] void SetWindowOpacity(float opacity);
+- [ ] void SetWindowFocused(void);
+- [ ] void *GetWindowHandle(void);
+- [ ] int GetScreenWidth(void);
+- [ ] int GetScreenHeight(void);
+- [ ] int GetRenderWidth(void);
+- [ ] int GetRenderHeight(void);
+- [ ] int GetMonitorCount(void);
+- [ ] int GetCurrentMonitor(void);
+- [ ] Vector2 GetMonitorPosition(int monitor);
+- [ ] int GetMonitorWidth(int monitor);
+- [ ] int GetMonitorHeight(int monitor);
+- [ ] int GetMonitorPhysicalWidth(int monitor);
+- [ ] int GetMonitorPhysicalHeight(int monitor);
+- [ ] int GetMonitorRefreshRate(int monitor);
+- [ ] Vector2 GetWindowPosition(void);
+- [ ] Vector2 GetWindowScaleDPI(void);
+- [ ] const char *GetMonitorName(int monitor);
+- [ ] void SetClipboardText(const char *text);
+- [ ] const char *GetClipboardText(void);
+- [ ] void EnableEventWaiting(void);
+- [ ] void DisableEventWaiting(void);
+- [ ] void ShowCursor(void);
+- [ ] void HideCursor(void);
+- [ ] bool IsCursorHidden(void);
+- [ ] void EnableCursor(void);
+- [ ] void DisableCursor(void);
+- [ ] bool IsCursorOnScreen(void);
+- [ ] void ClearBackground(Color color);
+- [x] void BeginDrawing(void); # Implemented: `Window.begin_drawing` and `Window.draw`
+- [x] void EndDrawing(void); # Implemented: `Window.end_drawing` and `Window.draw`
+- [ ] void BeginMode2D(Camera2D camera);
+- [ ] void EndMode2D(void);
+- [ ] void BeginMode3D(Camera3D camera);
+- [ ] void EndMode3D(void);
+- [ ] void BeginTextureMode(RenderTexture2D target);
+- [ ] void EndTextureMode(void);
+- [ ] void BeginShaderMode(Shader shader);
+- [ ] void EndShaderMode(void);
+- [ ] void BeginBlendMode(int mode);
+- [ ] void EndBlendMode(void);
+- [ ] void BeginScissorMode(int x, int y, int width, int height);
+- [ ] void EndScissorMode(void);
+- [ ] void BeginVrStereoMode(VrStereoConfig config);
+- [ ] void EndVrStereoMode(void);
+- [ ] VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device);
+- [ ] void UnloadVrStereoConfig(VrStereoConfig config);
+- [ ] Shader LoadShader(const char *vsFileName, const char *fsFileName);
+- [ ] Shader LoadShaderFromMemory(const char *vsCode, const char *fsCode);
+- [ ] bool IsShaderReady(Shader shader);
+- [ ] int GetShaderLocation(Shader shader, const char *uniformName);
+- [ ] int GetShaderLocationAttrib(Shader shader, const char *attribName);
+- [ ] void SetShaderValue(Shader shader, int locIndex, const void *value, int uniformType);
+- [ ] void SetShaderValueV(Shader shader, int locIndex, const void *value, int uniformType, int count);
+- [ ] void SetShaderValueMatrix(Shader shader, int locIndex, Matrix mat);
+- [ ] void SetShaderValueTexture(Shader shader, int locIndex, Texture2D texture);
+- [ ] void UnloadShader(Shader shader);
+- [ ] Ray GetMouseRay(Vector2 mousePosition, Camera camera);
+- [ ] Matrix GetCameraMatrix(Camera camera);
+- [ ] Matrix GetCameraMatrix2D(Camera2D camera);
+- [ ] Vector2 GetWorldToScreen(Vector3 position, Camera camera);
+- [ ] Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera);
+- [ ] Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int width, int height);
+- [ ] Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera);
+- [x] void SetTargetFPS(int fps); # Implemented: `Window.target_fps`
+- [ ] float GetFrameTime(void);
+- [ ] double GetTime(void);
+- [x] int GetFPS(void); # Implemented: `Window.fps`
+- [ ] void SwapScreenBuffer(void);
+- [ ] void PollInputEvents(void);
+- ❌ void WaitTime(double seconds); # Unneeded: Built-in to GLib `Thread.usleep`
+- ❌ void SetRandomSeed(unsigned int seed); # Unneeded: Built-in to GLib `GLib.Random`
+- ❌ int GetRandomValue(int min, int max); # Unneeded: Built-in to GLib `GLib.Random`
+- [ ] int *LoadRandomSequence(unsigned int count, int min, int max);
+- [ ] void UnloadRandomSequence(int *sequence);
+- [ ] void TakeScreenshot(const char *fileName);
+- [ ] void SetConfigFlags(unsigned int flags);
+- [ ] void OpenURL(const char *url);
+- [ ] void TraceLog(int logLevel, const char *text, ...);
+- [ ] void SetTraceLogLevel(int logLevel);
+- [ ] void *MemAlloc(unsigned int size);
+- [ ] void *MemRealloc(void *ptr, unsigned int size);
+- [ ] void MemFree(void *ptr);
+- [ ] void SetTraceLogCallback(TraceLogCallback callback);
+- [ ] void SetLoadFileDataCallback(LoadFileDataCallback callback);
+- [ ] void SetSaveFileDataCallback(SaveFileDataCallback callback);
+- [ ] void SetLoadFileTextCallback(LoadFileTextCallback callback);
+- [ ] void SetSaveFileTextCallback(SaveFileTextCallback callback);
+- [ ] unsigned char *LoadFileData(const char *fileName, int *dataSize);
+- [ ] void UnloadFileData(unsigned char *data);
+- [ ] bool SaveFileData(const char *fileName, void *data, int dataSize);
+- [ ] bool ExportDataAsCode(const unsigned char *data, int dataSize, const char *fileName);
+- [ ] char *LoadFileText(const char *fileName);
+- [ ] void UnloadFileText(char *text);
+- [ ] bool SaveFileText(const char *fileName, char *text);
+- [ ] bool FileExists(const char *fileName);
+- [ ] bool DirectoryExists(const char *dirPath);
+- [ ] bool IsFileExtension(const char *fileName, const char *ext);
+- [ ] int GetFileLength(const char *fileName);
+- [ ] const char *GetFileExtension(const char *fileName);
+- [ ] const char *GetFileName(const char *filePath);
+- [ ] const char *GetFileNameWithoutExt(const char *filePath);
+- [ ] const char *GetDirectoryPath(const char *filePath);
+- [ ] const char *GetPrevDirectoryPath(const char *dirPath);
+- [ ] const char *GetWorkingDirectory(void);
+- [ ] const char *GetApplicationDirectory(void);
+- [ ] bool ChangeDirectory(const char *dir);
+- [ ] bool IsPathFile(const char *path);
+- [ ] FilePathList LoadDirectoryFiles(const char *dirPath);
+- [ ] FilePathList LoadDirectoryFilesEx(const char *basePath, const char *filter, bool scanSubdirs);
+- [ ] void UnloadDirectoryFiles(FilePathList files);
+- [ ] bool IsFileDropped(void);
+- [ ] FilePathList LoadDroppedFiles(void);
+- [ ] void UnloadDroppedFiles(FilePathList files);
+- [ ] long GetFileModTime(const char *fileName);
+- [ ] unsigned char *CompressData(const unsigned char *data, int dataSize, int *compDataSize);
+- [ ] unsigned char *DecompressData(const unsigned char *compData, int compDataSize, int *dataSize);
+- [ ] char *EncodeDataBase64(const unsigned char *data, int dataSize, int *outputSize);
+- [ ] unsigned char *DecodeDataBase64(const unsigned char *data, int *outputSize);
+- [ ] AutomationEventList LoadAutomationEventList(const char *fileName);
+- [ ] void UnloadAutomationEventList(AutomationEventList *list);
+- [ ] bool ExportAutomationEventList(AutomationEventList list, const char *fileName);
+- [ ] void SetAutomationEventList(AutomationEventList *list);
+- [ ] void SetAutomationEventBaseFrame(int frame);
+- [ ] void StartAutomationEventRecording(void);
+- [ ] void StopAutomationEventRecording(void);
+- [ ] void PlayAutomationEvent(AutomationEvent event);
+- [x] bool IsKeyPressed(int key); # Implemented: `Input.Keyboard.is_pressed`
+- [x] bool IsKeyPressedRepeat(int key); # Implemented: `Input.Keyboard.is_pressed_repeat`
+- [x] bool IsKeyDown(int key); # Implemented: `Input.Keyboard.is_down`
+- [x] bool IsKeyReleased(int key); # Implemented: `Input.Keyboard.is_released`
+- [x] bool IsKeyUp(int key); # Implemented: `Input.Keyboard.is_up`
+- [x] int GetKeyPressed(void); # Implemented: `Input.Keyboard.key_pressed`
+- [x] int GetCharPressed(void); # Implemented: `Input.Keyboard.char_pressed`
+- [x] void SetExitKey(int key); # Implemented: `Window.exit_key`
+- [x] bool IsGamepadAvailable(int gamepad); # Implemented: `Input.Gamepad.still_around`
+- [x] const char *GetGamepadName(int gamepad); # Implemented `Input.Gamepad.name`
+- [x] bool IsGamepadButtonPressed(int gamepad, int button); # Implemented: `Input.Gamepad.is_button_pressed`
+- [x] bool IsGamepadButtonDown(int gamepad, int button); # Implemented: `Input.Gamepad.is_button_down`
+- [x] bool IsGamepadButtonReleased(int gamepad, int button); # Implemented: `Input.Gamepad.is_button_released`
+- [x] bool IsGamepadButtonUp(int gamepad, int button); # Implemented: `Input.Gamepad.is_button_up`
+- [x] int GetGamepadButtonPressed(void); # Implemented: `Input.Gamepad.button_pressed`
+- [x] int GetGamepadAxisCount(int gamepad); # Implemented: `Input.Gamepad.axis_count`
+- [x] float GetGamepadAxisMovement(int gamepad, int axis); # Implemented: `Input.Gamepad.get_axis_movement`
+- [x] int SetGamepadMappings(const char *mappings); # Implemented: `Input.Gamepad.set_mappings`
+- [ ] bool IsMouseButtonPressed(int button);
+- [ ] bool IsMouseButtonDown(int button);
+- [ ] bool IsMouseButtonReleased(int button);
+- [ ] bool IsMouseButtonUp(int button);
+- [ ] int GetMouseX(void);
+- [ ] int GetMouseY(void);
+- [ ] Vector2 GetMousePosition(void);
+- [ ] Vector2 GetMouseDelta(void);
+- [ ] void SetMousePosition(int x, int y);
+- [ ] void SetMouseOffset(int offsetX, int offsetY);
+- [ ] void SetMouseScale(float scaleX, float scaleY);
+- [ ] float GetMouseWheelMove(void);
+- [ ] Vector2 GetMouseWheelMoveV(void);
+- [ ] void SetMouseCursor(int cursor);
+- [ ] int GetTouchX(void);
+- [ ] int GetTouchY(void);
+- [ ] Vector2 GetTouchPosition(int index);
+- [ ] int GetTouchPointId(int index);
+- [ ] int GetTouchPointCount(void);
+- [ ] void SetGesturesEnabled(unsigned int flags);
+- [ ] bool IsGestureDetected(unsigned int gesture);
+- [ ] int GetGestureDetected(void);
+- [ ] float GetGestureHoldDuration(void);
+- [ ] Vector2 GetGestureDragVector(void);
+- [ ] float GetGestureDragAngle(void);
+- [ ] Vector2 GetGesturePinchVector(void);
+- [ ] float GetGesturePinchAngle(void);
+- [ ] void UpdateCamera(Camera *camera, int mode);
+- [ ] void UpdateCameraPro(Camera *camera, Vector3 movement, Vector3 rotation, float zoom);
