@@ -6,5 +6,7 @@ raylib_oop_src = [
   'src/lib/Audio.vala',
   'src/lib/Music.vala',
 	'src/lib/Sound.vala',
-	'src/lib/Controls.vala',
+	'src/lib/Input/Mouse.vala',
+	'src/lib/Input/Keyboard.vala',
+	'src/lib/Input/Gamepad.vala',
 ]
