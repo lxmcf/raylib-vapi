@@ -57,12 +57,17 @@ public class Main : GLib.Object {
 		int c = 0;
 		foreach (uint8 b in inputBuf) {
 			/* Make sure we line break every 80 characters */
-			c += 4;
 			if(c > 80) {
 				o.printf("\n\t");
 				c = 0;
 			}
-			o.printf("0x%x, ", b);
+			c += 5;
+			/* Print out hexidecimal */
+			if(b == 0) {
+				o.printf("000, "); /* Satiate my OCD */
+			} else {
+				o.printf("%03d, ", b);
+			}
 		}
 		o.printf("\n};\n");
 		if(namespace != null) {
