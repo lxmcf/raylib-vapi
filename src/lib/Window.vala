@@ -2,25 +2,34 @@ using Raylib;
 
 namespace RaylibOOP {
 	namespace Core {
+		public errordomain WindowError {
+			ONLY_ONE
+		}
 		internal uint8 numOfWindows = 0;
 		public class Window : GLib.Object {
 			/* Variables */
 			private string windowTitle;
 			internal int targetFPS = 60;
+			internal bool initialized = false; /* Checks if this object has been initialized, or if it error'd */
 			internal Raylib.KeyboardKey exitKey = Raylib.KeyboardKey.ESCAPE;
 			/* Constructor */
-			public Window(int width, int height, string title) throws GLib.Error {
+			public Window(int width, int height, string title) throws WindowError {
 				if(numOfWindows > 0) {
-					throw new GLib.Error(Quark.from_string("Window"), 1, "You cannot have multiple windows. Set the last one to null.");
+					throw new WindowError.ONLY_ONE("You can only have one Window at a time.");
 				}
 				warning("The OOP interface is not done. Here be dragons!");
 				this.windowTitle = title;
 				Raylib.init_window(width, height, this.windowTitle);
+				this.initialized = true;
 				numOfWindows++;
 			}
 			/* Destroyer */
 			~Window() {
-				close_window();
+				if(this.initialized == false) {
+					return;
+				}
+				info("Destroying Window...");
+				Raylib.close_window();
 				numOfWindows--;
 			}
 			/* Methods */

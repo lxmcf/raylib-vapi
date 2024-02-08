@@ -41,7 +41,12 @@ void check_fullscreen(Window window) {
 
 int main() {
 	println("Checking Window object...");
-	var window = new Window(320, 240, "Test");
+	Window window;
+	try {
+		window = new Window(320, 240, "Test");
+	} catch(WindowError e) {
+		error("We shouldn't get here!");
+	}
 	println("Checking properties...");
 	check_ready(window);
 	quick_draw(window);
@@ -49,6 +54,11 @@ int main() {
 	println("Checking methods...");
 	check_fullscreen(window);
 	/* Finally, check if number of windows detection works */
-	var window_two = new Window(320, 240, "This should crash the program.");
+	Window window_two;
+	try {
+		window_two = new Window(320, 240, "This should throw an error.");
+	} catch (WindowError e) {
+		warning(e.message);
+	}
 	return(0);
 }
