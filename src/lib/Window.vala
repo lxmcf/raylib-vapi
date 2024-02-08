@@ -13,7 +13,7 @@ namespace RaylibOOP {
 				if(numOfWindows > 0) {
 					error("You cannot create more than 1 window object. Please set the last one to null!");
 				}
-				stderr.printf("WARN: The OOP interface is not done. Here be dragons!\n");
+				warning("The OOP interface is not done. Here be dragons!");
 				this.windowTitle = title;
 				Raylib.init_window(width, height, this.windowTitle);
 				numOfWindows++;
@@ -30,6 +30,14 @@ namespace RaylibOOP {
 			public void draw_fps(int x, int y) {
 				Raylib.draw_fps(x, y);
 				return;
+			}
+			/**
+			* Draw Frame
+			*/
+			public void draw(Func function) {
+				Raylib.begin_drawing();
+				function(null);
+				Raylib.end_drawing();
 			}
 			/**
 			* Setup canvas (framebuffer) to start drawing
