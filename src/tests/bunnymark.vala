@@ -32,13 +32,13 @@ public class Bunny : GLib.Object {
 
 int main() {
 	window = new Window(800, 450, "Bunnymark!");
-	Random.set_seed((uint32)new DateTime.now_local().to_unix());
+	set_seed((uint32)new DateTime.now_local().to_unix());
 	Bunny.sprite = Raylib.load_texture("resources/bunny.png");
 	Array<Bunny> bunnies = new Array<Bunny>();
 	window.target_fps = 9999;
 	while(window.should_close == false) {
-		// Add controls
-		if(Raylib.is_mouse_button_down(Raylib.MouseButton.LEFT)) {
+		/* Create new Bunnies */
+		if(Mouse.is_down(Raylib.MouseButton.LEFT)) {
 			for(int i = 0; i < 100; i++)
 				bunnies.append_val(new Bunny(
 					Mouse.position,
@@ -49,7 +49,7 @@ int main() {
 						(uint8)int_range(80, 240),
 						(uint8)int_range(100, 240),
 						255)));
-		} else if(Raylib.is_mouse_button_down(Raylib.MouseButton.RIGHT)) {
+		} else if(Mouse.is_down(Raylib.MouseButton.RIGHT)) {
 			for(int i = 0; i < 10000; i++)
 				bunnies.append_val(new Bunny(
 					Mouse.position,
@@ -61,24 +61,24 @@ int main() {
 						(uint8)int_range(100, 240),
 						255)));
 		}
+		/* Draw Frames */
+		window.draw(()=>{
+			window.clear_background(WHITE);
+			foreach (Bunny b in bunnies) {
+				b.update();
+			}
+			Raylib.draw_rectangle(0, 0, window.width, 40, BLACK);
+			Raylib.draw_text(@"Bunnies: $(bunnies.length)", 120, 10, 20, GREEN);
 
-		window.begin_drawing();
-		window.clear_background(WHITE);
-		foreach (Bunny b in bunnies) {
-			b.update();
-		}
-		Raylib.draw_rectangle(0, 0, Raylib.get_screen_width(), 40, BLACK);
-		Raylib.draw_text(@"Bunnies: $(bunnies.length)", 120, 10, 20, GREEN);
-
-		window.draw_fps(10, 10);
-
-		window.end_drawing();
-		if(window.fps < 55) {
-			info(@"Total Bunnies: $(bunnies.length)");
+			window.draw_fps(10, 10);
+		});
+		/* Get final bunny score once framerate dips below 55 */
+		if(window.fps < 55 && Environment.get_variable("UNLIMITED_BUNNIES") != "1") {
 			break;
 		}
 	}
-	bunnies = null;
 	window = null;
+	info(@"Total Bunnies: $(bunnies.length)");
+	bunnies = null;
 	return(0);
 }
