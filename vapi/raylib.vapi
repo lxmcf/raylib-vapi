@@ -1329,25 +1329,25 @@ namespace Raylib {
 
     // Input-related functions: keyboard
     [CCode (cname = "IsKeyPressed")]
-    public static bool is_key_pressed (KeyboardKey key);
+    public static bool is_key_pressed (int key);
 
 	[CCode (cname = "IsKeyPressedRepeat")]
-	public static bool is_key_pressed_repeat (KeyboardKey key);
+	public static bool is_key_pressed_repeat (int key);
 
     [CCode (cname = "IsKeyDown")]
-    public static bool is_key_down (KeyboardKey key);
+    public static bool is_key_down (int key);
 
     [CCode (cname = "IsKeyReleased")]
-    public static bool is_key_released (KeyboardKey key);
+    public static bool is_key_released (int key);
 
     [CCode (cname = "IsKeyUp")]
-    public static bool is_key_up (KeyboardKey key);
+    public static bool is_key_up (int key);
 
     [CCode (cname = "SetExitKey")]
-    public static void set_exit_key (KeyboardKey key);
+    public static void set_exit_key (int key);
 
     [CCode (cname = "GetKeyPressed")]
-    public static KeyboardKey get_key_pressed ();
+    public static int get_key_pressed ();
 
     [CCode (cname = "GetCharPressed")]
     public static int get_char_pressed ();
