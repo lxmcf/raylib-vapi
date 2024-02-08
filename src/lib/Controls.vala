@@ -183,7 +183,17 @@ namespace RaylibOOP {
 			}
 		}
 		public class Mouse : GLib.Object {
+			/* Variables */
 			internal static Raylib.Vector2 scaleVector = {1, 1};
+			public enum Button { /* I wish there was a better way to do this */
+				LEFT    = Raylib.MouseButton.LEFT,
+				RIGHT   = Raylib.MouseButton.RIGHT,
+				MIDDLE  = Raylib.MouseButton.MIDDLE,
+				SIDE    = Raylib.MouseButton.SIDE,
+				EXTRA   = Raylib.MouseButton.EXTRA,
+				FORWARD = Raylib.MouseButton.FORWARD,
+				BACK    = Raylib.MouseButton.BACK,
+			}
 			private Mouse() {
 				return;
 			}
@@ -191,25 +201,25 @@ namespace RaylibOOP {
 			/**
 			* Check if a mouse button has been pressed once
 			*/
-			public static bool is_pressed(Raylib.MouseButton button) {
+			public static bool is_pressed(int button) {
 				return(Raylib.is_mouse_button_pressed(button));
 			}
 			/**
 			* Check if a mouse button is being pressed
 			*/
-			public static bool is_down(Raylib.MouseButton button) {
+			public static bool is_down(int button) {
 				return(Raylib.is_mouse_button_down(button));
 			}
 			/**
 			* Check if a mouse button has been released once
 			*/
-			public static bool is_released(Raylib.MouseButton button) {
+			public static bool is_released(int button) {
 				return(Raylib.is_mouse_button_released(button));
 			}
 			/**
 			* Check if a mouse button is NOT being pressed
 			*/
-			public static bool is_up(Raylib.MouseButton button) {
+			public static bool is_up(int button) {
 				return(Raylib.is_mouse_button_up(button));
 			}
 			/* Properties */
