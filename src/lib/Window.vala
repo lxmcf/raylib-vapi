@@ -9,9 +9,9 @@ namespace RaylibOOP {
 			internal int targetFPS = 60;
 			internal Raylib.KeyboardKey exitKey = Raylib.KeyboardKey.ESCAPE;
 			/* Constructor */
-			public Window(int width, int height, string title) {
+			public Window(int width, int height, string title) throws GLib.Error {
 				if(numOfWindows > 0) {
-					error("You cannot create more than 1 window object. Please set the last one to null!");
+					throw new GLib.Error(Quark.from_string("Window"), 1, "You cannot have multiple windows. Set the last one to null.");
 				}
 				warning("The OOP interface is not done. Here be dragons!");
 				this.windowTitle = title;
