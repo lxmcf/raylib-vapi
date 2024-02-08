@@ -57,7 +57,7 @@ public class Main : GLib.Object {
 		int c = 0;
 		foreach (uint8 b in inputBuf) {
 			/* Make sure we line break every 80 characters */
-			if(c > 80) {
+			if(c >= 80) {
 				o.printf("\n\t");
 				c = 0;
 			}
