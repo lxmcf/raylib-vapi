@@ -526,6 +526,7 @@ namespace Raylib {
         WINDOW_TRANSPARENT,         // Set to allow transparent framebuffer
         WINDOW_HIGHDPI,             // Set to support HighDPI
         WINDOW_MOUSE_PASSTHROUGH,   // Set to support mouse passthrough, only supported when FLAG_WINDOW_UNDECORATED
+		BORDERLESS_WINDOWED_MODE,   // Set to run program in borderless windowed mode
         MSAA_4X_HINT,               // Set to try enabling MSAA 4X
         INTERLACED_HINT             // Set to try enabling interlaced video format (for V3D)
     }
