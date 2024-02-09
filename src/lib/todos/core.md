@@ -52,11 +52,11 @@
 - [ ] void EnableCursor(void);
 - [ ] void DisableCursor(void);
 - [ ] bool IsCursorOnScreen(void);
-- [ ] void ClearBackground(Color color);
+- [x] void ClearBackground(Color color); # Implemented: `Window.clear_background`
 - [x] void BeginDrawing(void); # Implemented: `Window.begin_drawing` and `Window.draw`
 - [x] void EndDrawing(void); # Implemented: `Window.end_drawing` and `Window.draw`
-- [ ] void BeginMode2D(Camera2D camera);
-- [ ] void EndMode2D(void);
+- [x] void BeginMode2D(Camera2D camera); # Implemented: `Window.begin_2D`
+- [x] void EndMode2D(void); # Implemented: `Window.end_2D`
 - [ ] void BeginMode3D(Camera3D camera);
 - [ ] void EndMode3D(void);
 - [ ] void BeginTextureMode(RenderTexture2D target);
@@ -97,16 +97,16 @@
 - ❌ void WaitTime(double seconds); # Unneeded: Built-in to GLib `Thread.usleep`
 - ❌ void SetRandomSeed(unsigned int seed); # Unneeded: Built-in to GLib `GLib.Random`
 - ❌ int GetRandomValue(int min, int max); # Unneeded: Built-in to GLib `GLib.Random`
-- [ ] int *LoadRandomSequence(unsigned int count, int min, int max);
-- [ ] void UnloadRandomSequence(int *sequence);
+- ❌ int *LoadRandomSequence(unsigned int count, int min, int max); # Unneeded: Built-in to GLib `GLib.Random`
+- ❌ void UnloadRandomSequence(int *sequence); # Unneeded: Built-in to GLib `GLib.Random`
 - [ ] void TakeScreenshot(const char *fileName);
 - [ ] void SetConfigFlags(unsigned int flags);
-- [ ] void OpenURL(const char *url);
+- ❌ void OpenURL(const char *url); # Unneeded: Built-in to GLib `GLib.AppInfo` and `GLib.AppLaunchContext`
 - [ ] void TraceLog(int logLevel, const char *text, ...);
 - [ ] void SetTraceLogLevel(int logLevel);
-- [ ] void *MemAlloc(unsigned int size);
-- [ ] void *MemRealloc(void *ptr, unsigned int size);
-- [ ] void MemFree(void *ptr);
+- ❌ void *MemAlloc(unsigned int size); # Unneeded: Built-in to GLib `GLib.malloc`
+- ❌ void *MemRealloc(void *ptr, unsigned int size); # Unneeded: Built-in to GLib `GLib.realloc`
+- ❌ void MemFree(void *ptr); # Unneeded: Built-in to GLib `GLib.free`
 - [ ] void SetTraceLogCallback(TraceLogCallback callback);
 - [ ] void SetLoadFileDataCallback(LoadFileDataCallback callback);
 - [ ] void SetSaveFileDataCallback(SaveFileDataCallback callback);
@@ -128,9 +128,9 @@
 - [ ] const char *GetFileNameWithoutExt(const char *filePath);
 - [ ] const char *GetDirectoryPath(const char *filePath);
 - [ ] const char *GetPrevDirectoryPath(const char *dirPath);
-- [ ] const char *GetWorkingDirectory(void);
+- ❌ const char *GetWorkingDirectory(void); # Unneeded: Builtin `GLib.Environment.get_current_dir`
 - [ ] const char *GetApplicationDirectory(void);
-- [ ] bool ChangeDirectory(const char *dir);
+- ❌ bool ChangeDirectory(const char *dir); # Unneeded: Builtin `GLib.Environment.set_current_dir`
 - [ ] bool IsPathFile(const char *path);
 - [ ] FilePathList LoadDirectoryFiles(const char *dirPath);
 - [ ] FilePathList LoadDirectoryFilesEx(const char *basePath, const char *filter, bool scanSubdirs);
@@ -138,11 +138,11 @@
 - [ ] bool IsFileDropped(void);
 - [ ] FilePathList LoadDroppedFiles(void);
 - [ ] void UnloadDroppedFiles(FilePathList files);
-- [ ] long GetFileModTime(const char *fileName);
-- [ ] unsigned char *CompressData(const unsigned char *data, int dataSize, int *compDataSize);
-- [ ] unsigned char *DecompressData(const unsigned char *compData, int compDataSize, int *dataSize);
-- [ ] char *EncodeDataBase64(const unsigned char *data, int dataSize, int *outputSize);
-- [ ] unsigned char *DecodeDataBase64(const unsigned char *data, int *outputSize);
+- ❌ long GetFileModTime(const char *fileName); # Unneeded: Builtin `GLib.FileInfo.get_modification_date_time`
+- ❌ unsigned char *CompressData(const unsigned char *data, int dataSize, int *compDataSize); # Unneeded: Built into GLib `GLib.ZlibCompressor`
+- ❌ unsigned char *DecompressData(const unsigned char *compData, int compDataSize, int *dataSize); # Unneeded: Built into GLib `GLib.ZlibDecompressor`
+- ❌ char *EncodeDataBase64(const unsigned char *data, int dataSize, int *outputSize); # Unneeded: Built into GLib. `GLib.Base64.encode`
+- ❌ unsigned char *DecodeDataBase64(const unsigned char *data, int *outputSize); # Unneeded: Built into GLib. `GLib.Base64.decode`
 - [ ] AutomationEventList LoadAutomationEventList(const char *fileName);
 - [ ] void UnloadAutomationEventList(AutomationEventList *list);
 - [ ] bool ExportAutomationEventList(AutomationEventList list, const char *fileName);
@@ -169,20 +169,20 @@
 - [x] int GetGamepadAxisCount(int gamepad); # Implemented: `Input.Gamepad.axis_count`
 - [x] float GetGamepadAxisMovement(int gamepad, int axis); # Implemented: `Input.Gamepad.get_axis_movement`
 - [x] int SetGamepadMappings(const char *mappings); # Implemented: `Input.Gamepad.set_mappings`
-- [ ] bool IsMouseButtonPressed(int button);
-- [ ] bool IsMouseButtonDown(int button);
-- [ ] bool IsMouseButtonReleased(int button);
-- [ ] bool IsMouseButtonUp(int button);
-- [ ] int GetMouseX(void);
-- [ ] int GetMouseY(void);
-- [ ] Vector2 GetMousePosition(void);
-- [ ] Vector2 GetMouseDelta(void);
-- [ ] void SetMousePosition(int x, int y);
-- [ ] void SetMouseOffset(int offsetX, int offsetY);
-- [ ] void SetMouseScale(float scaleX, float scaleY);
-- [ ] float GetMouseWheelMove(void);
-- [ ] Vector2 GetMouseWheelMoveV(void);
-- [ ] void SetMouseCursor(int cursor);
+- [x] bool IsMouseButtonPressed(int button); # Implemented: `Input.Mouse.is_pressed`
+- [x] bool IsMouseButtonDown(int button); # Implemented: `Input.Mouse.is_down`
+- [x] bool IsMouseButtonReleased(int button); # Implemented: `Input.Mouse.is_released`
+- [x] bool IsMouseButtonUp(int button); # Implemented: `Input.Mouse.is_up`
+- [x] int GetMouseX(void); # Implemented: `Input.Mouse.x`
+- [x] int GetMouseY(void); # Implemented: `Input.Mouse.y`
+- [x] Vector2 GetMousePosition(void); # Implemented: `Input.Mouse.position`
+- [x] Vector2 GetMouseDelta(void); # Implemented: `Input.Mouse.delta`
+- [x] void SetMousePosition(int x, int y); # Implemented: `Input.Mouse.position`
+- [x] void SetMouseOffset(int offsetX, int offsetY); # Implemented: `Input.Mouse.offset`
+- [x] void SetMouseScale(float scaleX, float scaleY); # Implemented: `Input.Mouse.scale`
+- [x] float GetMouseWheelMove(void); # Implemented: `Input.Mouse.wheel_move`
+- [x] Vector2 GetMouseWheelMoveV(void); # Implemented: `Input.Mouse.wheel_move`
+- [x] void SetMouseCursor(int cursor); # Implemented: `Input.Mouse.set_cursor`
 - [ ] int GetTouchX(void);
 - [ ] int GetTouchY(void);
 - [ ] Vector2 GetTouchPosition(int index);
