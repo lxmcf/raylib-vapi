@@ -18,6 +18,12 @@ namespace RaylibOOP {
 			 * otherwise =( */
 			string res = "[Raylib] "+text.vprintf(args);
 			switch(log_level) {
+				case Level.ALL:
+					message(res);
+					break;
+				case Level.TRACE:
+					info(res);
+					break;
 				case Level.DEBUG:
 					debug(res);
 					break;
