@@ -867,7 +867,7 @@ namespace Raylib {
 
     // Callbacks to hook some internal functions
     // WARNING: This callbacks are intended for advance users
-    [CCode (cname = "TraceLogCallback")]
+    [CCode (cname = "TraceLogCallback", has_target = false)]
     public delegate void TraceLogCallback (int log_level, string text, va_list args);
 
     [CCode (cname = "LoadFileDataCallback")]

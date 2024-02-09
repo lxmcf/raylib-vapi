@@ -21,14 +21,14 @@
 - [x] void SetWindowTitle(const char *title); # Implemented: `Window.title`
 - [ ] void SetWindowPosition(int x, int y);
 - [ ] void SetWindowMonitor(int monitor);
-- [ ] void SetWindowMinSize(int width, int height);
+- [x] void SetWindowMinSize(int width, int height); # Implemented: `Window.minimum_width` and `Window.minimum_height`
 - [ ] void SetWindowMaxSize(int width, int height);
-- [ ] void SetWindowSize(int width, int height);
+- [x] void SetWindowSize(int width, int height); # Implemented: `Window.width` and `Window.height`
 - [ ] void SetWindowOpacity(float opacity);
 - [ ] void SetWindowFocused(void);
 - [ ] void *GetWindowHandle(void);
-- [ ] int GetScreenWidth(void);
-- [ ] int GetScreenHeight(void);
+- [x] int GetScreenWidth(void); # Implemented: `Window.width`
+- [x] int GetScreenHeight(void); # Implemented: `Window.height`
 - [ ] int GetRenderWidth(void);
 - [ ] int GetRenderHeight(void);
 - [ ] int GetMonitorCount(void);
@@ -102,16 +102,16 @@
 - [ ] void TakeScreenshot(const char *fileName);
 - [ ] void SetConfigFlags(unsigned int flags);
 - ❌ void OpenURL(const char *url); # Unneeded: Built-in to GLib `GLib.AppInfo` and `GLib.AppLaunchContext`
-- [ ] void TraceLog(int logLevel, const char *text, ...);
-- [ ] void SetTraceLogLevel(int logLevel);
+- ❌ void TraceLog(int logLevel, const char *text, ...); # Unneeded: Builtin `GLib Log Functions`
+- ❌ void SetTraceLogLevel(int logLevel); # Unneeded: Builtin `GLib Log Functions`
 - ❌ void *MemAlloc(unsigned int size); # Unneeded: Built-in to GLib `GLib.malloc`
 - ❌ void *MemRealloc(void *ptr, unsigned int size); # Unneeded: Built-in to GLib `GLib.realloc`
 - ❌ void MemFree(void *ptr); # Unneeded: Built-in to GLib `GLib.free`
-- [ ] void SetTraceLogCallback(TraceLogCallback callback);
-- [ ] void SetLoadFileDataCallback(LoadFileDataCallback callback);
-- [ ] void SetSaveFileDataCallback(SaveFileDataCallback callback);
-- [ ] void SetLoadFileTextCallback(LoadFileTextCallback callback);
-- [ ] void SetSaveFileTextCallback(SaveFileTextCallback callback);
+- ❌ void SetTraceLogCallback(TraceLogCallback callback); # Unneeded: Builtin `GLib Log Functions`
+- ❌ void SetLoadFileDataCallback(LoadFileDataCallback callback); # Unneeded: Builtin `GLib Log Functions`
+- ❌ void SetSaveFileDataCallback(SaveFileDataCallback callback); # Unneeded: Builtin `GLib Log Functions`
+- ❌ void SetLoadFileTextCallback(LoadFileTextCallback callback); # Unneeded: Builtin `GLib Log Functions`
+- ❌ void SetSaveFileTextCallback(SaveFileTextCallback callback); # Unneeded: Builtin `GLib Log Functions`
 - [ ] unsigned char *LoadFileData(const char *fileName, int *dataSize);
 - [ ] void UnloadFileData(unsigned char *data);
 - [ ] bool SaveFileData(const char *fileName, void *data, int dataSize);

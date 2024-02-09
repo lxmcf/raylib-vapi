@@ -64,6 +64,8 @@ public class Bunny : GLib.Object {
 
 int main() {
 	window = new Window(800, 450, "Bunnymark!");
+	window.minimum_width = 0;
+	window.minimum_height = 0;
 	set_seed((uint32)new DateTime.now_local().to_unix());
 	var bunny_img = Raylib.load_image_from_memory(".png", Graphics.bunny);
 	Bunny.sprite = Raylib.load_texture_from_image(bunny_img);

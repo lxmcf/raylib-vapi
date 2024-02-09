@@ -14,20 +14,23 @@ namespace RaylibOOP {
 			return;
 		}
 		internal static void trace_log(int log_level, string text, va_list args) {
+			/* I have no idea why I have to create this string, but it'll segfault
+			 * otherwise =( */
+			string res = "[Raylib] "+text.vprintf(args);
 			switch(log_level) {
 				case Level.DEBUG:
-					debug(text, args);
+					debug(res);
 					break;
 				case Level.INFO:
-					info(text, args);
+					info(res);
 					break;
 				case Level.WARNING:
-					warning(text, args);
+					warning(res);
 					break;
 				case Level.ERROR:
-					error(text, args);
+					error(res);
 				case Level.FATAL:
-					error(@"FATAL: $(text)", args);
+					error(@"FATAL: $(res)");
 				default:
 					break;
 			}

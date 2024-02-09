@@ -6,10 +6,12 @@ namespace RaylibOOP {
 		internal uint8 numOfWindows = 0;
 		public class Window : GLib.Object {
 			/* Variables */
-			private string windowTitle;
-			internal int targetFPS = 60;
-			internal bool initialized = false; /* Checks if this object has been initialized, or if it error'd */
+			private string windowTitle          = "Raylib";
+			internal int targetFPS              = 60;
+			internal bool initialized           = false; /* Checks if this object has been initialized, or if it error'd */
 			internal Input.Keyboard.Key exitKey = Input.Keyboard.Key.ESCAPE;
+			internal int minimumHeight          = 0;
+			internal int minimumWidth           = 0;
 			/* Constructor */
 			public Window(int width, int height, string title) throws WindowError {
 				if(numOfWindows > 0) {
@@ -17,8 +19,7 @@ namespace RaylibOOP {
 				}
 				warning("The OOP interface is not done. Here be dragons!");
 				this.windowTitle = title;
-				/* TODO: This function keeps adding a NULL at the end. */
-				// Raylib.set_trace_log_callback(Log.trace_log);
+				Raylib.set_trace_log_callback(Log.trace_log);
 				Raylib.init_window(width, height, this.windowTitle);
 				this.initialized = true;
 				numOfWindows++;
@@ -250,6 +251,30 @@ namespace RaylibOOP {
 				}
 				set {
 					Raylib.set_window_size(Raylib.get_screen_width(), value);
+				}
+			}
+			/**
+			* Minimum Height of Window. A value of 0 means unset.
+			*/
+			public int minimum_height {
+				get {
+					return(this.minimumHeight);
+				}
+				set {
+					minimumHeight = value;
+					Raylib.set_window_minimum_size(minimumWidth, value);
+				}
+			}
+			/**
+			* Minimum Width of Window. Value of 0 means unset.
+			*/
+			public int minimum_width {
+				get {
+					return(this.minimumWidth);
+				}
+				set {
+					minimumWidth = value;
+					Raylib.set_window_minimum_size(value, minimumHeight);
 				}
 			}
 		}
