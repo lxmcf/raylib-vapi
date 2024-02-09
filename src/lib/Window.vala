@@ -17,6 +17,8 @@ namespace RaylibOOP {
 				}
 				warning("The OOP interface is not done. Here be dragons!");
 				this.windowTitle = title;
+				/* TODO: This function keeps adding a NULL at the end. */
+				// Raylib.set_trace_log_callback(Log.trace_log);
 				Raylib.init_window(width, height, this.windowTitle);
 				this.initialized = true;
 				numOfWindows++;
