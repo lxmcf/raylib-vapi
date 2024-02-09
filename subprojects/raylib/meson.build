@@ -136,6 +136,7 @@ c_args += [
 	'-Werror=pointer-arith',
 	'-Werror=implicit-function-declaration',
 	'-fno-strict-aliasing',
+	'-Wno-unused-function',
 ]
 add_project_arguments(c_args, language: 'c')
 incdir = include_directories(inc_dirs)

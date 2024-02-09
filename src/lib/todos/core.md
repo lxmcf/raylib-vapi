@@ -42,8 +42,8 @@
 - [ ] Vector2 GetWindowPosition(void);
 - [ ] Vector2 GetWindowScaleDPI(void);
 - [ ] const char *GetMonitorName(int monitor);
-- [ ] void SetClipboardText(const char *text);
-- [ ] const char *GetClipboardText(void);
+- [x] void SetClipboardText(const char *text); # Implemented: `Clipboard.set`
+- [x] const char *GetClipboardText(void); # Implemented: `Clipboard.get`
 - [ ] void EnableEventWaiting(void);
 - [ ] void DisableEventWaiting(void);
 - [ ] void ShowCursor(void);
