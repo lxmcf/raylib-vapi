@@ -99,7 +99,7 @@
 - ❌ int GetRandomValue(int min, int max); # Unneeded: Built-in to GLib `GLib.Random`
 - ❌ int *LoadRandomSequence(unsigned int count, int min, int max); # Unneeded: Built-in to GLib `GLib.Random`
 - ❌ void UnloadRandomSequence(int *sequence); # Unneeded: Built-in to GLib `GLib.Random`
-- [ ] void TakeScreenshot(const char *fileName);
+- [x] void TakeScreenshot(const char *fileName); # Implemented: `Window.take_screenshot`
 - [ ] void SetConfigFlags(unsigned int flags);
 - ❌ void OpenURL(const char *url); # Unneeded: Built-in to GLib `GLib.AppInfo` and `GLib.AppLaunchContext`
 - ❌ void TraceLog(int logLevel, const char *text, ...); # Unneeded: Builtin `GLib Log Functions`
@@ -112,29 +112,29 @@
 - ❌ void SetSaveFileDataCallback(SaveFileDataCallback callback); # Unneeded: Builtin `GLib Log Functions`
 - ❌ void SetLoadFileTextCallback(LoadFileTextCallback callback); # Unneeded: Builtin `GLib Log Functions`
 - ❌ void SetSaveFileTextCallback(SaveFileTextCallback callback); # Unneeded: Builtin `GLib Log Functions`
-- [ ] unsigned char *LoadFileData(const char *fileName, int *dataSize);
-- [ ] void UnloadFileData(unsigned char *data);
-- [ ] bool SaveFileData(const char *fileName, void *data, int dataSize);
-- [ ] bool ExportDataAsCode(const unsigned char *data, int dataSize, const char *fileName);
-- [ ] char *LoadFileText(const char *fileName);
-- [ ] void UnloadFileText(char *text);
-- [ ] bool SaveFileText(const char *fileName, char *text);
-- [ ] bool FileExists(const char *fileName);
-- [ ] bool DirectoryExists(const char *dirPath);
-- [ ] bool IsFileExtension(const char *fileName, const char *ext);
-- [ ] int GetFileLength(const char *fileName);
-- [ ] const char *GetFileExtension(const char *fileName);
-- [ ] const char *GetFileName(const char *filePath);
-- [ ] const char *GetFileNameWithoutExt(const char *filePath);
-- [ ] const char *GetDirectoryPath(const char *filePath);
-- [ ] const char *GetPrevDirectoryPath(const char *dirPath);
+- ❌ unsigned char *LoadFileData(const char *fileName, int *dataSize); # Unneeded: Builtin `GLib File Functions`
+- ❌ void UnloadFileData(unsigned char *data); # Unneeded: See above.
+- ❌ bool SaveFileData(const char *fileName, void *data, int dataSize); # Unneeded: See above.
+- ❌ bool ExportDataAsCode(const unsigned char *data, int dataSize, const char *fileName); # Unneeded: See above.
+- ❌ char *LoadFileText(const char *fileName); # Unneeded: See above.
+- ❌ void UnloadFileText(char *text); # Unneeded: See above.
+- ❌ bool SaveFileText(const char *fileName, char *text); # Unneeded: See above.
+- ❌ bool FileExists(const char *fileName); # Unneeded: See above.
+- ❌ bool DirectoryExists(const char *dirPath); # Unneeded: See above.
+- ❌ bool IsFileExtension(const char *fileName, const char *ext); # Unneeded: See above.
+- ❌ int GetFileLength(const char *fileName); # Unneeded: See above.
+- ❌ const char *GetFileExtension(const char *fileName); # Unneeded: See Above.
+- ❌ const char *GetFileName(const char *filePath); # Unneeded: See Above.
+- ❌ const char *GetFileNameWithoutExt(const char *filePath); # Unneeded: See Above.
+- ❌ const char *GetDirectoryPath(const char *filePath); # Unneeded: See Above.
+- ❌ const char *GetPrevDirectoryPath(const char *dirPath); # Unneeded: See Above.
 - ❌ const char *GetWorkingDirectory(void); # Unneeded: Builtin `GLib.Environment.get_current_dir`
-- [ ] const char *GetApplicationDirectory(void);
+- ❌ const char *GetApplicationDirectory(void); # Unneeded: Builtin `GLib File Functions`
 - ❌ bool ChangeDirectory(const char *dir); # Unneeded: Builtin `GLib.Environment.set_current_dir`
-- [ ] bool IsPathFile(const char *path);
-- [ ] FilePathList LoadDirectoryFiles(const char *dirPath);
-- [ ] FilePathList LoadDirectoryFilesEx(const char *basePath, const char *filter, bool scanSubdirs);
-- [ ] void UnloadDirectoryFiles(FilePathList files);
+- ❌ bool IsPathFile(const char *path);
+- ❌ FilePathList LoadDirectoryFiles(const char *dirPath); # Unneeded: Builtin `GLib.Dir`
+- ❌ FilePathList LoadDirectoryFilesEx(const char *basePath, const char *filter, bool scanSubdirs); # Unneeded: Builtin `GLib.Dir`
+- ❌ void UnloadDirectoryFiles(FilePathList files); # Unneeded: Builtin `GLib.Dir`
 - [ ] bool IsFileDropped(void);
 - [ ] FilePathList LoadDroppedFiles(void);
 - [ ] void UnloadDroppedFiles(FilePathList files);

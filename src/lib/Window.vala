@@ -35,6 +35,12 @@ namespace RaylibOOP {
 			}
 			/* Methods */
 			/**
+			* Take Screenshot
+			*/
+			public void take_screenshot(string filename) {
+				Raylib.take_screenshot(filename);
+			}
+			/**
 			* Set window state: not minimized/maximized (only PLATFORM_DESKTOP)
 			*/
 			public void restore() {
