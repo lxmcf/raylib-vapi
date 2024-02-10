@@ -1385,16 +1385,16 @@ namespace Raylib {
 
     // Input-related functions: mouse
     [CCode (cname = "IsMouseButtonPressed")]
-    public static bool is_mouse_button_pressed (MouseButton button);
+    public static bool is_mouse_button_pressed (int button);
 
     [CCode (cname = "IsMouseButtonDown")]
-    public static bool is_mouse_button_down (MouseButton button);
+    public static bool is_mouse_button_down (int button);
 
     [CCode (cname = "IsMouseButtonReleased")]
-    public static bool is_mouse_button_released (MouseButton button);
+    public static bool is_mouse_button_released (int button);
 
     [CCode (cname = "IsMouseButtonUp")]
-    public static bool is_mouse_button_up (MouseButton button);
+    public static bool is_mouse_button_up (int button);
 
     [CCode (cname = "GetMouseX")]
     public static int get_mouse_x ();
@@ -1424,7 +1424,7 @@ namespace Raylib {
     public static Vector2 get_mouse_wheel_move_vector ();
 
     [CCode (cname = "SetMouseCursor")]
-    public static void set_mouse_cursor (MouseCursor cursor);
+    public static void set_mouse_cursor (int cursor);
 
     // Input-related functions: touch
     [CCode (cname = "GetTouchX")]

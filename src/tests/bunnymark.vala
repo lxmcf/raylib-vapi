@@ -103,9 +103,8 @@ int main() {
 		/* Draw Frames */
 		window.draw(()=>{
 			window.clear_background(WHITE);
-			foreach (Bunny b in bunnies) {
-				b.update();
-			}
+			for(int i = 0; i < bunnies.length; i++)
+				bunnies.index(i).update();
 			Raylib.draw_rectangle(0, 0, window.width, 40, BLACK);
 			Raylib.draw_text(@"Bunnies: $(bunnies.length)", 120, 10, 20, GREEN);
 

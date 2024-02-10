@@ -119,7 +119,7 @@ namespace RaylibOOP {
 			/**
 			* Get axis count for gamepad.
 			*/
-			public Raylib.GamepadAxis axis_count {
+			public int axis_count {
 				get {
 					return(Raylib.get_gamepad_axis_count(this.padID));
 				}
