@@ -1,0 +1,9 @@
+FROM almalinux:8
+RUN set -eux && \
+	dnf update -y && \
+	dnf install -y epel-release && \
+	crb enable && \
+	dnf update -y && \
+	dnf install -y meson vala "pkgconfig(gl)" "pkgconfig(xcursor)" "pkgconfig(xrandr)" \
+	"pkgconfig(xinerama)" "pkgconfig(xi)" cmake "pkgconfig(sdl2)" "pkgconfig(glfw3)" \
+	"pkgconfig(libdrm)" "pkgconfig(egl)" "pkgconfig(gbm)" vim pulseaudio-libs

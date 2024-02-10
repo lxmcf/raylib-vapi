@@ -1,6 +1,6 @@
 project (
 	'Raylib-vala',
-	'vala',
+	'vala', 'c',
 	version: '5.0.0',
 )
 pkg = import('pkgconfig')
