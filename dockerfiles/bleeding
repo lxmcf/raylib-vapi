@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora:rawhide
 RUN set -eux && \
 	dnf update -y && \
 	dnf install -y meson vala "pkgconfig(gl)" "pkgconfig(xcursor)" "pkgconfig(xrandr)" \
