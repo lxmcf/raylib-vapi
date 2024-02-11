@@ -1,4 +1,4 @@
-<div align="center"><img src="data/raylib-vapi.png"></div>
+<div align="center"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA3NCSVQICAjb4U/gAAAABlBMVEVwH37Iev+ge9r7AAAAsklEQVRo3u3XvQnDMBCG4RdSuPQI2kRezJDCizmbaASXKowuhYLzA5HT+Uy+t36agzuEQKm3rJGAgICAgICAgICAgICAgMBHa8ix9w+s+AQLdDOEzpYx5Ah4BNc6wAP0lpyClyn8gtveFB7ADAEY+bYPR4NndTMap3c8APyDrXQG4PdZnCxHIMMleQaDWcqDTa5BBHyDNXSlb03hAViy0twHF6CWh53TE/gR6Ifyt0CprTv6YNdP71SVUgAAAABJRU5ErkJggg=="></div>
 
 # Raylib VAPI
 
@@ -50,7 +50,7 @@ public static int main (string[] args) {
 ```
 
 ## Compiling Included Examples
-```powershell
+```bash
 cd examples
 
 meson build -C build
