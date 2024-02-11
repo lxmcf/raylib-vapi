@@ -11,6 +11,7 @@ services:
       - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
       - DISPLAY=${DISPLAY}
       - G_MESSAGES_DEBUG=all
+      - CCACHE_DIR=/ccache
     volumes:
       - type: bind
         source: /dev/dri
@@ -24,6 +25,9 @@ services:
       - type: bind
         source: .
         target: /project
+      - type: bind
+        source: ${HOME}/.cache/raylib_oop_ccache
+        target: /ccache
   stable:
     build:
       context: .
@@ -34,6 +38,7 @@ services:
       - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
       - DISPLAY=${DISPLAY}
       - G_MESSAGES_DEBUG=all
+      - CCACHE_DIR=/ccache
     volumes:
       - type: bind
         source: /dev/dri
@@ -47,6 +52,9 @@ services:
       - type: bind
         source: .
         target: /project
+      - type: bind
+        source: ${HOME}/.cache/raylib_oop_ccache
+        target: /ccache
   bleeding:
       build:
         context: .
@@ -57,6 +65,7 @@ services:
         - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
         - DISPLAY=${DISPLAY}
         - G_MESSAGES_DEBUG=all
+        - CCACHE_DIR=/ccache
       volumes:
         - type: bind
           source: /dev/dri
@@ -70,3 +79,6 @@ services:
         - type: bind
           source: .
           target: /project
+        - type: bind
+          source: ${HOME}/.cache/raylib_oop_ccache
+          target: /ccache
