@@ -30,16 +30,21 @@ cc_arguments = [
 # Doing this because the debug defaults for Meson are really bad.
 # More debug symbols.
 if cc.has_argument('-g3') == true
-	add_project_arguments('-g3', language: 'c')
+	cc_arguments += '-g3'
 elif cc.has_argument('-g') == true
-	add_project_arguments('-g', language: 'c')
+	cc_arguments += '-g'
 endif
 # Compress debug symbols if possible.
-if cc.has_link_argument('-Wl,--compress-debug-sections=zlib') == true
+if cc.has_link_argument('-Wl,--compress-debug-sections=zstd') == true
 	add_project_link_arguments(
-	'-Wl,--compress-debug-sections=zlib',
-	language: 'c'
-)
+		'-Wl,--compress-debug-sections=zstd',
+		language: 'c'
+	)
+elif cc.has_link_argument('-Wl,--compress-debug-sections=zlib') == true
+	add_project_link_arguments(
+		'-Wl,--compress-debug-sections=zlib',
+		language: 'c'
+	)
 endif
 
 add_project_arguments (valac_arguments, language: 'vala')
@@ -80,41 +85,43 @@ raylib_oop_dep = declare_dependency(
 )
 
 # Test Executables
-executable('window',
-	sources: 'src/tests/window.vala',
-	dependencies: [
-		raylib_oop_dep,
-		project_dependency
-	]
-)
-executable('sound',
-	sources: 'src/tests/sound.vala',
-	dependencies: [
-		raylib_oop_dep,
-		project_dependency
-	]
-)
-executable(
-	'music',
-	sources: 'src/tests/music.vala',
-	dependencies: [
-		raylib_oop_dep,
-		project_dependency
-	]
-)
-executable(
-	'test-subproject',
-	sources: 'src/tests/test.c',
-	dependencies: [
-		raylib_oop_dep,
-		project_dependency,
-	],
-)
-executable(
-	'bunnymark',
-	sources: 'src/tests/bunnymark.vala',
-	dependencies: [
-		raylib_oop_dep,
-		project_dependency,
-	],
-)
+if get_option('tests') == true
+	executable('window',
+		sources: 'src/tests/window.vala',
+		dependencies: [
+			raylib_oop_dep,
+			project_dependency
+		]
+	)
+	executable('sound',
+		sources: 'src/tests/sound.vala',
+		dependencies: [
+			raylib_oop_dep,
+			project_dependency
+		]
+	)
+	executable(
+		'music',
+		sources: 'src/tests/music.vala',
+		dependencies: [
+			raylib_oop_dep,
+			project_dependency
+		]
+	)
+	executable(
+		'test-subproject',
+		sources: 'src/tests/test.c',
+		dependencies: [
+			raylib_oop_dep,
+			project_dependency,
+		],
+	)
+	executable(
+		'bunnymark',
+		sources: 'src/tests/bunnymark.vala',
+		dependencies: [
+			raylib_oop_dep,
+			project_dependency,
+		],
+	)
+endif

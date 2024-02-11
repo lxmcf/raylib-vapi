@@ -3,6 +3,7 @@ namespace RaylibOOP {
 		public class Gamepad : GLib.Object {
 			/* Variables */
 			internal int padID;
+			internal string padName;
 			/* Constructor */
 			public Gamepad(int gamepad) throws GLib.Error {
 				if(Raylib.is_gamepad_available(gamepad) == false) {
@@ -12,6 +13,7 @@ namespace RaylibOOP {
 						@"The gamepad specified, $(gamepad), is not available.");
 				}
 				this.padID = gamepad;
+				this.padName = this.name;
 				return;
 			}
 			/* Methods */
@@ -29,7 +31,7 @@ namespace RaylibOOP {
 					throw new GLib.Error(
 						GLib.Quark.from_string("Gamepad"),
 						1,
-						@"The gamepad specified, $(this.padID), is no longer available."
+						@"The gamepad specified, $(this.padID):$(this.padName), is no longer available."
 					);
 				}
 				return(Raylib.is_gamepad_button_pressed(this.padID, button));
@@ -42,7 +44,7 @@ namespace RaylibOOP {
 					throw new GLib.Error(
 						GLib.Quark.from_string("Gamepad"),
 						1,
-						@"The gamepad specified, $(this.padID), is no longer available."
+						@"The gamepad specified, $(this.padID):$(this.padName), is no longer available."
 					);
 				}
 				return(Raylib.is_gamepad_button_down(this.padID, button));
@@ -55,7 +57,7 @@ namespace RaylibOOP {
 					throw new GLib.Error(
 						GLib.Quark.from_string("Gamepad"),
 						1,
-						@"The gamepad specified, $(this.padID), is no longer available."
+						@"The gamepad specified, $(this.padID):$(this.padName), is no longer available."
 					);
 				}
 				return(Raylib.is_gamepad_button_released(this.padID, button));
@@ -68,7 +70,7 @@ namespace RaylibOOP {
 					throw new GLib.Error(
 						GLib.Quark.from_string("Gamepad"),
 						1,
-						@"The gamepad specified, $(this.padID), is no longer available."
+						@"The gamepad specified, $(this.padID):$(this.padName), is no longer available."
 					);
 				}
 				return(Raylib.is_gamepad_button_up(this.padID, button));
@@ -81,7 +83,7 @@ namespace RaylibOOP {
 					throw new GLib.Error(
 						GLib.Quark.from_string("Gamepad"),
 						1,
-						@"The gamepad specified, $(this.padID), is no longer available."
+						@"The gamepad specified, $(this.padID):$(this.padName), is no longer available."
 					);
 				}
 				return(Raylib.get_gamepad_axis_movement(this.padID, axis));
@@ -94,7 +96,7 @@ namespace RaylibOOP {
 					throw new GLib.Error(
 						GLib.Quark.from_string("Gamepad"),
 						1,
-						@"The gamepad specified, $(this.padID), is no longer available."
+						@"The gamepad specified, $(this.padID):$(this.padName), is no longer available."
 					);
 				}
 				return(Raylib.set_gamepad_mappings(mappings));
@@ -104,8 +106,11 @@ namespace RaylibOOP {
 			* Get internal name id.
 			*/
 			public string name {
-				get {
-					return(@"$(Raylib.get_gamepad_name(this.padID))");
+				owned get {
+					/* Update pad name */
+					var name = Raylib.get_gamepad_name(this.padID);
+					this.padName = name;
+					return(name);
 				}
 			}
 			/**
