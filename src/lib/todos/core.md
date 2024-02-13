@@ -19,7 +19,7 @@
 - [ ] void SetWindowIcon(Image image);
 - [ ] void SetWindowIcons(Image *images, int count);
 - [x] void SetWindowTitle(const char *title); # Implemented: `Window.title`
-- [ ] void SetWindowPosition(int x, int y);
+- [x] void SetWindowPosition(int x, int y); # Implemented: `Window.position`
 - [ ] void SetWindowMonitor(int monitor);
 - [x] void SetWindowMinSize(int width, int height); # Implemented: `Window.minimum_width` and `Window.minimum_height`
 - [ ] void SetWindowMaxSize(int width, int height);
@@ -39,7 +39,7 @@
 - [ ] int GetMonitorPhysicalWidth(int monitor);
 - [ ] int GetMonitorPhysicalHeight(int monitor);
 - [ ] int GetMonitorRefreshRate(int monitor);
-- [ ] Vector2 GetWindowPosition(void);
+- [x] Vector2 GetWindowPosition(void); # Implemented: `Window.position`
 - [ ] Vector2 GetWindowScaleDPI(void);
 - [ ] const char *GetMonitorName(int monitor);
 - [x] void SetClipboardText(const char *text); # Implemented: `Clipboard.set`

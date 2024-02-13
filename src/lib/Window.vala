@@ -1,3 +1,5 @@
+using RaylibOOP.Shapes;
+
 namespace RaylibOOP {
 	namespace Core {
 		public errordomain WindowError {
@@ -281,6 +283,19 @@ namespace RaylibOOP {
 				set {
 					minimumWidth = value;
 					Raylib.set_window_minimum_size(value, minimumHeight);
+				}
+			}
+			/**
+			* Position of window.
+			*/
+			public Vector2 position {
+				owned get {
+					var a = Raylib.get_window_position();
+					return(new Vector2(a.x, a.y));
+				}
+				set {
+					Vector2 a = value;
+					Raylib.set_window_position((int)Math.ceilf(a.x),(int)Math.ceilf(a.y));
 				}
 			}
 		}

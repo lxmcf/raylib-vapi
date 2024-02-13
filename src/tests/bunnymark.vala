@@ -63,7 +63,11 @@ public class Bunny : GLib.Object {
 }
 
 int main() {
-	window = new Window(800, 450, "Bunnymark!");
+	try {
+		window = new Window(800, 450, "Bunnymark!");
+	} catch(WindowError e) {
+		error(e.message);
+	}
 	window.minimum_width = 0;
 	window.minimum_height = 0;
 	set_seed((uint32)new DateTime.now_local().to_unix());
@@ -97,7 +101,7 @@ int main() {
 						(uint8)int_range(100, 240),
 						255)));
 		} else if(Mouse.is_down(Mouse.Button.MIDDLE)) { /* KILL THE BUNNIES */
-			if(bunnies.length > 100)
+			if(bunnies.length > 0)
 				bunnies.remove_range(0, 100);
 		}
 		/* Draw Frames */
