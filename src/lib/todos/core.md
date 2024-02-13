@@ -183,11 +183,11 @@
 - [x] float GetMouseWheelMove(void); # Implemented: `Input.Mouse.wheel_move`
 - [x] Vector2 GetMouseWheelMoveV(void); # Implemented: `Input.Mouse.wheel_move`
 - [x] void SetMouseCursor(int cursor); # Implemented: `Input.Mouse.set_cursor`
-- [ ] int GetTouchX(void);
-- [ ] int GetTouchY(void);
-- [ ] Vector2 GetTouchPosition(int index);
-- [ ] int GetTouchPointId(int index);
-- [ ] int GetTouchPointCount(void);
+- [x] int GetTouchX(void); # Implemented: `Input.Touch.x`
+- [x] int GetTouchY(void); # Implemented: `Input.Touch.y`
+- [x] Vector2 GetTouchPosition(int index); # Implemented: `Input.Touch.get_position`
+- [x] int GetTouchPointId(int index); # Implemented: `Input.Touch.get_id`
+- [x] int GetTouchPointCount(void); # Implemented: `Input.Touch.point_count`
 - [ ] void SetGesturesEnabled(unsigned int flags);
 - [ ] bool IsGestureDetected(unsigned int gesture);
 - [ ] int GetGestureDetected(void);

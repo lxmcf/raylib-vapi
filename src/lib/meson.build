@@ -9,6 +9,7 @@ raylib_oop_src = [
 	'src/lib/Input/Mouse.vala',
 	'src/lib/Input/Keyboard.vala',
 	'src/lib/Input/Gamepad.vala',
+	'src/lib/Input/Touch.vala',
 	'src/lib/Clipboard.vala',
 	'src/lib/Log.vala',
 ]

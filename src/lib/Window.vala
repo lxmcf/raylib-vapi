@@ -296,6 +296,7 @@ namespace RaylibOOP {
 				set {
 					Vector2 a = value;
 					Raylib.set_window_position((int)Math.ceilf(a.x),(int)Math.ceilf(a.y));
+					a = null;
 				}
 			}
 		}
