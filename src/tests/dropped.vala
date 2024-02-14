@@ -13,16 +13,15 @@ int main() {
 		window.draw(()=>{
 			window.clear_background(Color.LIGHT_GRAY);
 			if(window.file_dropped == true) {
-				GLib.Array<string> listOfFiles;
 				try {
+					GLib.Array<string> listOfFiles;
 					window.get_dropped_files(out listOfFiles);
-				} catch(GLib.Error e) {
-					warning(e.message);
-				}
-				if(listOfFiles != null)
 					foreach (string b in listOfFiles) {
 						info(b);
 					}
+				} catch(GLib.Error e) {
+					warning(e.message);
+				}
 			}
 			return;
 		});
