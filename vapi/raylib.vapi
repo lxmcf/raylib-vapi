@@ -1458,7 +1458,7 @@ namespace Raylib {
     public static float get_gesture_hold_duration ();
 
     [CCode (cname = "GetGestureDragVector")]
-    public static Vector2 get_gesture_drag_duration ();
+    public static Vector2 get_gesture_drag_vector ();
 
     [CCode (cname = "GetGestureDragAngle")]
     public static float get_gesture_drag_angle ();
