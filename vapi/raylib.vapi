@@ -1323,6 +1323,48 @@ namespace Raylib {
     [CCode (cname = "DecodeDataBase64")]
     public static uchar[] decode_data_base64 (uchar[] data, out int size);
 
+	//------------------------------------------------------------------------------------
+	// Automation
+	//------------------------------------------------------------------------------------
+	[SimpleType]
+    [CCode (cname = "AutomationEvent")]
+    public struct AutomationEvent {
+        public uint frame;
+        public uint type;
+		public int params[4];
+    }
+
+	[SimpleType]
+	[CCode (cname = "AutomationEventList")]
+	public struct AutomationEventList {
+		public uint capacity;
+		public uint count;
+		AutomationEvent *events;
+	}
+
+	[CCode (cname = "LoadAutomationEventList")]
+	public static AutomationEventList load_automatic_event_list(string fileName);
+
+	[CCode (cname = "UnloadAutomationEventList")]
+	public static void unload_automation_event_list(AutomationEventList *list);
+
+	[CCode (cname = "ExportAutomationEventList")]
+	public static bool export_automation_event_list(AutomationEventList *list, string fileName);
+
+	[CCode (cname = "SetAutomationEventList")]
+	public static void set_automation_event_list(AutomationEventList *list);
+
+	[CCode (cname = "SetAutomationEventBaseFrame")]
+	public static void set_automation_event_base_frame(int frame);
+
+	[CCode (cname = "StartAutomationEventRecording")]
+	public static void start_automation_event_recording();
+
+	[CCode (cname = "StopAutomationEventRecording")]
+	public static void stop_automation_event_recording();
+
+	[CCode (cname = "PlayAutomationEvent")]
+	public static void play_automation_event(AutomationEvent event);
     //------------------------------------------------------------------------------------
     // Input Handling Functions (Module: core)
     //------------------------------------------------------------------------------------
