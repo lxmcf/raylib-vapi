@@ -1,6 +1,5 @@
 using GLib;
 using RaylibOOP;
-using RaylibOOP.Core;
 
 void println(string msg) {
 	/* We put a [Test] at the start, to differentiate output from Raylib, from the test. */

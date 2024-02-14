@@ -1,5 +1,4 @@
 using RaylibOOP;
-using RaylibOOP.Core;
 using RaylibOOP.Shapes;
 using RaylibOOP.Color;
 using RaylibOOP.Input;

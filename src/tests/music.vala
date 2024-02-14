@@ -1,5 +1,4 @@
 using RaylibOOP;
-using RaylibOOP.Core;
 using RaylibOOP.Input;
 
 int main(string[] args) {

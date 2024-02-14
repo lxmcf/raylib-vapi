@@ -1,5 +1,3 @@
-using Raylib;
-
 namespace RaylibOOP {
 	namespace Shapes {
 		public class Vector2 : GLib.Object {
