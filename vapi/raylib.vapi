@@ -1445,8 +1445,8 @@ namespace Raylib {
     //------------------------------------------------------------------------------------
     // Gestures and Touch Handling Functions (Module: rgestures)
     //------------------------------------------------------------------------------------
-    [CCode (cname = "SetGestureEnabled")]
-    public static void set_gesture_enabled (Gesture flags);
+    [CCode (cname = "SetGesturesEnabled")]
+    public static void set_gestures_enabled (Gesture flags);
 
     [CCode (cname = "IsGestureDetected")]
     public static bool is_gesture_detected (Gesture gesture);

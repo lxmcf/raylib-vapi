@@ -39,7 +39,7 @@ namespace RaylibOOP {
 			* Enable a set of gestures using flags
 			*/
 			public static void enable_gestures(int gestures) {
-				Raylib.set_gesture_enabled(gestures);
+				Raylib.set_gestures_enabled(gestures);
 			}
 			/**
 			* Check if a gesture have been detected
