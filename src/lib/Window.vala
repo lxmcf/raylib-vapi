@@ -1,11 +1,11 @@
 using RaylibOOP.Shapes;
 
 namespace RaylibOOP {
-	/* Prevents 2 Window objects from existing */
 	public errordomain WindowError {
 		ONLY_ONE,
 		NO_DROPPED_FILES
 	}
+	/* Prevents 2 Window objects from existing */
 	internal uint8 numOfWindows = 0;
 
 	public class Window : GLib.Object {
@@ -89,6 +89,12 @@ namespace RaylibOOP {
 		}
 		/* Methods */
 		/**
+		* Set automation event list to record to.
+		*/
+		public void set_automation_event_list(Automation.EventList eventList) {
+			Raylib.set_automation_event_list(&eventList.eventList);
+		}
+		/**
 		* Load dropped filepaths
 		*/
 		public void get_dropped_files(out GLib.Array<string> files) throws WindowError {
@@ -96,11 +102,12 @@ namespace RaylibOOP {
 				throw new WindowError.NO_DROPPED_FILES("No files were dropped.");
 			}
 			files = new GLib.Array<string>();
-			var a = Raylib.load_dropped_files();
-			Raylib.unload_dropped_files(a);
+		 	Raylib.FilePathList a = Raylib.load_dropped_files();
 			for(int i = 0; i < a.paths.length; i++) {
 				files.append_val(a.paths[i]);
+				debug(a.paths[i]);
 			}
+			Raylib.unload_dropped_files(a);
 		}
 		/**
 		* Take Screenshot
@@ -159,7 +166,7 @@ namespace RaylibOOP {
 		*/
 		public void clear_background(Color color) {
 			Raylib.Color a = {
-				color.r, color.g, color.b, color.a
+				color.r, color.g, color.b, color.a,
 			};
 			Raylib.clear_background(a);
 		}
@@ -194,7 +201,9 @@ namespace RaylibOOP {
 		* Borderless windowed (only PLATFORM_DESKTOP)
 		*/
 		public bool borderless {
-			get { return(Raylib.is_window_state(Raylib.ConfigFlags.BORDERLESS_WINDOWED_MODE)); }
+			get {
+				return(Raylib.is_window_state(Raylib.ConfigFlags.BORDERLESS_WINDOWED_MODE));
+			}
 			set {
 				Raylib.set_window_state(Raylib.ConfigFlags.BORDERLESS_WINDOWED_MODE);
 			}
