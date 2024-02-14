@@ -1343,7 +1343,7 @@ namespace Raylib {
 	}
 
 	[CCode (cname = "LoadAutomationEventList")]
-	public static AutomationEventList load_automatic_event_list(string fileName);
+	public static AutomationEventList load_automation_event_list(string fileName);
 
 	[CCode (cname = "UnloadAutomationEventList")]
 	public static void unload_automation_event_list(AutomationEventList *list);
@@ -1365,6 +1365,7 @@ namespace Raylib {
 
 	[CCode (cname = "PlayAutomationEvent")]
 	public static void play_automation_event(AutomationEvent event);
+
     //------------------------------------------------------------------------------------
     // Input Handling Functions (Module: core)
     //------------------------------------------------------------------------------------

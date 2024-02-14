@@ -12,4 +12,5 @@ raylib_oop_src = [
 	'src/lib/Input/Touch.vala',
 	'src/lib/Clipboard.vala',
 	'src/lib/Log.vala',
+	'src/lib/Automation/EventList.vala',
 ]
