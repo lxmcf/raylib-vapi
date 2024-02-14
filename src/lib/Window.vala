@@ -299,6 +299,14 @@ namespace RaylibOOP {
 					a = null;
 				}
 			}
+			/**
+			* Elapsed time in seconds since window creation.
+			*/
+			public double get_time {
+				get {
+					return(Raylib.get_time());
+				}
+			}
 		}
 	}
 }
