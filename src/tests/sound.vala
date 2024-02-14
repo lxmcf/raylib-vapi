@@ -1,7 +1,7 @@
 using RaylibOOP;
 
 int main() {
-	var window = new Core.Window(320, 240, "Test Audio");
+	var window = new Window(320, 240, "Test Audio");
 	/* Check if master volume works */
 	print(@"Master Volume: $(window.master_volume)\n");
 	window.master_volume = 0.5f;

@@ -9,7 +9,7 @@ int main(string[] args) {
 	string filetype = args[1];
 	Window window;
 	try {
-		window = new Core.Window(320, 240, "Test Audio");
+		window = new Window(320, 240, "Test Audio");
 	} catch(WindowError e) {
 		error("Ruh roh.");
 	}
