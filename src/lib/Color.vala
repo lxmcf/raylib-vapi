@@ -3,32 +3,6 @@ using RaylibOOP.Util;
 namespace RaylibOOP {
 	public class Color : GLib.Object {
 		/* Variables */
-		public static Color LIGHT_GRAY         = new Color.from_raylib_color(Raylib.LIGHTGRAY);
-		public static Color GRAY               = new Color.from_raylib_color(Raylib.GRAY);
-		public static Color DARK_GRAY          = new Color.from_raylib_color(Raylib.DARKGRAY);
-		public static Color YELLOW             = new Color.from_raylib_color(Raylib.YELLOW);
-		public static Color GOLD               = new Color.from_raylib_color(Raylib.GOLD);
-		public static Color ORANGE             = new Color.from_raylib_color(Raylib.ORANGE);
-		public static Color PINK               = new Color.from_raylib_color(Raylib.PINK);
-		public static Color RED                = new Color.from_raylib_color(Raylib.RED);
-		public static Color MAROON             = new Color.from_raylib_color(Raylib.MAROON);
-		public static Color GREEN              = new Color.from_raylib_color(Raylib.GREEN);
-		public static Color LIME               = new Color.from_raylib_color(Raylib.LIME);
-		public static Color DARK_GREEN         = new Color.from_raylib_color(Raylib.DARKGREEN);
-		public static Color SKY_BLUE           = new Color.from_raylib_color(Raylib.SKYBLUE);
-		public static Color BLUE               = new Color.from_raylib_color(Raylib.BLUE);
-		public static Color DARK_BLUE          = new Color.from_raylib_color(Raylib.DARKBLUE);
-		public static Color PURPLE             = new Color.from_raylib_color(Raylib.PURPLE);
-		public static Color VIOLET             = new Color.from_raylib_color(Raylib.VIOLET);
-		public static Color DARK_PURPLE        = new Color.from_raylib_color(Raylib.DARKPURPLE);
-		public static Color BEIGE              = new Color.from_raylib_color(Raylib.BEIGE);
-		public static Color BROWN              = new Color.from_raylib_color(Raylib.BROWN);
-		public static Color DARK_BROWN         = new Color.from_raylib_color(Raylib.DARKBROWN);
-		public static Color WHITE              = new Color.from_raylib_color(Raylib.WHITE);
-		public static Color BLACK              = new Color.from_raylib_color(Raylib.BLACK);
-		public static Color BLANK              = new Color.from_raylib_color(Raylib.BLANK);
-		public static Color MAGENTA            = new Color.from_raylib_color(Raylib.MAGENTA);
-		public static Color RAY_WHITE          = new Color.from_raylib_color(Raylib.RAYWHITE);
 		/**
 		* Red
 		*/
@@ -77,6 +51,139 @@ namespace RaylibOOP {
 			this.g = color.g;
 			this.b = color.b;
 			this.a = color.a;
+		}
+		/* Properties */
+		/* Pre-defined colors. This is awful, but I don't see another way without
+		 * needing to use Raylib directly. Which is something I want to avoid. */
+		public static Color LIGHT_GRAY {
+			owned get {
+				return new Color.from_raylib_color(Raylib.LIGHTGRAY);
+			}
+		}
+		public static Color GRAY {
+			owned get {
+				return new Color.from_raylib_color(Raylib.GRAY);
+			}
+		}
+		public static Color DARK_GRAY {
+			owned get {
+				return new Color.from_raylib_color(Raylib.DARKGRAY);
+			}
+		}
+		public static Color YELLOW {
+			owned get {
+				return new Color.from_raylib_color(Raylib.YELLOW);
+			}
+		}
+		public static Color GOLD {
+			owned get {
+				return new Color.from_raylib_color(Raylib.GOLD);
+			}
+		}
+		public static Color ORANGE {
+			owned get {
+				return new Color.from_raylib_color(Raylib.ORANGE);
+			}
+		}
+		public static Color PINK {
+			owned get {
+				return new Color.from_raylib_color(Raylib.PINK);
+			}
+		}
+		public static Color RED {
+			owned get {
+				return new Color.from_raylib_color(Raylib.RED);
+			}
+		}
+		public static Color MAROON {
+			owned get {
+				return new Color.from_raylib_color(Raylib.MAROON);
+			}
+		}
+		public static Color GREEN {
+			owned get {
+				return new Color.from_raylib_color(Raylib.GREEN);
+			}
+		}
+		public static Color LIME {
+			owned get {
+				return new Color.from_raylib_color(Raylib.LIME);
+			}
+		}
+		public static Color DARK_GREEN {
+			owned get {
+				return new Color.from_raylib_color(Raylib.DARKGREEN);
+			}
+		}
+		public static Color SKY_BLUE {
+			owned get {
+				return new Color.from_raylib_color(Raylib.SKYBLUE);
+			}
+		}
+		public static Color BLUE {
+			owned get {
+				return new Color.from_raylib_color(Raylib.BLUE);
+			}
+		}
+		public static Color DARK_BLUE {
+			owned get {
+				return new Color.from_raylib_color(Raylib.DARKBLUE);
+			}
+		}
+		public static Color PURPLE {
+			owned get {
+				return new Color.from_raylib_color(Raylib.PURPLE);
+			}
+		}
+		public static Color VIOLET {
+			owned get {
+				return new Color.from_raylib_color(Raylib.VIOLET);
+			}
+		}
+		public static Color DARK_PURPLE {
+			owned get {
+				return new Color.from_raylib_color(Raylib.DARKPURPLE);
+			}
+		}
+		public static Color BEIGE {
+			owned get {
+				return new Color.from_raylib_color(Raylib.BEIGE);
+			}
+		}
+		public static Color BROWN {
+			owned get {
+				return new Color.from_raylib_color(Raylib.BROWN);
+			}
+		}
+		public static Color DARK_BROWN {
+			owned get {
+				return new Color.from_raylib_color(Raylib.DARKBROWN);
+			}
+		}
+		public static Color WHITE {
+			owned get {
+				return new Color.from_raylib_color(Raylib.WHITE);
+			}
+		}
+		public static Color BLACK {
+			owned get {
+				return new Color.from_raylib_color(Raylib.BLACK);
+			}
+		}
+		public static Color BLANK {
+			owned get {
+				return new Color.from_raylib_color(Raylib.BLANK);
+			}
+		}
+		public static Color MAGENTA {
+			owned get {
+				return new Color.from_raylib_color(Raylib.MAGENTA);
+			}
+		}
+		public static Color RAY_WHITE {
+			owned get {
+				return new Color.from_raylib_color(Raylib.RAYWHITE);
+			}
 		}
 	}
 }
