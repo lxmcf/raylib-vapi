@@ -2,11 +2,60 @@ using RaylibOOP.Shapes;
 
 namespace RaylibOOP {
 	namespace Core {
+		/* Prevents 2 Window objects from existing */
 		public errordomain WindowError {
 			ONLY_ONE
 		}
 		internal uint8 numOfWindows = 0;
+
 		public class Window : GLib.Object {
+			/* Objects */
+			public class Cursor {
+				/* Variables */
+				internal bool cursorLocked = false;
+				/* Methods */
+				/* Properties */
+				/**
+				* If cursor is not visible
+				*/
+				public bool hidden {
+					get {
+						return(Raylib.is_cursor_hidden());
+					}
+					set {
+						if(value == true) {
+							Raylib.hide_cursor();
+						} else {
+							Raylib.show_cursor();
+						}
+					}
+				}
+				/**
+				* If cursor is locked.
+				*/
+				public bool locked {
+					get {
+						return(cursorLocked);
+					}
+					set {
+						if(value == true) {
+							cursorLocked = true;
+							Raylib.disable_cursor();
+						} else {
+							cursorLocked = false;
+							Raylib.enable_cursor();
+						}
+					}
+				}
+				/**
+				* If cursor is on the screen
+				*/
+				public bool on_screen {
+					get {
+						return(Raylib.is_cursor_on_screen());
+					}
+				}
+			}
 			/* Variables */
 			private string windowTitle          = "Raylib";
 			internal int targetFPS              = 60;
@@ -14,6 +63,7 @@ namespace RaylibOOP {
 			internal Input.Keyboard.Key exitKey = Input.Keyboard.Key.ESCAPE;
 			internal int minimumHeight          = 0;
 			internal int minimumWidth           = 0;
+			public Cursor cursor;
 			/* Constructor */
 			public Window(int width, int height, string title) throws WindowError {
 				if(numOfWindows > 0) {
@@ -24,6 +74,8 @@ namespace RaylibOOP {
 				Raylib.set_trace_log_callback(Log.trace_log);
 				Raylib.init_window(width, height, this.windowTitle);
 				this.initialized = true;
+				/* Create Cursor Object */
+				cursor = new Cursor();
 				numOfWindows++;
 			}
 			/* Destroyer */

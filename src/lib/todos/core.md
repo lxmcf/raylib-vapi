@@ -46,12 +46,12 @@
 - [x] const char *GetClipboardText(void); # Implemented: `Clipboard.get`
 - [ ] void EnableEventWaiting(void);
 - [ ] void DisableEventWaiting(void);
-- [ ] void ShowCursor(void);
-- [ ] void HideCursor(void);
-- [ ] bool IsCursorHidden(void);
-- [ ] void EnableCursor(void);
-- [ ] void DisableCursor(void);
-- [ ] bool IsCursorOnScreen(void);
+- [x] void ShowCursor(void); # Implemented: `Window.Cursor.hidden`
+- [x] void HideCursor(void); # Implemented: `Window.Cursor.hidden`
+- [x] bool IsCursorHidden(void); # Implemented: `Window.Cursor.hidden`
+- [x] void EnableCursor(void); # Implemented: `Window.Cursor.locked`
+- [x] void DisableCursor(void); # Implemented: `Window.Cursor.locked`
+- [x] bool IsCursorOnScreen(void); # Implemented: `Window.Cursor.on_screen`
 - [x] void ClearBackground(Color color); # Implemented: `Window.clear_background`
 - [x] void BeginDrawing(void); # Implemented: `Window.begin_drawing` and `Window.draw`
 - [x] void EndDrawing(void); # Implemented: `Window.end_drawing` and `Window.draw`
@@ -89,8 +89,8 @@
 - [ ] Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int width, int height);
 - [ ] Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera);
 - [x] void SetTargetFPS(int fps); # Implemented: `Window.target_fps`
-- [ ] float GetFrameTime(void);
-- [ ] double GetTime(void);
+- [x] float GetFrameTime(void); # Implemented: `Window.frame_time`
+- [x] double GetTime(void); # Implemented: `Window.time`
 - [x] int GetFPS(void); # Implemented: `Window.fps`
 - [ ] void SwapScreenBuffer(void);
 - [ ] void PollInputEvents(void);
