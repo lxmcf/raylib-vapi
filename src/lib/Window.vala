@@ -302,9 +302,17 @@ namespace RaylibOOP {
 			/**
 			* Elapsed time in seconds since window creation.
 			*/
-			public double get_time {
+			public double time {
 				get {
 					return(Raylib.get_time());
+				}
+			}
+			/**
+			* Time in seconds for last frame drawn (delta time)
+			*/
+			public float frame_time {
+				get {
+					return(Raylib.get_frame_time());
 				}
 			}
 		}
