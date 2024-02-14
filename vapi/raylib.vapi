@@ -507,6 +507,7 @@ namespace Raylib {
     public struct FilePathList {
         public uint capacity;                   // Filepaths max entries
         public uint count;                      // Filepaths entries count
+		[CCode (array_length_cname = "count", array_length_type = "unsigned int")]
         public unowned string[] paths;          // Filepaths entries
     }
 
@@ -1301,7 +1302,7 @@ namespace Raylib {
     [CCode (cname = "IsFileDropped")]
     public static bool is_file_dropped ();
 
-    [CCode (cname = "FilePathList")]
+    [CCode (cname = "LoadDroppedFiles")]
     public static FilePathList load_dropped_files ();
 
     [CCode (cname = "UnloadDroppedFiles")]
@@ -1349,7 +1350,7 @@ namespace Raylib {
 	public static void unload_automation_event_list(AutomationEventList *list);
 
 	[CCode (cname = "ExportAutomationEventList")]
-	public static bool export_automation_event_list(AutomationEventList *list, string fileName);
+	public static bool export_automation_event_list(AutomationEventList list, string fileName);
 
 	[CCode (cname = "SetAutomationEventList")]
 	public static void set_automation_event_list(AutomationEventList *list);
