@@ -124,4 +124,13 @@ if get_option('tests') == true
 			project_dependency,
 		],
 	)
+	# Test dropping files.
+	executable(
+		'dropped',
+		sources: 'src/tests/dropped.vala',
+		dependencies: [
+			raylib_oop_dep,
+			project_dependency,
+		],
+	)
 endif
