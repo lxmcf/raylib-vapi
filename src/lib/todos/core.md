@@ -188,13 +188,13 @@
 - [x] Vector2 GetTouchPosition(int index); # Implemented: `Input.Touch.get_position`
 - [x] int GetTouchPointId(int index); # Implemented: `Input.Touch.get_id`
 - [x] int GetTouchPointCount(void); # Implemented: `Input.Touch.point_count`
-- [ ] void SetGesturesEnabled(unsigned int flags);
-- [ ] bool IsGestureDetected(unsigned int gesture);
-- [ ] int GetGestureDetected(void);
-- [ ] float GetGestureHoldDuration(void);
-- [ ] Vector2 GetGestureDragVector(void);
-- [ ] float GetGestureDragAngle(void);
-- [ ] Vector2 GetGesturePinchVector(void);
-- [ ] float GetGesturePinchAngle(void);
+- [x] void SetGesturesEnabled(unsigned int flags); # Implemented: `Input.Touch.enable_gestures`
+- [x] bool IsGestureDetected(unsigned int gesture); # Implemented: `Input.Touch.is_gesture_detected`
+- [x] int GetGestureDetected(void); # Implemented: `Input.Touch.detected_gesture`
+- [x] float GetGestureHoldDuration(void); # Implemented: `Input.Touch.hold_duration`
+- [x] Vector2 GetGestureDragVector(void); # Implemented: `Input.Touch.drag_vector`
+- [x] float GetGestureDragAngle(void); # Implemented: `Input.Touch.drag_angle`
+- [x] Vector2 GetGesturePinchVector(void); # Implemented: `Input.Touch.pinch_vector`
+- [x] float GetGesturePinchAngle(void); # Implemented: `Input.Touch.pinch_angle`
 - [ ] void UpdateCamera(Camera *camera, int mode);
 - [ ] void UpdateCameraPro(Camera *camera, Vector3 movement, Vector3 rotation, float zoom);
