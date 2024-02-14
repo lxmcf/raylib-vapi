@@ -3,7 +3,8 @@ using RaylibOOP.Shapes;
 namespace RaylibOOP {
 	/* Prevents 2 Window objects from existing */
 	public errordomain WindowError {
-		ONLY_ONE
+		ONLY_ONE,
+		NO_DROPPED_FILES
 	}
 	internal uint8 numOfWindows = 0;
 
@@ -87,6 +88,20 @@ namespace RaylibOOP {
 			numOfWindows--;
 		}
 		/* Methods */
+		/**
+		* Load dropped filepaths
+		*/
+		public void get_dropped_files(out GLib.Array<string> files) throws WindowError {
+			if(file_dropped == false) {
+				throw new WindowError.NO_DROPPED_FILES("No files were dropped.");
+			}
+			files = new GLib.Array<string>();
+			var a = Raylib.load_dropped_files();
+			Raylib.unload_dropped_files(a);
+			for(int i = 0; i < a.paths.length; i++) {
+				files.append_val(a.paths[i]);
+			}
+		}
 		/**
 		* Take Screenshot
 		*/
@@ -367,6 +382,14 @@ namespace RaylibOOP {
 		public float frame_time {
 			get {
 				return(Raylib.get_frame_time());
+			}
+		}
+		/**
+		* If a file has been dropped into window
+		*/
+		public bool file_dropped {
+			get {
+				return(Raylib.is_file_dropped());
 			}
 		}
 	}

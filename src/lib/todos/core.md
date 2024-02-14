@@ -135,9 +135,9 @@
 - ❌ FilePathList LoadDirectoryFiles(const char *dirPath); # Unneeded: Builtin `GLib.Dir`
 - ❌ FilePathList LoadDirectoryFilesEx(const char *basePath, const char *filter, bool scanSubdirs); # Unneeded: Builtin `GLib.Dir`
 - ❌ void UnloadDirectoryFiles(FilePathList files); # Unneeded: Builtin `GLib.Dir`
-- [ ] bool IsFileDropped(void);
-- [ ] FilePathList LoadDroppedFiles(void);
-- [ ] void UnloadDroppedFiles(FilePathList files);
+- [x] bool IsFileDropped(void); # Implemented: `Window.file_dropped`
+- [x] FilePathList LoadDroppedFiles(void); # Implemented: `Window.get_dropped_files`
+- [x] void UnloadDroppedFiles(FilePathList files); # Implemented: `Window.get_dropped_files`
 - ❌ long GetFileModTime(const char *fileName); # Unneeded: Builtin `GLib.FileInfo.get_modification_date_time`
 - ❌ unsigned char *CompressData(const unsigned char *data, int dataSize, int *compDataSize); # Unneeded: Built into GLib `GLib.ZlibCompressor`
 - ❌ unsigned char *DecompressData(const unsigned char *compData, int compDataSize, int *dataSize); # Unneeded: Built into GLib `GLib.ZlibDecompressor`
