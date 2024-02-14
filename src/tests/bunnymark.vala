@@ -1,6 +1,5 @@
 using RaylibOOP;
 using RaylibOOP.Shapes;
-using RaylibOOP.Color;
 using RaylibOOP.Input;
 using GLib.Random;
 
@@ -37,9 +36,9 @@ namespace Graphics {
 public class Bunny : GLib.Object {
 	private Vector2 position;
 	private Vector2 speed;
-	private Raylib.Color color;
+	private Color color;
 	public static Raylib.Texture2D sprite;
-	public Bunny(Vector2 pos, float speedX, float speedY, Raylib.Color color) {
+	public Bunny(Vector2 pos, float speedX, float speedY, Color color) {
 		this.position = new Vector2(pos.x, pos.y);
 		this.speed = new Vector2(speedX, speedY);
 		this.color = color;
@@ -53,11 +52,15 @@ public class Bunny : GLib.Object {
 		if (((this.position.y + Bunny.sprite.height/2) > window.height) ||
 			((this.position.y + Bunny.sprite.height/2 - 40) < 0))
 			this.speed.y *= -1;
-		Raylib.draw_texture(Bunny.sprite, (int)this.position.x, (int)this.position.y, this.color);
+		Raylib.Color a = {
+			color.r, color.g, color.b, color.a
+		};
+		Raylib.draw_texture(Bunny.sprite, (int)this.position.x, (int)this.position.y, a);
 	}
 	~Bunny() {
 		position = null;
 		speed = null;
+		color = null;
 	}
 }
 
@@ -83,7 +86,7 @@ int main() {
 					Mouse.position,
 					int_range(-250, 250)/60.0f,
 					int_range(-250, 250)/60.0f,
-					Color.Custom.from_rgba(
+					new Color.from_rgba(
 						(uint8)int_range(50, 240),
 						(uint8)int_range(80, 240),
 						(uint8)int_range(100, 240),
@@ -94,7 +97,7 @@ int main() {
 					Mouse.position,
 					int_range(-250, 250)/60.0f,
 					int_range(-250, 250)/60.0f,
-					Color.Custom.from_rgba(
+					new Color.from_rgba(
 						(uint8)int_range(50, 240),
 						(uint8)int_range(80, 240),
 						(uint8)int_range(100, 240),
@@ -105,11 +108,11 @@ int main() {
 		}
 		/* Draw Frames */
 		window.draw(()=>{
-			window.clear_background(WHITE);
+			window.clear_background(Color.WHITE);
 			for(int i = 0; i < bunnies.length; i++)
 				bunnies.index(i).update();
-			Raylib.draw_rectangle(0, 0, window.width, 40, BLACK);
-			Raylib.draw_text(@"Bunnies: $(bunnies.length)", 120, 10, 20, GREEN);
+			Raylib.draw_rectangle(0, 0, window.width, 40, Raylib.BLACK);
+			Raylib.draw_text(@"Bunnies: $(bunnies.length)", 120, 10, 20, Raylib.GREEN);
 
 			window.draw_fps(10, 10);
 		});

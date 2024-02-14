@@ -142,8 +142,11 @@ namespace RaylibOOP {
 		/**
 		* Set background color (framebuffer clear color)
 		*/
-		public void clear_background(Raylib.Color color) {
-			Raylib.clear_background(color);
+		public void clear_background(Color color) {
+			Raylib.Color a = {
+				color.r, color.g, color.b, color.a
+			};
+			Raylib.clear_background(a);
 		}
 		/* Properties */
 		/**

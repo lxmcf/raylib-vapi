@@ -1,8 +1,7 @@
 raylib_oop_src = [
   'src/lib/Shapes/Vector2.vala',
   'src/lib/Window.vala',
-  'src/lib/Color/Types.vala',
-	'src/lib/Color/Custom.vala',
+  'src/lib/Color.vala',
   'src/lib/Util.vala',
   'src/lib/Audio/Types.vala',
   'src/lib/Audio/Music.vala',
