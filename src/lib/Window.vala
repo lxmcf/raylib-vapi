@@ -120,6 +120,7 @@ namespace RaylibOOP {
 		internal int minimumWidth           = 0;
 		internal bool eventRecording        = false;
 		internal bool eventListSet          = false;
+		internal bool eventWaiting          = true;
 		public Cursor cursor;
 		public Monitor[] monitors;
 		/* Constructor */
@@ -528,6 +529,25 @@ namespace RaylibOOP {
 						Raylib.stop_automation_event_recording();
 						eventRecording = false;
 					}
+				}
+			}
+		}
+		/**
+		* Waiting for events on EndDrawing()
+		* true: automatic event polling.
+		* false: no automatic event polling.
+		*/
+		public bool event_waiting {
+			get {
+				return(this.eventWaiting);
+			}
+			set {
+				if(value == true) {
+					Raylib.enable_event_waiting();
+					this.eventWaiting = true;
+				} else {
+					Raylib.disable_event_waiting();
+					this.eventWaiting = false;
 				}
 			}
 		}

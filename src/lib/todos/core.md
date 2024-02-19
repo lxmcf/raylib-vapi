@@ -44,8 +44,8 @@
 - [x] const char *GetMonitorName(int monitor); # Implemented: `Window.monitors[x].name`
 - [x] void SetClipboardText(const char *text); # Implemented: `Clipboard.set`
 - [x] const char *GetClipboardText(void); # Implemented: `Clipboard.get`
-- [ ] void EnableEventWaiting(void);
-- [ ] void DisableEventWaiting(void);
+- [x] void EnableEventWaiting(void); # Implemented: `Window.event_waiting`
+- [x] void DisableEventWaiting(void); # Implemented: `Window.event_waiting`
 - [x] void ShowCursor(void); # Implemented: `Window.Cursor.hidden`
 - [x] void HideCursor(void); # Implemented: `Window.Cursor.hidden`
 - [x] bool IsCursorHidden(void); # Implemented: `Window.Cursor.hidden`
