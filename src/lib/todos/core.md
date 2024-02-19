@@ -31,17 +31,17 @@
 - [x] int GetScreenHeight(void); # Implemented: `Window.height`
 - [ ] int GetRenderWidth(void);
 - [ ] int GetRenderHeight(void);
-- [ ] int GetMonitorCount(void);
-- [ ] int GetCurrentMonitor(void);
+- [x] int GetMonitorCount(void); # Implemented: `Window.monitors.length`
+- [x] int GetCurrentMonitor(void); # Implemented: `Window.get_current_monitor`
 - [ ] Vector2 GetMonitorPosition(int monitor);
-- [ ] int GetMonitorWidth(int monitor);
-- [ ] int GetMonitorHeight(int monitor);
-- [ ] int GetMonitorPhysicalWidth(int monitor);
-- [ ] int GetMonitorPhysicalHeight(int monitor);
-- [ ] int GetMonitorRefreshRate(int monitor);
+- [x] int GetMonitorWidth(int monitor);  # Implemented: `Window.monitors[x].width`
+- [x] int GetMonitorHeight(int monitor);  # Implemented: `Window.monitors[x].height`
+- [x] int GetMonitorPhysicalWidth(int monitor); # Implemented: `Window.monitors[x].physical_width`
+- [x] int GetMonitorPhysicalHeight(int monitor); # Implemented: `Window.monitors[x].physical_height`
+- [x] int GetMonitorRefreshRate(int monitor); # Implemented: `Window.monitors[x].refresh_rate`
 - [x] Vector2 GetWindowPosition(void); # Implemented: `Window.position`
 - [ ] Vector2 GetWindowScaleDPI(void);
-- [ ] const char *GetMonitorName(int monitor);
+- [x] const char *GetMonitorName(int monitor); # Implemented: `Window.monitors[x].name`
 - [x] void SetClipboardText(const char *text); # Implemented: `Clipboard.set`
 - [x] const char *GetClipboardText(void); # Implemented: `Clipboard.get`
 - [ ] void EnableEventWaiting(void);
@@ -65,8 +65,8 @@
 - [ ] void EndShaderMode(void);
 - [ ] void BeginBlendMode(int mode);
 - [ ] void EndBlendMode(void);
-- [ ] void BeginScissorMode(int x, int y, int width, int height);
-- [ ] void EndScissorMode(void);
+- [x] void BeginScissorMode(int x, int y, int width, int height); # Implemented: `Window.begin_scissor` & `Window.scissor`
+- [x] void EndScissorMode(void); # Implemented: `Window.begin_scissor` & `Window.scissor`
 - [ ] void BeginVrStereoMode(VrStereoConfig config);
 - [ ] void EndVrStereoMode(void);
 - [ ] VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device);

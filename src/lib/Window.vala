@@ -56,8 +56,63 @@ namespace RaylibOOP {
 				}
 			}
 		}
+		public class Monitor {
+			private int num;
+			public Monitor(int monitorNum) {
+				this.num = monitorNum;
+			}
+			/* Properties */
+			/**
+			* Get monitor width (current video mode used by monitor)
+			*/
+			public int width {
+				get {
+					return(Raylib.get_monitor_width(num));
+				}
+			}
+			/**
+			* Get monitor height (current video mode used by monitor)
+			*/
+			public int height {
+				get {
+					return(Raylib.get_monitor_height(num));
+				}
+			}
+			/**
+			* Get monitor refresh rate
+			*/
+			public int refresh_rate {
+				get {
+					return(Raylib.get_monitor_refresh_rate(num));
+				}
+			}
+			/**
+			* Get the human-readable, UTF-8 encoded name of the monitor
+			*/
+			public string name {
+				owned get {
+					return(Raylib.get_monitor_name(num));
+				}
+			}
+			/**
+			* Get monitor physical width in millimetres
+			*/
+			public int physical_width {
+				get {
+					return(Raylib.get_monitor_physical_width(num));
+				}
+			}
+			/**
+			* Get monitor physical height in millimetres
+			*/
+			public int physical_height {
+				get {
+					return(Raylib.get_monitor_physical_height(num));
+				}
+			}
+		}
 		/* Variables */
-		private string windowTitle          = "Raylib";
+		internal string windowTitle          = "Raylib";
 		internal int targetFPS              = 60;
 		internal bool initialized           = false; /* Checks if this object has been initialized, or if it error'd */
 		internal Input.Keyboard.Key exitKey = Input.Keyboard.Key.ESCAPE;
@@ -66,6 +121,7 @@ namespace RaylibOOP {
 		internal bool eventRecording        = false;
 		internal bool eventListSet          = false;
 		public Cursor cursor;
+		public Monitor[] monitors;
 		/* Constructor */
 		public Window(int width, int height, string title) throws WindowError {
 			/* Check that only 1 window is active. */
@@ -84,6 +140,11 @@ namespace RaylibOOP {
 			this.target_fps = targetFPS;
 			/* Create Cursor Object */
 			cursor = new Cursor();
+			/* Create Monitor Array */
+			monitors[0] = new Monitor(0);
+			for(int i = 1; i < Raylib.get_monitor_count(); i++) {
+				monitors += new Monitor(i);
+			}
 			numOfWindows++;
 		}
 		/* Destroyer */
@@ -104,6 +165,12 @@ namespace RaylibOOP {
 			eventListSet = true;
 		}
 		/**
+		* Get current connected monitor
+		*/
+		public Monitor* get_current_monitor() {
+			return(this.monitors[Raylib.get_current_monitor()]);
+		}
+		/**
 		* Set automation event internal base frame to start recording
 		*/
 		public void set_automation_event_base_frame(int frame) {
@@ -114,6 +181,26 @@ namespace RaylibOOP {
 		*/
 		public void play_automation_event(Raylib.AutomationEvent event) {
 			Raylib.play_automation_event(event);
+		}
+		/**
+		* Scissor mode (define screen area for following drawing)
+		*/
+		public void scissor(Func func, int x, int y, int width, int height) {
+			Raylib.begin_scissor_mode(x, y, width, height);
+			func(null);
+			Raylib.end_scissor_mode();
+		}
+		/**
+		* Begin scissor mode (define screen area for following drawing)
+		*/
+		public void begin_scissor(int x, int y, int width, int height) {
+			Raylib.begin_scissor_mode(x, y, width, height);
+		}
+		/**
+		* End scissor mode.
+		*/
+		public void end_scissor() {
+			Raylib.end_scissor_mode();
 		}
 		/**
 		* Load dropped filepaths
@@ -153,9 +240,9 @@ namespace RaylibOOP {
 		* Draw Frame
 		*/
 		public void draw(Func function) {
-			Raylib.begin_drawing();
+			this.begin_drawing();
 			function(null);
-			Raylib.end_drawing();
+			this.end_drawing();
 		}
 		/**
 		* Setup canvas (framebuffer) to start drawing
