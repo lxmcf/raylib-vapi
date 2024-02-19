@@ -997,7 +997,7 @@ namespace Raylib {
     public static int get_monitor_width (int monitor);
 
     [CCode (cname = "GetMonitorHeight")]
-    public static int get_hmonitor_eight (int monitor);
+    public static int get_monitor_height (int monitor);
 
     [CCode (cname = "GetMonitorPhysicalWidth")]
     public static int get_monitor_physical_width (int monitor);
