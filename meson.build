@@ -86,6 +86,7 @@ raylib_oop_dep = declare_dependency(
 
 # Test Executables
 if get_option('tests') == true
+	# Testing Window related functions.
 	executable('window',
 		sources: 'src/tests/window.vala',
 		dependencies: [
@@ -93,6 +94,7 @@ if get_option('tests') == true
 			project_dependency
 		]
 	)
+	# Test of Sound
 	executable('sound',
 		sources: 'src/tests/sound.vala',
 		dependencies: [
@@ -100,6 +102,7 @@ if get_option('tests') == true
 			project_dependency
 		]
 	)
+	# Test of Music
 	executable(
 		'music',
 		sources: 'src/tests/music.vala',
@@ -116,6 +119,7 @@ if get_option('tests') == true
 			project_dependency,
 		],
 	)
+	# Benchmarking
 	executable(
 		'bunnymark',
 		sources: 'src/tests/bunnymark.vala',
@@ -128,6 +132,15 @@ if get_option('tests') == true
 	executable(
 		'dropped',
 		sources: 'src/tests/dropped.vala',
+		dependencies: [
+			raylib_oop_dep,
+			project_dependency,
+		],
+	)
+	# Test for automated inputs.
+	executable(
+		'automated',
+		sources: 'src/tests/automation.vala',
 		dependencies: [
 			raylib_oop_dep,
 			project_dependency,

@@ -63,17 +63,25 @@ namespace RaylibOOP {
 		internal Input.Keyboard.Key exitKey = Input.Keyboard.Key.ESCAPE;
 		internal int minimumHeight          = 0;
 		internal int minimumWidth           = 0;
+		internal bool eventRecording        = false;
+		internal bool eventListSet          = false;
 		public Cursor cursor;
 		/* Constructor */
 		public Window(int width, int height, string title) throws WindowError {
+			/* Check that only 1 window is active. */
 			if(numOfWindows > 0) {
 				throw new WindowError.ONLY_ONE("You can only have one Window at a time.");
 			}
+
 			warning("The OOP interface is not done. Here be dragons!");
-			this.windowTitle = title;
+
+			/* Make raylib use GLib's logging system */
 			Raylib.set_trace_log_callback(Log.trace_log);
+			/* Initialize the Window */
+			this.windowTitle = title;
 			Raylib.init_window(width, height, this.windowTitle);
 			this.initialized = true;
+			this.target_fps = targetFPS;
 			/* Create Cursor Object */
 			cursor = new Cursor();
 			numOfWindows++;
@@ -93,6 +101,19 @@ namespace RaylibOOP {
 		*/
 		public void set_automation_event_list(Automation.EventList eventList) {
 			Raylib.set_automation_event_list(&eventList.eventList);
+			eventListSet = true;
+		}
+		/**
+		* Set automation event internal base frame to start recording
+		*/
+		public void set_automation_event_base_frame(int frame) {
+			Raylib.set_automation_event_base_frame(frame);
+		}
+		/**
+		* Play a recorded automation event
+		*/
+		public void play_automation_event(Raylib.AutomationEvent event) {
+			Raylib.play_automation_event(event);
 		}
 		/**
 		* Load dropped filepaths
@@ -399,6 +420,28 @@ namespace RaylibOOP {
 		public bool file_dropped {
 			get {
 				return(Raylib.is_file_dropped());
+			}
+		}
+		/**
+		* Recording automation events (set_automation_event_list must have been run)
+		*/
+		public bool record_automation_events {
+			get {
+				if(eventListSet == false) {
+					return(false);
+				}
+				return(eventRecording);
+			}
+			set {
+				if(eventListSet == true) {
+					if(value == true) {
+						Raylib.start_automation_event_recording();
+						eventRecording = true;
+					} else {
+						Raylib.stop_automation_event_recording();
+						eventRecording = false;
+					}
+				}
 			}
 		}
 	}

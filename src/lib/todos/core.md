@@ -143,14 +143,14 @@
 - ❌ unsigned char *DecompressData(const unsigned char *compData, int compDataSize, int *dataSize); # Unneeded: Built into GLib `GLib.ZlibDecompressor`
 - ❌ char *EncodeDataBase64(const unsigned char *data, int dataSize, int *outputSize); # Unneeded: Built into GLib. `GLib.Base64.encode`
 - ❌ unsigned char *DecodeDataBase64(const unsigned char *data, int *outputSize); # Unneeded: Built into GLib. `GLib.Base64.decode`
-- [ ] AutomationEventList LoadAutomationEventList(const char *fileName);
-- [ ] void UnloadAutomationEventList(AutomationEventList *list);
-- [ ] bool ExportAutomationEventList(AutomationEventList list, const char *fileName);
-- [ ] void SetAutomationEventList(AutomationEventList *list);
-- [ ] void SetAutomationEventBaseFrame(int frame);
-- [ ] void StartAutomationEventRecording(void);
-- [ ] void StopAutomationEventRecording(void);
-- [ ] void PlayAutomationEvent(AutomationEvent event);
+- [x] AutomationEventList LoadAutomationEventList(const char *fileName); # Implemented: `Automation.EventList`
+- [x] void UnloadAutomationEventList(AutomationEventList *list); # Implemented: `Automation.EventList`
+- [x] bool ExportAutomationEventList(AutomationEventList list, const char *fileName); # Implemented: `Automation.EventList.export`
+- [x] void SetAutomationEventList(AutomationEventList *list); # Implemented: `Automation.set_automation_event_list`
+- [x] void SetAutomationEventBaseFrame(int frame); # Implemented: `Window.set_automation_event_base_frame`
+- [x] void StartAutomationEventRecording(void); # Implemented: `Window.record_automation_events`
+- [x] void StopAutomationEventRecording(void); # Implemented: `Window.record_automation_events`
+- [x] void PlayAutomationEvent(AutomationEvent event); `Window.play_automation_event`
 - [x] bool IsKeyPressed(int key); # Implemented: `Input.Keyboard.is_pressed`
 - [x] bool IsKeyPressedRepeat(int key); # Implemented: `Input.Keyboard.is_pressed_repeat`
 - [x] bool IsKeyDown(int key); # Implemented: `Input.Keyboard.is_down`

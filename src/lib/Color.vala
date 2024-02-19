@@ -57,132 +57,132 @@ namespace RaylibOOP {
 		 * needing to use Raylib directly. Which is something I want to avoid. */
 		public static Color LIGHT_GRAY {
 			owned get {
-				return new Color.from_raylib_color(Raylib.LIGHTGRAY);
+				return(new Color.from_raylib_color(Raylib.LIGHTGRAY));
 			}
 		}
 		public static Color GRAY {
 			owned get {
-				return new Color.from_raylib_color(Raylib.GRAY);
+				return(new Color.from_raylib_color(Raylib.GRAY));
 			}
 		}
 		public static Color DARK_GRAY {
 			owned get {
-				return new Color.from_raylib_color(Raylib.DARKGRAY);
+				return(new Color.from_raylib_color(Raylib.DARKGRAY));
 			}
 		}
 		public static Color YELLOW {
 			owned get {
-				return new Color.from_raylib_color(Raylib.YELLOW);
+				return(new Color.from_raylib_color(Raylib.YELLOW));
 			}
 		}
 		public static Color GOLD {
 			owned get {
-				return new Color.from_raylib_color(Raylib.GOLD);
+				return(new Color.from_raylib_color(Raylib.GOLD));
 			}
 		}
 		public static Color ORANGE {
 			owned get {
-				return new Color.from_raylib_color(Raylib.ORANGE);
+				return(new Color.from_raylib_color(Raylib.ORANGE));
 			}
 		}
 		public static Color PINK {
 			owned get {
-				return new Color.from_raylib_color(Raylib.PINK);
+				return(new Color.from_raylib_color(Raylib.PINK));
 			}
 		}
 		public static Color RED {
 			owned get {
-				return new Color.from_raylib_color(Raylib.RED);
+				return(new Color.from_raylib_color(Raylib.RED));
 			}
 		}
 		public static Color MAROON {
 			owned get {
-				return new Color.from_raylib_color(Raylib.MAROON);
+				return(new Color.from_raylib_color(Raylib.MAROON));
 			}
 		}
 		public static Color GREEN {
 			owned get {
-				return new Color.from_raylib_color(Raylib.GREEN);
+				return(new Color.from_raylib_color(Raylib.GREEN));
 			}
 		}
 		public static Color LIME {
 			owned get {
-				return new Color.from_raylib_color(Raylib.LIME);
+				return(new Color.from_raylib_color(Raylib.LIME));
 			}
 		}
 		public static Color DARK_GREEN {
 			owned get {
-				return new Color.from_raylib_color(Raylib.DARKGREEN);
+				return(new Color.from_raylib_color(Raylib.DARKGREEN));
 			}
 		}
 		public static Color SKY_BLUE {
 			owned get {
-				return new Color.from_raylib_color(Raylib.SKYBLUE);
+				return(new Color.from_raylib_color(Raylib.SKYBLUE));
 			}
 		}
 		public static Color BLUE {
 			owned get {
-				return new Color.from_raylib_color(Raylib.BLUE);
+				return(new Color.from_raylib_color(Raylib.BLUE));
 			}
 		}
 		public static Color DARK_BLUE {
 			owned get {
-				return new Color.from_raylib_color(Raylib.DARKBLUE);
+				return(new Color.from_raylib_color(Raylib.DARKBLUE));
 			}
 		}
 		public static Color PURPLE {
 			owned get {
-				return new Color.from_raylib_color(Raylib.PURPLE);
+				return(new Color.from_raylib_color(Raylib.PURPLE));
 			}
 		}
 		public static Color VIOLET {
 			owned get {
-				return new Color.from_raylib_color(Raylib.VIOLET);
+				return(new Color.from_raylib_color(Raylib.VIOLET));
 			}
 		}
 		public static Color DARK_PURPLE {
 			owned get {
-				return new Color.from_raylib_color(Raylib.DARKPURPLE);
+				return(new Color.from_raylib_color(Raylib.DARKPURPLE));
 			}
 		}
 		public static Color BEIGE {
 			owned get {
-				return new Color.from_raylib_color(Raylib.BEIGE);
+				return(new Color.from_raylib_color(Raylib.BEIGE));
 			}
 		}
 		public static Color BROWN {
 			owned get {
-				return new Color.from_raylib_color(Raylib.BROWN);
+				return(new Color.from_raylib_color(Raylib.BROWN));
 			}
 		}
 		public static Color DARK_BROWN {
 			owned get {
-				return new Color.from_raylib_color(Raylib.DARKBROWN);
+				return(new Color.from_raylib_color(Raylib.DARKBROWN));
 			}
 		}
 		public static Color WHITE {
 			owned get {
-				return new Color.from_raylib_color(Raylib.WHITE);
+				return(new Color.from_raylib_color(Raylib.WHITE));
 			}
 		}
 		public static Color BLACK {
 			owned get {
-				return new Color.from_raylib_color(Raylib.BLACK);
+				return(new Color.from_raylib_color(Raylib.BLACK));
 			}
 		}
 		public static Color BLANK {
 			owned get {
-				return new Color.from_raylib_color(Raylib.BLANK);
+				return(new Color.from_raylib_color(Raylib.BLANK));
 			}
 		}
 		public static Color MAGENTA {
 			owned get {
-				return new Color.from_raylib_color(Raylib.MAGENTA);
+				return(new Color.from_raylib_color(Raylib.MAGENTA));
 			}
 		}
 		public static Color RAY_WHITE {
 			owned get {
-				return new Color.from_raylib_color(Raylib.RAYWHITE);
+				return(new Color.from_raylib_color(Raylib.RAYWHITE));
 			}
 		}
 	}
