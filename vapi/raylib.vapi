@@ -957,6 +957,9 @@ namespace Raylib {
     [CCode (cname = "SetWindowMinSize")]
     public static void set_window_minimum_size (int width, int height);
 
+	[CCode (cname = "SetWindowMaxSize")]
+	public static void set_window_maximum_size (int width, int height);
+
     [CCode (cname = "SetWindowSize")]
     public static void set_window_size (int width, int height);
 

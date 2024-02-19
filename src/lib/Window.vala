@@ -118,6 +118,8 @@ namespace RaylibOOP {
 		internal Input.Keyboard.Key exitKey = Input.Keyboard.Key.ESCAPE;
 		internal int minimumHeight          = 0;
 		internal int minimumWidth           = 0;
+		internal int maximumHeight          = 0;
+		internal int maximumWidth           = 0;
 		internal bool eventRecording        = false;
 		internal bool eventListSet          = false;
 		internal bool eventWaiting          = true;
@@ -470,6 +472,30 @@ namespace RaylibOOP {
 			set {
 				minimumWidth = value;
 				Raylib.set_window_minimum_size(value, minimumHeight);
+			}
+		}
+		/**
+		* Maximum Height of Window. A value of 0 means unset.
+		*/
+		public int maximum_height {
+			get {
+				return(this.maximumHeight);
+			}
+			set {
+				this.maximumHeight = value;
+				Raylib.set_window_maximum_size(this.maximumWidth, value);
+			}
+		}
+		/**
+		* Maximum Width of Window. A value of 0 means unset.
+		*/
+		public int maximum_width {
+			get {
+				return(this.maximumWidth);
+			}
+			set {
+				this.maximumWidth = value;
+				Raylib.set_window_maximum_size(value, this.maximumHeight);
 			}
 		}
 		/**
