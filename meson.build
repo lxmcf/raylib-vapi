@@ -73,6 +73,7 @@ raylib_oop_lib = shared_library(
 	version: version,
 	install_dir: [true, true, true],
 )
+
 # pkgconfig
 pkg.generate(
 	raylib_oop_lib,
@@ -83,67 +84,3 @@ raylib_oop_dep = declare_dependency(
 	link_with: raylib_oop_lib,
 	dependencies: project_dependency
 )
-
-# Test Executables
-if get_option('tests') == true
-	# Testing Window related functions.
-	executable('window',
-		sources: 'src/tests/window.vala',
-		dependencies: [
-			raylib_oop_dep,
-			project_dependency
-		]
-	)
-	# Test of Sound
-	executable('sound',
-		sources: 'src/tests/sound.vala',
-		dependencies: [
-			raylib_oop_dep,
-			project_dependency
-		]
-	)
-	# Test of Music
-	executable(
-		'music',
-		sources: 'src/tests/music.vala',
-		dependencies: [
-			raylib_oop_dep,
-			project_dependency
-		]
-	)
-	executable(
-		'test-subproject',
-		sources: 'src/tests/test.c',
-		dependencies: [
-			raylib_oop_dep,
-			project_dependency,
-		],
-	)
-	# Benchmarking
-	executable(
-		'bunnymark',
-		sources: 'src/tests/bunnymark.vala',
-		dependencies: [
-			raylib_oop_dep,
-			project_dependency,
-		],
-	)
-	# Test dropping files.
-	executable(
-		'dropped',
-		sources: 'src/tests/dropped.vala',
-		dependencies: [
-			raylib_oop_dep,
-			project_dependency,
-		],
-	)
-	# Test for automated inputs.
-	executable(
-		'automated',
-		sources: 'src/tests/automation.vala',
-		dependencies: [
-			raylib_oop_dep,
-			project_dependency,
-		],
-	)
-endif

@@ -141,10 +141,9 @@ c_args += [
 add_project_arguments(c_args, language: 'c')
 incdir = include_directories(inc_dirs)
 
-lib = shared_library(
+lib = static_library(
 	'raylib',
 	sources: src,
-	version: version,
 	dependencies: deps,
 	include_directories: incdir
 )
