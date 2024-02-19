@@ -114,7 +114,6 @@ namespace RaylibOOP {
 		/* Variables */
 		internal string windowTitle          = "Raylib";
 		internal int targetFPS              = 60;
-		internal bool initialized           = false; /* Checks if this object has been initialized, or if it error'd */
 		internal Input.Keyboard.Key exitKey = Input.Keyboard.Key.ESCAPE;
 		internal int minimumHeight          = 0;
 		internal int minimumWidth           = 0;
@@ -139,22 +138,22 @@ namespace RaylibOOP {
 			/* Initialize the Window */
 			this.windowTitle = title;
 			Raylib.init_window(width, height, this.windowTitle);
-			this.initialized = true;
+			if(Raylib.is_window_ready() == false)
+				error("Could not initialize window.");
 			this.target_fps = targetFPS;
 			/* Create Cursor Object */
 			cursor = new Cursor();
 			/* Create Monitor Array */
+			monitors.resize(monitors.length+1);
 			monitors[0] = new Monitor(0);
 			for(int i = 1; i < Raylib.get_monitor_count(); i++) {
-				monitors += new Monitor(i);
+				monitors.resize(monitors.length+1);
+				monitors[i] = new Monitor(i);
 			}
 			numOfWindows++;
 		}
 		/* Destroyer */
 		~Window() {
-			if(this.initialized == false) {
-				return;
-			}
 			info("Destroying Window...");
 			Raylib.close_window();
 			numOfWindows--;
