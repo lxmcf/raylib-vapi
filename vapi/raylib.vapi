@@ -2017,7 +2017,7 @@ namespace Raylib {
     public static Font load_font_from_image (Image image, Color key, int first_char);
 
     [CCode (cname = "LoadFontFromMemory")]
-    public static Font load_font_from_memory (string file_type, uchar file_data, int font_size, int[] font_characters);
+    public static Font load_font_from_memory (string file_type, uint8[] file_data, int font_size, int[] font_characters);
 
     [CCode (cname = "IsFontReady")]
     public static bool is_font_ready (Font font);
