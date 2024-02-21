@@ -99,7 +99,13 @@ if get_option('examples') == true
 		sources: [
 			'src/examples/core/core_basic_window.vala',
 			'src/examples/meta/license.vala',
-			'src/examples/meta/options.vala',
+		],
+	)
+	executable(
+		'template',
+		dependencies: [raylib_oop_dep],
+		sources: [
+			'src/examples/template.vala',
 		],
 	)
 endif

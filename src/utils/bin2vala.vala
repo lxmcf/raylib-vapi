@@ -73,7 +73,7 @@ public class Main : GLib.Object {
 		}
 		o.putc('\n');
 		if(namespace != null) {
-			o.printf("\t");
+			o.putc('\t');
 		}
 		o.printf("};\n");
 		if(namespace != null) {

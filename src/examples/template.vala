@@ -1,38 +1,36 @@
 /*
- * Copyright 2024 Charadon
+ * RaylibOOP Template by Charadon
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * To the extent possible under law, the person who associated CC0 with
+ * RaylibOOP Template has waived all copyright and related or neighboring rights
+ * to RaylibOOP Template.
  *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * You should have received a copy of the CC0 legalcode along with this
+ * work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
  */
 using GLib;
 using RaylibOOP;
 
 const string VERSION = "v1.0\n";
+const string LICENSE = """
+LICENSE GOES HERE
+""";
 
-public class BasicWindow : Application {
+public class Game : GLib.Application {
 	private Window window;
 	private MainLoop loop;
 	private TimeoutSource timeout;
 
-	private BasicWindow() {
+	private Game() {
 		/* The project doesn't really have a website to it's name. So I guess
 		 * I'll just use mine? */
 		Object (
-			application_id: "net.iotib.RaylibOOP.core_basic_window",
+			application_id: "com.example.GAME_NAME_HERE",
 			flags: ApplicationFlags.FLAGS_NONE
 		);
 	}
 
-	~BasicWindow() {
+	~Game() {
 		window = null;
 	}
 
@@ -43,14 +41,9 @@ public class BasicWindow : Application {
 			loop.quit();
 			return(false);
 		}
-		/* Draw Frames */
 		window.draw(()=>{
-			window.clear_background(Color.RAY_WHITE);
-			Font.DEFAULT.draw_text(
-				"Congrats! You created your first window!",
-				new Shapes.Vector2(190, 200), 20, null, Color.LIGHT_GRAY
-			);
-			window.draw_fps(0, 0);
+			window.clear_background(RaylibOOP.Color.WHITE);
+			/* CODE GOES HERE */
 		});
 		/* Tell Loop to keep going */
 		return(true);
@@ -62,11 +55,12 @@ public class BasicWindow : Application {
 			stdout.printf(VERSION);
 			Process.exit(0);
 		}
+		/* Print License and Exit */
 		if(args.contains("license")) {
 			stdout.printf(LICENSE);
 			Process.exit(0);
 		}
-		/* Activate Application */
+		/* Run Application */
 		return(-1);
 	}
 
@@ -75,10 +69,14 @@ public class BasicWindow : Application {
 		const int screenHeight = 450;
 		/* Create Window */
 		try {
-			window = new Window(screenWidth, screenHeight, "RaylibOOP [core] example - basic window");
+			/* Set the title to the application_id to begin with, so Wayland-based
+			 * compositors can figure out their name. Not *technically* needed but
+			 * com.example.Example is easier to make rules for than "COOL GAME WINDOW TITLE" */
+			window = new Window(screenWidth, screenHeight, this.application_id);
 		} catch(WindowError e) {
 			error(e.message);
 		}
+		window.title = "RaylibOOP - Template";
 		/* Create GLib MainLoop */
 		loop = new MainLoop();
 		timeout = new TimeoutSource(1);
@@ -89,10 +87,8 @@ public class BasicWindow : Application {
 	}
 
 	public static int main(string[] args) {
-		/* Force Logs to Show */
-		Environment.set_variable("G_MESSAGES_DEBUG", "all", true);
 		/* Create GLib.Application */
-		var app = new BasicWindow();
+		var app = new Game();
 		/* Handle Args */
 		app.add_main_option("version", 'v', GLib.OptionFlags.NONE, GLib.OptionArg.NONE, "Displays program's version.", null);
 		app.add_main_option("license", 'l', GLib.OptionFlags.NONE, GLib.OptionArg.NONE, "Displays program's license.", null);
