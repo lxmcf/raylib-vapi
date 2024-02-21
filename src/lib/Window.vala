@@ -141,6 +141,8 @@ namespace RaylibOOP {
 			if(Raylib.is_window_ready() == false)
 				error("Could not initialize window.");
 			this.target_fps = targetFPS;
+			/* Initialize Default Font */
+			Font.DEFAULT = new Font.default();
 			/* Create Cursor Object */
 			cursor = new Cursor();
 			/* Create Monitor Array */
@@ -187,7 +189,7 @@ namespace RaylibOOP {
 		/**
 		* Scissor mode (define screen area for following drawing)
 		*/
-		public void scissor(Func func, int x, int y, int width, int height) {
+		public void scissor(int x, int y, int width, int height, Func func) {
 			Raylib.begin_scissor_mode(x, y, width, height);
 			func(null);
 			Raylib.end_scissor_mode();
@@ -270,6 +272,14 @@ namespace RaylibOOP {
 		*/
 		public void end_2D() {
 			Raylib.end_mode_2D();
+		}
+		/**
+		* 2D Mode
+		*/
+		public void 2D(Raylib.Camera2D camera, Func func) {
+			this.begin_2D(camera);
+			func(null);
+			this.end_2D();
 		}
 		/**
 		* Set background color (framebuffer clear color)

@@ -13,4 +13,5 @@ raylib_oop_src = [
 	'src/lib/Clipboard.vala',
 	'src/lib/Log.vala',
 	'src/lib/Automation/EventList.vala',
+	'src/lib/Text.vala',
 ]

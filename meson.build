@@ -50,9 +50,14 @@ endif
 add_project_arguments (valac_arguments, language: 'vala')
 add_project_arguments (cc_arguments, language: 'c')
 
+glib_dep    = dependency('glib-2.0')
+gobject_dep = dependency('gobject-2.0')
+gio_dep     = dependency('gio-2.0')
+
 project_dependency = [
-	dependency('glib-2.0'),
-	dependency('gobject-2.0'),
+	glib_dep,
+	gobject_dep,
+	gio_dep,
 	dependency('raylib', fallback: ['raylib', 'raylib_dep']),
 	valac.find_library('raylib', required: true, dirs: vapi_dir),
 	#valac.find_library ('rlgl', dirs: vapi_dir),
@@ -80,7 +85,21 @@ pkg.generate(
 	description: 'OOP Binding of Raylib for Vala.',
 	requires: ['raylib'],
 )
+
 raylib_oop_dep = declare_dependency(
 	link_with: raylib_oop_lib,
-	dependencies: project_dependency
+	dependencies: project_dependency,
 )
+
+# Examples
+if get_option('examples') == true
+	executable(
+		'core_basic_window',
+		dependencies: [raylib_oop_dep],
+		sources: [
+			'src/examples/core/core_basic_window.vala',
+			'src/examples/meta/license.vala',
+			'src/examples/meta/options.vala',
+		],
+	)
+endif
