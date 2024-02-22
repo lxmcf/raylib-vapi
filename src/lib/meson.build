@@ -1,0 +1,17 @@
+raylib_oop_src = [
+  'src/lib/Shapes/Vector2.vala',
+  'src/lib/Window.vala',
+  'src/lib/Color.vala',
+  'src/lib/Util.vala',
+  'src/lib/Audio/Types.vala',
+  'src/lib/Audio/Music.vala',
+	'src/lib/Audio/Sound.vala',
+	'src/lib/Input/Mouse.vala',
+	'src/lib/Input/Keyboard.vala',
+	'src/lib/Input/Gamepad.vala',
+	'src/lib/Input/Touch.vala',
+	'src/lib/Clipboard.vala',
+	'src/lib/Log.vala',
+	'src/lib/Automation/EventList.vala',
+	'src/lib/Text.vala',
+]

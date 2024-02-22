@@ -50,7 +50,7 @@ public static int main (string[] args) {
 ```
 
 ## Compiling Included Examples
-```powershell
+```bash
 cd examples
 
 meson build -C build

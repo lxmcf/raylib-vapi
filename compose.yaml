@@ -1,0 +1,84 @@
+version: '1.0'
+
+services:
+  rolling:
+    build:
+      context: .
+      dockerfile: dockerfiles/rolling
+    working_dir: /project
+    environment:
+      - PULSE_SERVER=/tmp/pulse/native
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
+      - DISPLAY=${DISPLAY}
+      - G_MESSAGES_DEBUG=all
+      - CCACHE_DIR=/ccache
+    volumes:
+      - type: bind
+        source: /dev/dri
+        target: /dev/dri
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+      - type: bind
+        source: ${XDG_RUNTIME_DIR}/pulse
+        target: /tmp/pulse
+      - type: bind
+        source: .
+        target: /project
+      - type: bind
+        source: ${HOME}/.cache/raylib_oop_ccache
+        target: /ccache
+  stable:
+    build:
+      context: .
+      dockerfile: dockerfiles/stable
+    working_dir: /project
+    environment:
+      - PULSE_SERVER=/tmp/pulse/native
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
+      - DISPLAY=${DISPLAY}
+      - G_MESSAGES_DEBUG=all
+      - CCACHE_DIR=/ccache
+    volumes:
+      - type: bind
+        source: /dev/dri
+        target: /dev/dri
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+      - type: bind
+        source: ${XDG_RUNTIME_DIR}/pulse
+        target: /tmp/pulse
+      - type: bind
+        source: .
+        target: /project
+      - type: bind
+        source: ${HOME}/.cache/raylib_oop_ccache
+        target: /ccache
+  bleeding:
+      build:
+        context: .
+        dockerfile: dockerfiles/bleeding
+      working_dir: /project
+      environment:
+        - PULSE_SERVER=/tmp/pulse/native
+        - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
+        - DISPLAY=${DISPLAY}
+        - G_MESSAGES_DEBUG=all
+        - CCACHE_DIR=/ccache
+      volumes:
+        - type: bind
+          source: /dev/dri
+          target: /dev/dri
+        - type: bind
+          source: /tmp/.X11-unix
+          target: /tmp/.X11-unix
+        - type: bind
+          source: ${XDG_RUNTIME_DIR}/pulse
+          target: /tmp/pulse
+        - type: bind
+          source: .
+          target: /project
+        - type: bind
+          source: ${HOME}/.cache/raylib_oop_ccache
+          target: /ccache

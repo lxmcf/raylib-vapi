@@ -507,6 +507,7 @@ namespace Raylib {
     public struct FilePathList {
         public uint capacity;                   // Filepaths max entries
         public uint count;                      // Filepaths entries count
+		[CCode (array_length_cname = "count", array_length_type = "unsigned int")]
         public unowned string[] paths;          // Filepaths entries
     }
 
@@ -526,6 +527,7 @@ namespace Raylib {
         WINDOW_TRANSPARENT,         // Set to allow transparent framebuffer
         WINDOW_HIGHDPI,             // Set to support HighDPI
         WINDOW_MOUSE_PASSTHROUGH,   // Set to support mouse passthrough, only supported when FLAG_WINDOW_UNDECORATED
+		BORDERLESS_WINDOWED_MODE,   // Set to run program in borderless windowed mode
         MSAA_4X_HINT,               // Set to try enabling MSAA 4X
         INTERLACED_HINT             // Set to try enabling interlaced video format (for V3D)
     }
@@ -866,8 +868,8 @@ namespace Raylib {
 
     // Callbacks to hook some internal functions
     // WARNING: This callbacks are intended for advance users
-    [CCode (cname = "TraceLogCallback")]
-    public delegate void TraceLogCallback (TraceLogLevel log_level, string text, va_list args);
+    [CCode (cname = "TraceLogCallback", has_target = false)]
+    public delegate void TraceLogCallback (int log_level, string text, va_list args);
 
     [CCode (cname = "LoadFileDataCallback")]
     public delegate uchar LoadFileDataCallback (string filename, out int bytes_read);
@@ -955,6 +957,9 @@ namespace Raylib {
     [CCode (cname = "SetWindowMinSize")]
     public static void set_window_minimum_size (int width, int height);
 
+	[CCode (cname = "SetWindowMaxSize")]
+	public static void set_window_maximum_size (int width, int height);
+
     [CCode (cname = "SetWindowSize")]
     public static void set_window_size (int width, int height);
 
@@ -995,7 +1000,7 @@ namespace Raylib {
     public static int get_monitor_width (int monitor);
 
     [CCode (cname = "GetMonitorHeight")]
-    public static int get_hmonitor_eight (int monitor);
+    public static int get_monitor_height (int monitor);
 
     [CCode (cname = "GetMonitorPhysicalWidth")]
     public static int get_monitor_physical_width (int monitor);
@@ -1300,7 +1305,7 @@ namespace Raylib {
     [CCode (cname = "IsFileDropped")]
     public static bool is_file_dropped ();
 
-    [CCode (cname = "FilePathList")]
+    [CCode (cname = "LoadDroppedFiles")]
     public static FilePathList load_dropped_files ();
 
     [CCode (cname = "UnloadDroppedFiles")]
@@ -1322,28 +1327,74 @@ namespace Raylib {
     [CCode (cname = "DecodeDataBase64")]
     public static uchar[] decode_data_base64 (uchar[] data, out int size);
 
+	//------------------------------------------------------------------------------------
+	// Automation
+	//------------------------------------------------------------------------------------
+	[SimpleType]
+    [CCode (cname = "AutomationEvent")]
+    public struct AutomationEvent {
+        public uint frame;
+        public uint type;
+		public int params[4];
+    }
+
+	[SimpleType]
+	[CCode (cname = "AutomationEventList")]
+	public struct AutomationEventList {
+		public uint capacity;
+		public uint count;
+		AutomationEvent *events;
+	}
+
+	[CCode (cname = "LoadAutomationEventList")]
+	public static AutomationEventList load_automation_event_list(string fileName);
+
+	[CCode (cname = "UnloadAutomationEventList")]
+	public static void unload_automation_event_list(AutomationEventList *list);
+
+	[CCode (cname = "ExportAutomationEventList")]
+	public static bool export_automation_event_list(AutomationEventList list, string fileName);
+
+	[CCode (cname = "SetAutomationEventList")]
+	public static void set_automation_event_list(AutomationEventList *list);
+
+	[CCode (cname = "SetAutomationEventBaseFrame")]
+	public static void set_automation_event_base_frame(int frame);
+
+	[CCode (cname = "StartAutomationEventRecording")]
+	public static void start_automation_event_recording();
+
+	[CCode (cname = "StopAutomationEventRecording")]
+	public static void stop_automation_event_recording();
+
+	[CCode (cname = "PlayAutomationEvent")]
+	public static void play_automation_event(AutomationEvent event);
+
     //------------------------------------------------------------------------------------
     // Input Handling Functions (Module: core)
     //------------------------------------------------------------------------------------
 
     // Input-related functions: keyboard
     [CCode (cname = "IsKeyPressed")]
-    public static bool is_key_pressed (KeyboardKey key);
+    public static bool is_key_pressed (int key);
+
+	[CCode (cname = "IsKeyPressedRepeat")]
+	public static bool is_key_pressed_repeat (int key);
 
     [CCode (cname = "IsKeyDown")]
-    public static bool is_key_down (KeyboardKey key);
+    public static bool is_key_down (int key);
 
     [CCode (cname = "IsKeyReleased")]
-    public static bool is_key_released (KeyboardKey key);
+    public static bool is_key_released (int key);
 
     [CCode (cname = "IsKeyUp")]
-    public static bool is_key_up (KeyboardKey key);
+    public static bool is_key_up (int key);
 
     [CCode (cname = "SetExitKey")]
-    public static void set_exit_key (KeyboardKey key);
+    public static void set_exit_key (int key);
 
     [CCode (cname = "GetKeyPressed")]
-    public static KeyboardKey get_key_pressed ();
+    public static int get_key_pressed ();
 
     [CCode (cname = "GetCharPressed")]
     public static int get_char_pressed ();
@@ -1381,16 +1432,16 @@ namespace Raylib {
 
     // Input-related functions: mouse
     [CCode (cname = "IsMouseButtonPressed")]
-    public static bool is_mouse_button_pressed (MouseButton button);
+    public static bool is_mouse_button_pressed (int button);
 
     [CCode (cname = "IsMouseButtonDown")]
-    public static bool is_mouse_button_down (MouseButton button);
+    public static bool is_mouse_button_down (int button);
 
     [CCode (cname = "IsMouseButtonReleased")]
-    public static bool is_mouse_button_released (MouseButton button);
+    public static bool is_mouse_button_released (int button);
 
     [CCode (cname = "IsMouseButtonUp")]
-    public static bool is_mouse_button_up (MouseButton button);
+    public static bool is_mouse_button_up (int button);
 
     [CCode (cname = "GetMouseX")]
     public static int get_mouse_x ();
@@ -1420,7 +1471,7 @@ namespace Raylib {
     public static Vector2 get_mouse_wheel_move_vector ();
 
     [CCode (cname = "SetMouseCursor")]
-    public static void set_mouse_cursor (MouseCursor cursor);
+    public static void set_mouse_cursor (int cursor);
 
     // Input-related functions: touch
     [CCode (cname = "GetTouchX")]
@@ -1441,8 +1492,8 @@ namespace Raylib {
     //------------------------------------------------------------------------------------
     // Gestures and Touch Handling Functions (Module: rgestures)
     //------------------------------------------------------------------------------------
-    [CCode (cname = "SetGestureEnabled")]
-    public static void set_gesture_enabled (Gesture flags);
+    [CCode (cname = "SetGesturesEnabled")]
+    public static void set_gestures_enabled (Gesture flags);
 
     [CCode (cname = "IsGestureDetected")]
     public static bool is_gesture_detected (Gesture gesture);
@@ -1454,7 +1505,7 @@ namespace Raylib {
     public static float get_gesture_hold_duration ();
 
     [CCode (cname = "GetGestureDragVector")]
-    public static Vector2 get_gesture_drag_duration ();
+    public static Vector2 get_gesture_drag_vector ();
 
     [CCode (cname = "GetGestureDragAngle")]
     public static float get_gesture_drag_angle ();
@@ -1966,7 +2017,7 @@ namespace Raylib {
     public static Font load_font_from_image (Image image, Color key, int first_char);
 
     [CCode (cname = "LoadFontFromMemory")]
-    public static Font load_font_from_memory (string file_type, uchar file_data, int font_size, int[] font_characters);
+    public static Font load_font_from_memory (string file_type, uint8[] file_data, int font_size, int[] font_characters);
 
     [CCode (cname = "IsFontReady")]
     public static bool is_font_ready (Font font);
@@ -2347,6 +2398,9 @@ namespace Raylib {
     [CCode (cname = "SetMasterVolume")]
     public static void set_master_volume (float volume);
 
+	[CCode (cname = "GetMasterVolume")]
+	public static float get_master_volume ();
+
     // Wave/Sound loading/unloading functions
     [CCode (cname = "LoadWave")]
     public static Wave load_wave (string filename);
@@ -2362,6 +2416,9 @@ namespace Raylib {
 
     [CCode (cname = "LoadSoundFromWave")]
     public static Sound load_sound_from_wave (Wave wave);
+
+	[CCode (cname = "LoadSoundAlias")]
+	public static Sound load_sound_alias (Sound source);
 
     [CCode (cname = "IsSoundReady")]
     public static bool is_sound_ready (Sound sound);
