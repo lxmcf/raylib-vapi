@@ -402,6 +402,7 @@ namespace Raylib {
         public int frameCount;                  // Number of animation frames                                                   // vala-lint=naming-convention
         public unowned BoneInfo[] bones;        // Bones information (skeleton)
         public unowned Transform[,] framePoses; // Poses array by frame                                                         // vala-lint=naming-convention
+        public char name[32];                   // Animation name
     }
 
     [SimpleType]
@@ -510,6 +511,22 @@ namespace Raylib {
         public unowned string[] paths;          // Filepaths entries
     }
 
+    [SimpleType]
+    [CCode (cname = "AutomationEvent")]
+    public struct AutomationEvent {
+        public uint frame;                      // Event frame
+        public uint type;                       // Event type (AutomationEventType)
+        public int @params[4];                  // Event parameters (if required)
+    }
+
+    [SimpleType]
+    [CCode (cname = "AutomationEventList")]
+    public struct AutomationEventList {
+        public uint capacity;                           // Events max entries (MAX_AUTOMATION_EVENTS)
+        public uint count;                              // Events entries count
+        public unowned AutomationEvent[] events;        // Events entries
+    }
+
     [Flags]
     [CCode (cname = "ConfigFlags", cprefix = "FLAG_", has_type_id = false)]
     public enum ConfigFlags {
@@ -526,6 +543,7 @@ namespace Raylib {
         WINDOW_TRANSPARENT,         // Set to allow transparent framebuffer
         WINDOW_HIGHDPI,             // Set to support HighDPI
         WINDOW_MOUSE_PASSTHROUGH,   // Set to support mouse passthrough, only supported when FLAG_WINDOW_UNDECORATED
+        BORDERLESS_WINDOWED_MODE,   // Set to run program in borderless windowed mode
         MSAA_4X_HINT,               // Set to try enabling MSAA 4X
         INTERLACED_HINT             // Set to try enabling interlaced video format (for V3D)
     }
@@ -766,6 +784,9 @@ namespace Raylib {
         UNCOMPRESSED_R32,               // 32 bpp (1 channel - float)
         UNCOMPRESSED_R32G32B32,         // 32*3 bpp (3 channels - float)
         UNCOMPRESSED_R32G32B32A32,      // 32*4 bpp (4 channels - float)
+        UNCOMPRESSED_R16,               // 16 bpp (1 channel - half float)
+        UNCOMPRESSED_R16G16B16,         // 16*3 bpp (3 channels - half float)
+        UNCOMPRESSED_R16G16B16A16,      // 16*4 bpp (4 channels - half float)
         COMPRESSED_DXT1_RGB,            // 4 bpp (no alpha)
         COMPRESSED_DXT1_RGBA,           // 4 bpp (1 bit alpha)
         COMPRESSED_DXT3_RGBA,           // 8 bpp
@@ -873,7 +894,7 @@ namespace Raylib {
     public delegate uchar LoadFileDataCallback (string filename, out int bytes_read);
 
     [CCode (cname = "SaveFileDataCallback")]
-    public delegate bool SaveFileDataCallback (string filename, void* data, uint bytes_to_write);
+    public delegate bool SaveFileDataCallback (string filename, void* data, int bytes_to_write);
 
     [CCode (cname = "LoadFileTextCallback")]
     public delegate char LoadFileTextCallback (string filename);
@@ -928,6 +949,9 @@ namespace Raylib {
     [CCode (cname = "ToggleFullscreen")]
     public static void toggle_fullscreen ();
 
+    [CCode (cname = "ToggleBorderlessWindowed")]
+    public static void toggle_borderless ();
+
     [CCode (cname = "MaximizeWindow")]
     public static void maximise_window ();
 
@@ -955,11 +979,17 @@ namespace Raylib {
     [CCode (cname = "SetWindowMinSize")]
     public static void set_window_minimum_size (int width, int height);
 
+    [CCode (cname = "SetWindowMaxSize")]
+    public static void set_window_maximum_size (int width, int height);
+
     [CCode (cname = "SetWindowSize")]
     public static void set_window_size (int width, int height);
 
     [CCode (cname = "SetWindowOpacity")]
     public static void set_window_opacity (float opacity);
+
+    [CCode (cname = "SetWindowFocused")]
+    public static void set_window_focused ();
 
     [CCode (cname = "GetWindowHandle")]
     public static void* get_window_handle ();
@@ -1322,6 +1352,31 @@ namespace Raylib {
     [CCode (cname = "DecodeDataBase64")]
     public static uchar[] decode_data_base64 (uchar[] data, out int size);
 
+    // Automation events functionality
+    [CCode (cname = "LoadAutomationEventList")]
+    public static AutomationEventList load_automation_event_list (string filename);                 // Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
+
+    [CCode (cname = "UnloadAutomationEventList")]
+    public static void unload_automation_event_list (AutomationEventList[] list);                   // Unload automation events list from file
+
+    [CCode (cname = "ExportAutomationEventList")]
+    public static bool export_automation_event_list (AutomationEventList list, string filename);    // Export automation events list as text file
+
+    [CCode (cname = "SetAutomationEventList")]
+    public static void set_automation_event_list (AutomationEventList[] list);                      // Set automation event list to record to
+
+    [CCode (cname = "SetAutomationEventBaseFrame")]
+    public static void set_automation_event_base_frame (int frame);                                 // Set automation event internal base frame to start recording
+
+    [CCode (cname = "StartAutomationEventRecording")]
+    public static void start_automation_event_recording ();                                         // Start recording automation events (AutomationEventList must be set)
+
+    [CCode (cname = "StopAutomationEventRecording")]
+    public static void stop_automation_event_recording ();                                          // Stop recording automation events
+
+    [CCode (cname = "PlayAutomationEvent")]
+    public static void play_automation_event (AutomationEvent event);                               // Play a recorded automation event
+
     //------------------------------------------------------------------------------------
     // Input Handling Functions (Module: core)
     //------------------------------------------------------------------------------------
@@ -1335,6 +1390,9 @@ namespace Raylib {
 
     [CCode (cname = "IsKeyReleased")]
     public static bool is_key_released (KeyboardKey key);
+
+    [CCode (cname = "IsKeyPressedRepeat")]
+    public static bool is_key_pressed_repeat (Raylib.KeyboardKey key);
 
     [CCode (cname = "IsKeyUp")]
     public static bool is_key_up (KeyboardKey key);
@@ -1496,15 +1554,6 @@ namespace Raylib {
     [CCode (cname = "DrawLineEx")]
     public static void draw_line_ext (Vector2 start, Vector2 end, float thickness, Color color);
 
-    [CCode (cname = "DrawLineBezier")]
-    public static void draw_line_bezier (Vector2 start, Vector2 end, float thick, Color color);
-
-    [CCode (cname = "DrawLineBezierQuad")]
-    public static void draw_line_bezier_quad (Vector2 start, Vector2 end, Vector2 control, float thick, Color color);
-
-    [CCode (cname = "DrawLineBezierCubic")]
-    public static void draw_line_bezier_cubic (Vector2 start, Vector2 end, Vector2 start_control, Vector2 end_control, float thickness, Color color);
-
     [CCode (cname = "DrawLineStrip")]
     public static void draw_line_strip (Vector2[] points, Color color);
 
@@ -1525,6 +1574,9 @@ namespace Raylib {
 
     [CCode (cname = "DrawCircleLines")]
     public static void draw_circle_lines (int center_x, int center_y, float radius, Color color);
+
+    [CCode (cname = "DrawCircleLinesV")]
+    public static void draw_circle_lines_vector (Vector2 centre, float radius, Color color);
 
     [CCode (cname = "DrawEllipse")]
     public static void draw_ellipse (int center_x, int center_y, float radius_horizontal, float radius_vertical, Color color);
@@ -1592,6 +1644,53 @@ namespace Raylib {
     [CCode (cname = "DrawPolyLinesEx")]
     public static void draw_poly_lines_ext (Vector2 center, int sides, float radius, float rotation, float thickness, Color color);
 
+    // Splines drawing functions
+    [CCode (cname = "DrawSplineLinear")]
+    public static void draw_spline_linear (Vector2[] points, float thick, Color color);
+
+    [CCode (cname = "DrawSplineBasic")]
+    public static void draw_spline_basis (Vector2[] points, float thick, Color color);
+
+    [CCode (cname = "DrawSplineCatmullRom")]
+    public static void draw_spline_catmull_rom (Vector2[] points, float thick, Color color);
+
+    [CCode (cname = "DrawSplineBezierQuadratic")]
+    public static void draw_spline_bezier_quadratic (Vector2[] points, float thick, Color color);
+
+    [CCode (cname = "DrawSplineBezierCubic")]
+    public static void draw_spline_bezier_cubic (Vector2[] points, float thick, Color color);
+
+    [CCode (cname = "DrawSplineSegmentLinear")]
+    public static void draw_spline_segment_linear (Vector2 p1, Vector2 p2, float thick, Color color);
+
+    [CCode (cname = "DrawSplineSegmentBasis")]
+    public static void draw_spline_segment_basis (Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick, Color color);
+
+    [CCode (cname = "DrawSplineSegmentCatmullRom")]
+    public static void draw_spline_segment_catmull_rom (Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick, Color color);
+
+    [CCode (cname = "DrawSplineSegmentBezierQuadratic")]
+    public static void draw_spline_segment_bezier_quadratic (Vector2 p1, Vector2 c2, Vector2 p3, float thick, Color color);
+
+    [CCode (cname = "DrawSplineSegmentBezierCubic")]
+    public static void draw_spline_segment_bezier_cubic (Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float thick, Color color);
+
+    // Spline segment point evaluation functions, for a given t [0.0f .. 1.0f]
+    [CCode (cname = "GetSplinePointLinear")]
+    public static Vector2 get_spline_point_linear (Vector2 start_position, Vector2 end_position, float weight);
+
+    [CCode (cname = "GetSplinePointBasis")]
+    public static Vector2 get_spline_point_basis (Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float weight);
+
+    [CCode (cname = "GetSplinePointCatmullRom")]
+    public static Vector2 get_spline_point_catmull_rom (Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float weight);
+
+    [CCode (cname = "GetSplinePointBezierQuad")]
+    public static Vector2 get_spline_point_bezier_quad (Vector2 p1, Vector2 c2, Vector2 p3, float weight);
+
+    [CCode (cname = "GetSplinePointBezierCubic")]
+    public static Vector2 get_spline_point_bezier_cubic (Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float weight);
+
     //  Basic shapes collision detection functions
     [CCode (cname = "CheckCollisionRecs")]
     public static bool check_collision_rectangles (Rectangle rectangle1, Rectangle rectangle2);
@@ -1635,6 +1734,9 @@ namespace Raylib {
     [CCode (cname = "LoadImageRaw")]
     public static Image load_image_raw (string filename, int width, int height, int format, int header_size);
 
+    [CCode (cname = "LoadImageSvg")]
+    public static Image load_image_svg (string filename, int width, int height);
+
     [CCode (cname = "LoadImageAnim")]
     public static Image load_image_animation (string filename, out int frames);
 
@@ -1656,6 +1758,9 @@ namespace Raylib {
     [CCode (cname = "ExportImage")]
     public static bool export_image (Image image, string filename);
 
+    [CCode (cname = "ExportImageToMemory")]
+    public static unowned uchar[] export_image_to_memory (Image image, string file_type, out int file_size);
+
     [CCode (cname = "ExportImageAsCode")]
     public static bool export_image_as_code (Image image, string filename);
 
@@ -1663,14 +1768,14 @@ namespace Raylib {
     [CCode (cname = "GenImageColor")]
     public static Image generate_image_color (int width, int height, Color color);
 
-    [CCode (cname = "GenImageGradientV")]
-    public static Image generate_image_gradient_vertical (int width, int height, Color top, Color bottom);
-
-    [CCode (cname = "GenImageGradientH")]
-    public static Image generate_image_gradient_horizontal (int width, int height, Color left, Color right);
+    [CCode (cname = "GenImageGradientLinear")]
+    public static Image generate_image_gradient_linear (int width, int height, int direction, Color start, Color end);
 
     [CCode (cname = "GenImageGradientRadial")]
     public static Image generate_image_gradient_radial (int width, int height, float density, Color inner, Color outer);
+
+    [CCode (cname = "GenImageGradientSquare")]
+    public static Image generate_image_gradient_square (int width, int height, float density, Color inner, Color outer);
 
     [CCode (cname = "GenImageChecked")]
     public static Image generate_image_checked (int width, int height, int checks_x, int checks_y, Color primary, Color secondary);
@@ -1744,6 +1849,9 @@ namespace Raylib {
 
     [CCode (cname = "ImageFlipHorizontal")]
     public static void image_flip_horizontal (Image? image);
+
+    [CCode (cname = "ImageRotate")]
+    public static void image_rotate (Image? image, int degrees);
 
     [CCode (cname = "ImageRotateCW")]
     public static void image_rotate_clockwise (Image? image);
@@ -1960,25 +2068,25 @@ namespace Raylib {
     public static Font load_font (string filename);
 
     [CCode (cname = "LoadFontEx")]
-    public static Font load_font_ext (string filename, int font_size, int[] font_characters);
+    public static Font load_font_ext (string filename, int font_size, int[] code_points);
 
     [CCode (cname = "LoadFontFromImage")]
     public static Font load_font_from_image (Image image, Color key, int first_char);
 
     [CCode (cname = "LoadFontFromMemory")]
-    public static Font load_font_from_memory (string file_type, uchar file_data, int font_size, int[] font_characters);
+    public static Font load_font_from_memory (string file_type, uchar file_data, int font_size, int[] code_points);
 
     [CCode (cname = "IsFontReady")]
     public static bool is_font_ready (Font font);
 
     [CCode (cname = "LoadFontData")]
-    public static GlyphInfo? load_font_data (uchar[] file_data, int font_size, int[] font_characters, FontType type);
+    public static GlyphInfo? load_font_data (uchar[] file_data, int font_size, int[] code_points, FontType type);
 
     [CCode (cname = "GenImageFontAtlas")]
-    public static Image generate_image_font_atlas (GlyphInfo* characters, [CCode (array_length = false)] out Rectangle[] rectangles, int glyph_count, int font_size, int padding, int pack_method);
+    public static Image generate_image_font_atlas (GlyphInfo* characters, unowned Rectangle[] glyph_rectangles, int font_size, int padding, int pack_method);
 
     [CCode (cname = "UnloadFontData")]
-    public static void unload_font_data (GlyphInfo[] characters);
+    public static void unload_font_data (GlyphInfo[] glyphs);
 
     [CCode (cname = "UnloadFont")]
     public static void unload_font (Font font);
@@ -2006,6 +2114,9 @@ namespace Raylib {
     public static void draw_text_codepoints (Font font, int[] codepoints, Vector2 position, float font_size, float spacing, Color tint);
 
     // Text font info functions
+    [CCode (cname = "SetTextLineSpacing")]
+    public static void set_text_line_spacing (int spacing);
+
     [CCode (cname = "MeasureText")]
     public static int measure_text (string text, int font_size);
 
@@ -2289,7 +2400,7 @@ namespace Raylib {
 
     // Model animations loading/unloading functions
     [CCode (cname = "LoadModelAnimations")]
-    public static ModelAnimation? load_model_animations (string filename, out uint animation_count);
+    public static ModelAnimation? load_model_animations (string filename, out int animation_count);
 
     [CCode (cname = "UpdateModelAnimation")]
     public static void update_model_animations (Model model, ModelAnimation animation, int frame);
@@ -2347,6 +2458,9 @@ namespace Raylib {
     [CCode (cname = "SetMasterVolume")]
     public static void set_master_volume (float volume);
 
+    [CCode (cname = "GetMasterVolume")]
+    public static float get_master_voume ();
+
     // Wave/Sound loading/unloading functions
     [CCode (cname = "LoadWave")]
     public static Wave load_wave (string filename);
@@ -2363,6 +2477,9 @@ namespace Raylib {
     [CCode (cname = "LoadSoundFromWave")]
     public static Sound load_sound_from_wave (Wave wave);
 
+    [CCode (cname = "LoadSoundAlias")]
+    public static Sound load_sound_alias (Sound alias);
+
     [CCode (cname = "IsSoundReady")]
     public static bool is_sound_ready (Sound sound);
 
@@ -2374,6 +2491,9 @@ namespace Raylib {
 
     [CCode (cname = "UnloadSound")]
     public static void unload_sound (Sound sound);
+
+    [CCode (cname = "UnloadSoundAlias")]
+    public static void unload_sound_alias (Sound alias);
 
     [CCode (cname = "ExportWave")]
     public static bool export_wave (Wave wave, string filename);

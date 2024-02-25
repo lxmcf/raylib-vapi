@@ -13,18 +13,17 @@ Some VAPI's will be released to follow a more [OOP design](https://en.wikipedia.
 
 | Module  | Supported          | OOP Available      | VAPI Name   | Version |
 |:-------:|:------------------:|:------------------:|:-----------:|:-------:|
-| raylib  | :heavy_check_mark: | :construction:     | raylib.vapi | 4.5     |
+| raylib  | :heavy_check_mark: | :construction:     | raylib.vapi | 5.0     |
 | rlgl    | :heavy_check_mark: | :x:                | rlgl.vapi   | 4.5     |
 | raymath | :x:                | :x:                |             |         |
 | raudio  | :x:                | :x:                |             |         |
 | raygui  | :x:                | :x:                |             |         |
 | rpng    | :x:                | :x:                |             |         |
 | rini    | :heavy_check_mark: | :x:                | rini.vapi   | 1.0     |
-| res     | :x:                | :x:                |             |         |
-| physac  | :construction:     | :x:                | physac.vapi | 1.1     |
+| rres    | :x:                | :x:                |             |         |
 
 ## Example
-```csharp
+```vala
 using Raylib;
 
 public const int WINDOW_WIDTH = 800;
@@ -50,7 +49,7 @@ public static int main (string[] args) {
 ```
 
 ## Compiling Included Examples
-```powershell
+```bash
 cd examples
 
 meson build -C build
