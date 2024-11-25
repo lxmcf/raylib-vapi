@@ -1,7 +1,7 @@
-executable (
+executable(
     'application',
 
     'Main.vala',
 
-    dependencies: project_dependency
+    dependencies: project_dependency,
 )

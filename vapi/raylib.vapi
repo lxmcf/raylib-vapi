@@ -12,9 +12,9 @@ namespace Raylib {
     [CCode (cname = "RAYLIB_VERSION")]
     public const string VERSION;
 
-    //----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
     // Some basic Defines
-    //----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
     [CCode (cname = "PI")]
     public const float PI;
 
@@ -105,9 +105,9 @@ namespace Raylib {
     [CCode (cname = "RAYWHITE")]
     public const Color RAYWHITE;
 
-    //----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
     // Structures Definition
-    //----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
     [SimpleType]
     [CCode (cname = "Vector2")]
     public struct Vector2 {
@@ -198,691 +198,691 @@ namespace Raylib {
     [SimpleType]
     [CCode (cname = "Texture")]
     public struct Texture {
-        public uint id;                // OpenGL texture id
-        public int width;              // Texture base width
-        public int height;             // Texture base height
-        public int mipmaps;            // Mipmap levels, 1 by default
+        public uint id; // OpenGL texture id
+        public int width; // Texture base width
+        public int height; // Texture base height
+        public int mipmaps; // Mipmap levels, 1 by default
 
-        public PixelFormat format;     // Data format (PixelFormat type)
+        public PixelFormat format; // Data format (PixelFormat type)
     }
 
     [SimpleType]
     [CCode (cname = "Texture2D")]
     public struct Texture2D {
-        public uint id;                // OpenGL texture id
-        public int width;              // Texture base width
-        public int height;             // Texture base height
-        public int mipmaps;            // Mipmap levels, 1 by default
+        public uint id; // OpenGL texture id
+        public int width; // Texture base width
+        public int height; // Texture base height
+        public int mipmaps; // Mipmap levels, 1 by default
 
-        public PixelFormat format;     // Data format (PixelFormat type)
+        public PixelFormat format; // Data format (PixelFormat type)
     }
 
     [SimpleType]
     [CCode (cname = "TextureCubemap")]
     public struct TextureCubemap {
-        public uint id;                // OpenGL texture id
-        public int width;              // Texture base width
-        public int height;             // Texture base height
-        public int mipmaps;            // Mipmap levels, 1 by default
+        public uint id; // OpenGL texture id
+        public int width; // Texture base width
+        public int height; // Texture base height
+        public int mipmaps; // Mipmap levels, 1 by default
 
-        public PixelFormat format;     // Data format (PixelFormat type)
+        public PixelFormat format; // Data format (PixelFormat type)
     }
 
     [SimpleType]
     [CCode (cname = "RenderTexture")]
     public struct RenderTexture {
-        public uint id;                           // OpenGL framebuffer object id
+        public uint id; // OpenGL framebuffer object id
 
-        public unowned Texture2D texture;         // Color buffer attachment texture
-        public unowned Texture2D depth;           // Depth buffer attachment texture
+        public unowned Texture2D texture; // Color buffer attachment texture
+        public unowned Texture2D depth; // Depth buffer attachment texture
     }
 
     [SimpleType]
     [CCode (cname = "RenderTexture2D")]
     public struct RenderTexture2D : RenderTexture {
-        public uint id;                           // OpenGL framebuffer object id
+        public uint id; // OpenGL framebuffer object id
 
-        public unowned Texture2D texture;         // Color buffer attachment texture
-        public unowned Texture2D depth;           // Depth buffer attachment texture
+        public unowned Texture2D texture; // Color buffer attachment texture
+        public unowned Texture2D depth; // Depth buffer attachment texture
     }
 
     [SimpleType]
     [CCode (cname = "NPatchInfo")]
     public struct NPatchInfo {
-        public unowned Rectangle source;        // Texture source rectangle
+        public unowned Rectangle source; // Texture source rectangle
 
-        public int left;                        // Left border offset
-        public int top;                         // Top border offset
-        public int right;                       // Right border offset
-        public int bottom;                      // Bottom border offset
-        public int layout;                      // Layout of the n-patch: 3x3, 1x3 or 3x1
+        public int left; // Left border offset
+        public int top; // Top border offset
+        public int right; // Right border offset
+        public int bottom; // Bottom border offset
+        public int layout; // Layout of the n-patch: 3x3, 1x3 or 3x1
     }
 
     [SimpleType]
     [CCode (cname = "GlyphInfo")]
     public struct GlyphInfo {
-        public int value;                       // Character value (Unicode)
-        public int offsetX;                     // Character offset X when drawing                                      // vala-lint=naming-convention
-        public int offsetY;                     // Character offset Y when drawing                                      // vala-lint=naming-convention
-        public int advanceX;                    // Character advance position X                                         // vala-lint=naming-convention
+        public int value; // Character value (Unicode)
+        public int offsetX; // Character offset X when drawing                                      // vala-lint=naming-convention
+        public int offsetY; // Character offset Y when drawing                                      // vala-lint=naming-convention
+        public int advanceX; // Character advance position X                                         // vala-lint=naming-convention
 
-        public unowned Image image;             // Character image data
+        public unowned Image image; // Character image data
     }
 
     [SimpleType]
     [CCode (cname = "Font")]
     public struct Font {
-        public int baseSize;                    // Base size (default chars height)                                     // vala-lint=naming-convention
-        public int glyphCount;                  // Number of glyph characters                                           // vala-lint=naming-convention
-        public int glyphPadding;                // Padding around the glyph characters                                  // vala-lint=naming-convention
+        public int baseSize; // Base size (default chars height)                                     // vala-lint=naming-convention
+        public int glyphCount; // Number of glyph characters                                           // vala-lint=naming-convention
+        public int glyphPadding; // Padding around the glyph characters                                  // vala-lint=naming-convention
 
-        public unowned Texture2D texture;       // Texture atlas containing the glyphs
-        public unowned Rectangle[] recs;        // Rectangles in texture for the glyphs
-        public unowned GlyphInfo[] glyphs;      // Glyphs info data
+        public unowned Texture2D texture; // Texture atlas containing the glyphs
+        public unowned Rectangle[] recs; // Rectangles in texture for the glyphs
+        public unowned GlyphInfo[] glyphs; // Glyphs info data
     }
 
     [SimpleType]
     [CCode (cname = "Camera3D")]
     public struct Camera3D {
-        public unowned Vector3 position;        // Camera position
-        public unowned Vector3 target;          // Camera target it looks-at
-        public unowned Vector3 up;              // Camera up vector (rotation over its axis)
+        public unowned Vector3 position; // Camera position
+        public unowned Vector3 target; // Camera target it looks-at
+        public unowned Vector3 up; // Camera up vector (rotation over its axis)
 
-        public float fovy;                      // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
-        public int projection;                  // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+        public float fovy; // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
+        public int projection; // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
     }
 
     [SimpleType]
     [CCode (cname = "Camera")]
     public struct Camera : Camera3D {
-        public unowned Vector3 position;        // Camera position
-        public unowned Vector3 target;          // Camera target it looks-at
-        public unowned Vector3 up;              // Camera up vector (rotation over its axis)
+        public unowned Vector3 position; // Camera position
+        public unowned Vector3 target; // Camera target it looks-at
+        public unowned Vector3 up; // Camera up vector (rotation over its axis)
 
-        public float fovy;                      // Camera field-of-view aperture in Y (degrees) in perspective, used as near plane width in orthographic
-        public int projection;                  // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+        public float fovy; // Camera field-of-view aperture in Y (degrees) in perspective, used as near plane width in orthographic
+        public int projection; // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
     }
 
     [SimpleType]
     [CCode (cname = "Camera2D")]
     public struct Camera2D {
-        public unowned Vector2 offset;          // Camera offset (displacement from target)
-        public unowned Vector2 target;          // Camera target (rotation and zoom origin)
+        public unowned Vector2 offset; // Camera offset (displacement from target)
+        public unowned Vector2 target; // Camera target (rotation and zoom origin)
 
-        public float rotation;                  // Camera rotation in degrees
-        public float zoom;                      // Camera zoom (scaling), should be 1.0f by default
+        public float rotation; // Camera rotation in degrees
+        public float zoom; // Camera zoom (scaling), should be 1.0f by default
     }
 
     [SimpleType]
     [CCode (cname = "Mesh")]
     public struct Mesh {
-        public int vertexCount;                 // Number of vertices stored in arrays                                                          // vala-lint=naming-convention
-        public int triangleCount;               // Number of triangles stored (indexed or not)                                                  // vala-lint=naming-convention
+        public int vertexCount; // Number of vertices stored in arrays                                                          // vala-lint=naming-convention
+        public int triangleCount; // Number of triangles stored (indexed or not)                                                  // vala-lint=naming-convention
 
         // Vertex attributes data
-        public unowned float[] vertices;        // Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
-        public unowned float[] texcoords;       // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
-        public unowned float[] texcoords2;      // Vertex texture second coordinates (UV - 2 components per vertex) (shader-location = 5)
-        public unowned float[] normals;         // Vertex normals (XYZ - 3 components per vertex) (shader-location = 2)
-        public unowned float[] tangents;        // Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4)
-        public unowned uchar[] colors;          // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
-        public unowned ushort[] indices;        // Vertex indices (in case vertex data comes indexed)
+        public unowned float[] vertices; // Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
+        public unowned float[] texcoords; // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
+        public unowned float[] texcoords2; // Vertex texture second coordinates (UV - 2 components per vertex) (shader-location = 5)
+        public unowned float[] normals; // Vertex normals (XYZ - 3 components per vertex) (shader-location = 2)
+        public unowned float[] tangents; // Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4)
+        public unowned uchar[] colors; // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
+        public unowned ushort[] indices; // Vertex indices (in case vertex data comes indexed)
 
         // Animation vertex data
-        public unowned float[] animVertices;    // Animated vertex positions (after bones transformations)                                      // vala-lint=naming-convention
-        public unowned float[] animNormals;     // Animated normals (after bones transformations)                                               // vala-lint=naming-convention
-        public unowned uchar[] boneIds;         // Vertex bone ids, max 255 bone ids, up to 4 bones influence by vertex (skinning)              // vala-lint=naming-convention
-        public unowned float[] boneWeights;     // Vertex bone weight, up to 4 bones influence by vertex (skinning)                             // vala-lint=naming-convention
+        public unowned float[] animVertices; // Animated vertex positions (after bones transformations)                                      // vala-lint=naming-convention
+        public unowned float[] animNormals; // Animated normals (after bones transformations)                                               // vala-lint=naming-convention
+        public unowned uchar[] boneIds; // Vertex bone ids, max 255 bone ids, up to 4 bones influence by vertex (skinning)              // vala-lint=naming-convention
+        public unowned float[] boneWeights; // Vertex bone weight, up to 4 bones influence by vertex (skinning)                             // vala-lint=naming-convention
 
         // OpenGL identifiers
-        public uint vaoId;                      // OpenGL Vertex Array Object id                                                                // vala-lint=naming-convention
-        public unowned uint[] vboId;            // OpenGL Vertex Buffer Objects id (default vertex data)                                        // vala-lint=naming-convention
+        public uint vaoId; // OpenGL Vertex Array Object id                                                                // vala-lint=naming-convention
+        public unowned uint[] vboId; // OpenGL Vertex Buffer Objects id (default vertex data)                                        // vala-lint=naming-convention
     }
 
     [SimpleType]
     [CCode (cname = "Shader")]
     public struct Shader {
-        public uint id;                       // Shader program id
-        public unowned int[] locs;            // Shader locations array (RL_MAX_SHADER_LOCATIONS)
+        public uint id; // Shader program id
+        public unowned int[] locs; // Shader locations array (RL_MAX_SHADER_LOCATIONS)
     }
 
     [SimpleType]
     [CCode (cname = "MaterialMap")]
     public struct MaterialMap {
-        unowned Texture2D texture;      // Material map texture
-        Color color;                    // Material map color
+        unowned Texture2D texture; // Material map texture
+        Color color; // Material map color
 
-        float value;                    // Material map value
+        float value; // Material map value
     }
 
     [SimpleType]
     [CCode (cname = "Material")]
     public struct Material {
-        unowned Shader shader;          // Material shader
-        unowned MaterialMap[] maps;     // Material maps array (MAX_MATERIAL_MAPS)
-        float @params[4];               // Material generic parameters (if required)
+        unowned Shader shader; // Material shader
+        unowned MaterialMap[] maps; // Material maps array (MAX_MATERIAL_MAPS)
+        float @params[4]; // Material generic parameters (if required)
     }
 
     [SimpleType]
     [CCode (cname = "Transform")]
     public struct Transform {
-        public Vector3 translation;     // Translation
-        public Quaternion rotation;     // Rotation
-        public Vector3 scale;           // Scale
+        public Vector3 translation; // Translation
+        public Quaternion rotation; // Rotation
+        public Vector3 scale; // Scale
     }
 
     [SimpleType]
     [CCode (cname = "BoneInfo")]
     public struct BoneInfo {
-        public unowned string name;     // Bone name
-        public int parent;              // Bone parent
+        public unowned string name; // Bone name
+        public int parent; // Bone parent
     }
 
     [SimpleType]
     [CCode (cname = "Model")]
     public struct Model {
-        public Matrix transform;                // Local transform matrix
+        public Matrix transform; // Local transform matrix
 
-        public int meshCount;                   // Number of meshes                                                             // vala-lint=naming-convention
-        public int materialCount;               // Number of materials                                                          // vala-lint=naming-convention
-        public unowned Mesh[] meshes;           // Meshes array
-        public unowned Material[] materials;    // Materials array
-        public unowned int[] meshMaterial;      // Mesh material number                                                         // vala-lint=naming-convention
+        public int meshCount; // Number of meshes                                                             // vala-lint=naming-convention
+        public int materialCount; // Number of materials                                                          // vala-lint=naming-convention
+        public unowned Mesh[] meshes; // Meshes array
+        public unowned Material[] materials; // Materials array
+        public unowned int[] meshMaterial; // Mesh material number                                                         // vala-lint=naming-convention
 
         // Animation data
-        public int boneCount;                   // Number of bones                                                              // vala-lint=naming-convention
-        public unowned BoneInfo[] bones;        // Bones information (skeleton)
-        public unowned Transform[] bindPose;    // Bones base transformation (pose)                                             // vala-lint=naming-convention
+        public int boneCount; // Number of bones                                                              // vala-lint=naming-convention
+        public unowned BoneInfo[] bones; // Bones information (skeleton)
+        public unowned Transform[] bindPose; // Bones base transformation (pose)                                             // vala-lint=naming-convention
     }
 
     [SimpleType]
     [CCode (cname = "ModelAnimation")]
     public struct ModelAnimation {
-        public int boneCount;                   // Number of bones                                                              // vala-lint=naming-convention
-        public int frameCount;                  // Number of animation frames                                                   // vala-lint=naming-convention
-        public unowned BoneInfo[] bones;        // Bones information (skeleton)
+        public int boneCount; // Number of bones                                                              // vala-lint=naming-convention
+        public int frameCount; // Number of animation frames                                                   // vala-lint=naming-convention
+        public unowned BoneInfo[] bones; // Bones information (skeleton)
         public unowned Transform[,] framePoses; // Poses array by frame                                                         // vala-lint=naming-convention
-        public char name[32];                   // Animation name
+        public char name[32]; // Animation name
     }
 
     [SimpleType]
     [CCode (cname = "Ray")]
     public struct Ray {
-        public Vector3 position;        // Ray position (origin)
-        public Vector3 direction;       // Ray direction
+        public Vector3 position; // Ray position (origin)
+        public Vector3 direction; // Ray direction
     }
 
     [SimpleType]
     [CCode (cname = "RayCollision")]
     public struct RayCollision {
-        public bool hit;                // Did the ray hit something?
-        public float distance;          // Distance to nearest hit
-        public Vector3 point;           // Point of nearest hit
-        public Vector3 normal;          // Surface normal of hit
+        public bool hit; // Did the ray hit something?
+        public float distance; // Distance to nearest hit
+        public Vector3 point; // Point of nearest hit
+        public Vector3 normal; // Surface normal of hit
     }
 
     [SimpleType]
     [CCode (cname = "BoundingBox")]
     public struct BoundingBox {
-        public Vector3 min;            // Minimum vertex box-corner
-        public Vector3 max;            // Maximum vertex box-corner
+        public Vector3 min; // Minimum vertex box-corner
+        public Vector3 max; // Maximum vertex box-corner
     }
 
     [SimpleType]
     [CCode (cname = "Wave")]
     public struct Wave {
-        public uint frameCount;         // Total number of frames (considering channels)                                // vala-lint=naming-convention
-        public uint sampleRate;         // Frequency (samples per second)                                               // vala-lint=naming-convention
-        public uint sampleSize;         // Bit depth (bits per sample): 8, 16, 32 (24 not supported)                    // vala-lint=naming-convention
-        public uint channels;           // Number of channels (1-mono, 2-stereo, ...)
-        public void *data;              // Buffer data pointer
+        public uint frameCount; // Total number of frames (considering channels)                                // vala-lint=naming-convention
+        public uint sampleRate; // Frequency (samples per second)                                               // vala-lint=naming-convention
+        public uint sampleSize; // Bit depth (bits per sample): 8, 16, 32 (24 not supported)                    // vala-lint=naming-convention
+        public uint channels; // Number of channels (1-mono, 2-stereo, ...)
+        public void* data; // Buffer data pointer
     }
 
     [SimpleType]
     [CCode (cname = "rAudioBuffer")]
-    public struct AudioBuffer { }
+    public struct AudioBuffer {}
 
     [SimpleType]
     [CCode (cname = "rAudioProcessor")]
-    public struct AudioProcessor { }
+    public struct AudioProcessor {}
 
     [SimpleType]
     [CCode (cname = "AudioStream")]
     public struct AudioStream {
-        public AudioBuffer buffer;          // Pointer to internal data used by the audio system
-        public AudioProcessor processor;    // Pointer to internal data processor, useful for audio effects
+        public AudioBuffer buffer; // Pointer to internal data used by the audio system
+        public AudioProcessor processor; // Pointer to internal data processor, useful for audio effects
 
-        public uint sampleRate;             // Frequency (samples per second)                                           // vala-lint=naming-convention
-        public uint sampleSize;             // Bit depth (bits per sample): 8, 16, 32 (24 not supported)                // vala-lint=naming-convention
-        public uint channels;               // Number of channels (1-mono, 2-stereo, ...)
+        public uint sampleRate; // Frequency (samples per second)                                           // vala-lint=naming-convention
+        public uint sampleSize; // Bit depth (bits per sample): 8, 16, 32 (24 not supported)                // vala-lint=naming-convention
+        public uint channels; // Number of channels (1-mono, 2-stereo, ...)
     }
 
     [SimpleType]
     [CCode (cname = "Sound")]
     public struct Sound {
-        public AudioStream stream;      // Audio stream
-        public uint frameCount;         // Total number of frames (considering channels)                                // vala-lint=naming-convention
+        public AudioStream stream; // Audio stream
+        public uint frameCount; // Total number of frames (considering channels)                                // vala-lint=naming-convention
     }
 
     [SimpleType]
     [CCode (cname = "Music")]
     public struct Music {
-        public AudioStream stream;      // Audio stream
-        public uint frameCount;         // Total number of frames (considering channels)                                // vala-lint=naming-convention
-        public bool looping;            // Music looping enable
+        public AudioStream stream; // Audio stream
+        public uint frameCount; // Total number of frames (considering channels)                                // vala-lint=naming-convention
+        public bool looping; // Music looping enable
 
-        public int ctxType;             // Type of music context (audio filetype)                                       // vala-lint=naming-convention
-        public void* ctxData;           // Audio context data, depends on type                                          // vala-lint=naming-convention
+        public int ctxType; // Type of music context (audio filetype)                                       // vala-lint=naming-convention
+        public void* ctxData; // Audio context data, depends on type                                          // vala-lint=naming-convention
     }
 
     [SimpleType]
     [CCode (cname = "VrDeviceInfo")]
     public struct VrDeviceInfo {
-        public int hResolution;                // Horizontal resolution in pixels                                       // vala-lint=naming-convention
-        public int vResolution;                // Vertical resolution in pixels                                         // vala-lint=naming-convention
-        public float hScreenSize;              // Horizontal size in meters                                             // vala-lint=naming-convention
-        public float vScreenSize;              // Vertical size in meters                                               // vala-lint=naming-convention
-        public float vScreenCenter;            // Screen center in meters                                               // vala-lint=naming-convention
-        public float eyeToScreenDistance;      // Distance between eye and display in meters                            // vala-lint=naming-convention
-        public float lensSeparationDistance;   // Lens separation distance in meters                                    // vala-lint=naming-convention
-        public float interpupillaryDistance;   // IPD (distance between pupils) in meters                               // vala-lint=naming-convention
-        public float lensDistortionValues[4];  // Lens distortion constant parameters                                   // vala-lint=naming-convention
-        public float chromaAbCorrection[4];    // Chromatic aberration correction parameters                            // vala-lint=naming-convention
+        public int hResolution; // Horizontal resolution in pixels                                       // vala-lint=naming-convention
+        public int vResolution; // Vertical resolution in pixels                                         // vala-lint=naming-convention
+        public float hScreenSize; // Horizontal size in meters                                             // vala-lint=naming-convention
+        public float vScreenSize; // Vertical size in meters                                               // vala-lint=naming-convention
+        public float vScreenCenter; // Screen center in meters                                               // vala-lint=naming-convention
+        public float eyeToScreenDistance; // Distance between eye and display in meters                            // vala-lint=naming-convention
+        public float lensSeparationDistance; // Lens separation distance in meters                                    // vala-lint=naming-convention
+        public float interpupillaryDistance; // IPD (distance between pupils) in meters                               // vala-lint=naming-convention
+        public float lensDistortionValues[4]; // Lens distortion constant parameters                                   // vala-lint=naming-convention
+        public float chromaAbCorrection[4]; // Chromatic aberration correction parameters                            // vala-lint=naming-convention
     }
 
     [SimpleType]
     [CCode (cname = "VrStereoConfig")]
     public struct VrStereoConfig {
-        public Matrix projection[2];           // VR projection matrices (per eye)
-        public Matrix viewOffset[2];           // VR view offset matrices (per eye)                                     // vala-lint=naming-convention
-        public float leftLensCenter[2];        // VR left lens center                                                   // vala-lint=naming-convention
-        public float rightLensCenter[2];       // VR right lens center                                                  // vala-lint=naming-convention
-        public float leftScreenCenter[2];      // VR left screen center                                                 // vala-lint=naming-convention
-        public float rightScreenCenter[2];     // VR right screen center                                                // vala-lint=naming-convention
-        public float scale[2];                 // VR distortion scale
-        public float scaleIn[2];               // VR distortion scale in                                                // vala-lint=naming-convention
+        public Matrix projection[2]; // VR projection matrices (per eye)
+        public Matrix viewOffset[2]; // VR view offset matrices (per eye)                                     // vala-lint=naming-convention
+        public float leftLensCenter[2]; // VR left lens center                                                   // vala-lint=naming-convention
+        public float rightLensCenter[2]; // VR right lens center                                                  // vala-lint=naming-convention
+        public float leftScreenCenter[2]; // VR left screen center                                                 // vala-lint=naming-convention
+        public float rightScreenCenter[2]; // VR right screen center                                                // vala-lint=naming-convention
+        public float scale[2]; // VR distortion scale
+        public float scaleIn[2]; // VR distortion scale in                                                // vala-lint=naming-convention
     }
 
     [SimpleType]
     [CCode (cname = "FilePathList")]
     public struct FilePathList {
-        public uint capacity;                   // Filepaths max entries
-        public uint count;                      // Filepaths entries count
-        public unowned string[] paths;          // Filepaths entries
+        public uint capacity; // Filepaths max entries
+        public uint count; // Filepaths entries count
+        public unowned string[] paths; // Filepaths entries
     }
 
     [SimpleType]
     [CCode (cname = "AutomationEvent")]
     public struct AutomationEvent {
-        public uint frame;                      // Event frame
-        public uint type;                       // Event type (AutomationEventType)
-        public int @params[4];                  // Event parameters (if required)
+        public uint frame; // Event frame
+        public uint type; // Event type (AutomationEventType)
+        public int @params[4]; // Event parameters (if required)
     }
 
     [SimpleType]
     [CCode (cname = "AutomationEventList")]
     public struct AutomationEventList {
-        public uint capacity;                           // Events max entries (MAX_AUTOMATION_EVENTS)
-        public uint count;                              // Events entries count
-        public unowned AutomationEvent[] events;        // Events entries
+        public uint capacity; // Events max entries (MAX_AUTOMATION_EVENTS)
+        public uint count; // Events entries count
+        public unowned AutomationEvent[] events; // Events entries
     }
 
     [Flags]
     [CCode (cname = "ConfigFlags", cprefix = "FLAG_", has_type_id = false)]
     public enum ConfigFlags {
-        VSYNC_HINT,                 // Set to try enabling V-Sync on GPU
-        FULLSCREEN_MODE,            // Set to run program in fullscreen
-        WINDOW_RESIZABLE,           // Set to allow resizable window
-        WINDOW_UNDECORATED,         // Set to disable window decoration (frame and buttons)
-        WINDOW_HIDDEN,              // Set to hide window
-        WINDOW_MINIMIZED,           // Set to minimize window (iconify)
-        WINDOW_MAXIMIZED,           // Set to maximize window (expanded to monitor)
-        WINDOW_UNFOCUSED,           // Set to window non focused
-        WINDOW_TOPMOST,             // Set to window always on top
-        WINDOW_ALWAYS_RUN,          // Set to allow windows running while minimized
-        WINDOW_TRANSPARENT,         // Set to allow transparent framebuffer
-        WINDOW_HIGHDPI,             // Set to support HighDPI
-        WINDOW_MOUSE_PASSTHROUGH,   // Set to support mouse passthrough, only supported when FLAG_WINDOW_UNDECORATED
-        BORDERLESS_WINDOWED_MODE,   // Set to run program in borderless windowed mode
-        MSAA_4X_HINT,               // Set to try enabling MSAA 4X
-        INTERLACED_HINT             // Set to try enabling interlaced video format (for V3D)
+        VSYNC_HINT, // Set to try enabling V-Sync on GPU
+        FULLSCREEN_MODE, // Set to run program in fullscreen
+        WINDOW_RESIZABLE, // Set to allow resizable window
+        WINDOW_UNDECORATED, // Set to disable window decoration (frame and buttons)
+        WINDOW_HIDDEN, // Set to hide window
+        WINDOW_MINIMIZED, // Set to minimize window (iconify)
+        WINDOW_MAXIMIZED, // Set to maximize window (expanded to monitor)
+        WINDOW_UNFOCUSED, // Set to window non focused
+        WINDOW_TOPMOST, // Set to window always on top
+        WINDOW_ALWAYS_RUN, // Set to allow windows running while minimized
+        WINDOW_TRANSPARENT, // Set to allow transparent framebuffer
+        WINDOW_HIGHDPI, // Set to support HighDPI
+        WINDOW_MOUSE_PASSTHROUGH, // Set to support mouse passthrough, only supported when FLAG_WINDOW_UNDECORATED
+        BORDERLESS_WINDOWED_MODE, // Set to run program in borderless windowed mode
+        MSAA_4X_HINT, // Set to try enabling MSAA 4X
+        INTERLACED_HINT // Set to try enabling interlaced video format (for V3D)
     }
 
     [CCode (cname = "TraceLogLevel", cprefix = "LOG_", has_type_id = false)]
     public enum TraceLogLevel {
-        ALL,            // Display all logs
-        TRACE,          // Trace logging, intended for internal use only
-        DEBUG,          // Debug logging, used for internal debugging, it should be disabled on release builds
-        INFO,           // Info logging, used for program execution info
-        WARNING,        // Warning logging, used on recoverable failures
-        ERROR,          // Error logging, used on unrecoverable failures
-        FATAL,          // Fatal logging, used to abort program: exit(EXIT_FAILURE)
-        NONE            // Disable logging
+        ALL, // Display all logs
+        TRACE, // Trace logging, intended for internal use only
+        DEBUG, // Debug logging, used for internal debugging, it should be disabled on release builds
+        INFO, // Info logging, used for program execution info
+        WARNING, // Warning logging, used on recoverable failures
+        ERROR, // Error logging, used on unrecoverable failures
+        FATAL, // Fatal logging, used to abort program: exit(EXIT_FAILURE)
+        NONE // Disable logging
     }
 
     [CCode (cname = "KeyboardKey", cprefix = "KEY_", has_type_id = false)]
     public enum KeyboardKey {
-        NULL,               // Key: NULL, used for no key pressed
+        NULL, // Key: NULL, used for no key pressed
         // Alphanumeric keys
-        APOSTROPHE,         // Key: '
-        COMMA,              // Key: ,
-        MINUS,              // Key: -
-        PERIOD,             // Key: .
-        SLASH,              // Key: /
-        ZERO,               // Key: 0
-        ONE,                // Key: 1
-        TWO,                // Key: 2
-        THREE,              // Key: 3
-        FOUR,               // Key: 4
-        FIVE,               // Key: 5
-        SIX,                // Key: 6
-        SEVEN,              // Key: 7
-        EIGHT,              // Key: 8
-        NINE,               // Key: 9
-        SEMICOLON,          // Key: ;
-        EQUAL,              // Key: =
-        A,                  // Key: A | a
-        B,                  // Key: B | b
-        C,                  // Key: C | c
-        D,                  // Key: D | d
-        E,                  // Key: E | e
-        F,                  // Key: F | f
-        G,                  // Key: G | g
-        H,                  // Key: H | h
-        I,                  // Key: I | i
-        J,                  // Key: J | j
-        K,                  // Key: K | k
-        L,                  // Key: L | l
-        M,                  // Key: M | m
-        N,                  // Key: N | n
-        O,                  // Key: O | o
-        P,                  // Key: P | p
-        Q,                  // Key: Q | q
-        R,                  // Key: R | r
-        S,                  // Key: S | s
-        T,                  // Key: T | t
-        U,                  // Key: U | u
-        V,                  // Key: V | v
-        W,                  // Key: W | w
-        X,                  // Key: X | x
-        Y,                  // Key: Y | y
-        Z,                  // Key: Z | z
-        LEFT_BRACKET,       // Key: [
-        BACKSLASH,          // Key: '\'
-        RIGHT_BRACKET,      // Key: ]
-        GRAVE,              // Key: `
+        APOSTROPHE, // Key: '
+        COMMA, // Key: ,
+        MINUS, // Key: -
+        PERIOD, // Key: .
+        SLASH, // Key: /
+        ZERO, // Key: 0
+        ONE, // Key: 1
+        TWO, // Key: 2
+        THREE, // Key: 3
+        FOUR, // Key: 4
+        FIVE, // Key: 5
+        SIX, // Key: 6
+        SEVEN, // Key: 7
+        EIGHT, // Key: 8
+        NINE, // Key: 9
+        SEMICOLON, // Key: ;
+        EQUAL, // Key: =
+        A, // Key: A | a
+        B, // Key: B | b
+        C, // Key: C | c
+        D, // Key: D | d
+        E, // Key: E | e
+        F, // Key: F | f
+        G, // Key: G | g
+        H, // Key: H | h
+        I, // Key: I | i
+        J, // Key: J | j
+        K, // Key: K | k
+        L, // Key: L | l
+        M, // Key: M | m
+        N, // Key: N | n
+        O, // Key: O | o
+        P, // Key: P | p
+        Q, // Key: Q | q
+        R, // Key: R | r
+        S, // Key: S | s
+        T, // Key: T | t
+        U, // Key: U | u
+        V, // Key: V | v
+        W, // Key: W | w
+        X, // Key: X | x
+        Y, // Key: Y | y
+        Z, // Key: Z | z
+        LEFT_BRACKET, // Key: [
+        BACKSLASH, // Key: '\'
+        RIGHT_BRACKET, // Key: ]
+        GRAVE, // Key: `
         // Function keys
-        SPACE,              // Key: Space
-        ESCAPE,             // Key: Esc
-        ENTER,              // Key: Enter
-        TAB,                // Key: Tab
-        BACKSPACE,          // Key: Backspace
-        INSERT,             // Key: Ins
-        DELETE,             // Key: Del
-        RIGHT,              // Key: Cursor right
-        LEFT,               // Key: Cursor left
-        DOWN,               // Key: Cursor down
-        UP,                 // Key: Cursor up
-        PAGE_UP,            // Key: Page up
-        PAGE_DOWN,          // Key: Page down
-        HOME,               // Key: Home
-        END,                // Key: End
-        CAPS_LOCK,          // Key: Caps lock
-        SCROLL_LOCK,        // Key: Scroll down
-        NUM_LOCK,           // Key: Num lock
-        PRINT_SCREEN,       // Key: Print screen
-        PAUSE,              // Key: Pause
-        F1,                 // Key: F1
-        F2,                 // Key: F2
-        F3,                 // Key: F3
-        F4,                 // Key: F4
-        F5,                 // Key: F5
-        F6,                 // Key: F6
-        F7,                 // Key: F7
-        F8,                 // Key: F8
-        F9,                 // Key: F9
-        F10,                // Key: F10
-        F11,                // Key: F11
-        F12,                // Key: F12
-        LEFT_SHIFT,         // Key: Shift left
-        LEFT_CONTROL,       // Key: Control left
-        LEFT_ALT,           // Key: Alt left
-        LEFT_SUPER,         // Key: Super left
-        RIGHT_SHIFT,        // Key: Shift right
-        RIGHT_CONTROL,      // Key: Control right
-        RIGHT_ALT,          // Key: Alt right
-        RIGHT_SUPER,        // Key: Super right
-        KB_MENU,            // Key: KB menu
+        SPACE, // Key: Space
+        ESCAPE, // Key: Esc
+        ENTER, // Key: Enter
+        TAB, // Key: Tab
+        BACKSPACE, // Key: Backspace
+        INSERT, // Key: Ins
+        DELETE, // Key: Del
+        RIGHT, // Key: Cursor right
+        LEFT, // Key: Cursor left
+        DOWN, // Key: Cursor down
+        UP, // Key: Cursor up
+        PAGE_UP, // Key: Page up
+        PAGE_DOWN, // Key: Page down
+        HOME, // Key: Home
+        END, // Key: End
+        CAPS_LOCK, // Key: Caps lock
+        SCROLL_LOCK, // Key: Scroll down
+        NUM_LOCK, // Key: Num lock
+        PRINT_SCREEN, // Key: Print screen
+        PAUSE, // Key: Pause
+        F1, // Key: F1
+        F2, // Key: F2
+        F3, // Key: F3
+        F4, // Key: F4
+        F5, // Key: F5
+        F6, // Key: F6
+        F7, // Key: F7
+        F8, // Key: F8
+        F9, // Key: F9
+        F10, // Key: F10
+        F11, // Key: F11
+        F12, // Key: F12
+        LEFT_SHIFT, // Key: Shift left
+        LEFT_CONTROL, // Key: Control left
+        LEFT_ALT, // Key: Alt left
+        LEFT_SUPER, // Key: Super left
+        RIGHT_SHIFT, // Key: Shift right
+        RIGHT_CONTROL, // Key: Control right
+        RIGHT_ALT, // Key: Alt right
+        RIGHT_SUPER, // Key: Super right
+        KB_MENU, // Key: KB menu
         // Keypad keys
-        KP_0,               // Key: Keypad 0
-        KP_1,               // Key: Keypad 1
-        KP_2,               // Key: Keypad 2
-        KP_3,               // Key: Keypad 3
-        KP_4,               // Key: Keypad 4
-        KP_5,               // Key: Keypad 5
-        KP_6,               // Key: Keypad 6
-        KP_7,               // Key: Keypad 7
-        KP_8,               // Key: Keypad 8
-        KP_9,               // Key: Keypad 9
-        KP_DECIMAL,         // Key: Keypad .
-        KP_DIVIDE,          // Key: Keypad /
-        KP_MULTIPLY,        // Key: Keypad *
-        KP_SUBTRACT,        // Key: Keypad -
-        KP_ADD,             // Key: Keypad +
-        KP_ENTER,           // Key: Keypad Enter
-        KP_EQUAL,           // Key: Keypad =
+        KP_0, // Key: Keypad 0
+        KP_1, // Key: Keypad 1
+        KP_2, // Key: Keypad 2
+        KP_3, // Key: Keypad 3
+        KP_4, // Key: Keypad 4
+        KP_5, // Key: Keypad 5
+        KP_6, // Key: Keypad 6
+        KP_7, // Key: Keypad 7
+        KP_8, // Key: Keypad 8
+        KP_9, // Key: Keypad 9
+        KP_DECIMAL, // Key: Keypad .
+        KP_DIVIDE, // Key: Keypad /
+        KP_MULTIPLY, // Key: Keypad *
+        KP_SUBTRACT, // Key: Keypad -
+        KP_ADD, // Key: Keypad +
+        KP_ENTER, // Key: Keypad Enter
+        KP_EQUAL, // Key: Keypad =
         // Android key buttons
-        BACK,               // Key: Android back button
-        MENU,               // Key: Android menu button
-        VOLUME_UP,          // Key: Android volume up button
-        VOLUME_DOWN         // Key: Android volume down button
+        BACK, // Key: Android back button
+        MENU, // Key: Android menu button
+        VOLUME_UP, // Key: Android volume up button
+        VOLUME_DOWN // Key: Android volume down button
     }
 
     [CCode (cname = "MouseButton", cprefix = "MOUSE_BUTTON_", has_type_id = false)]
     public enum MouseButton {
-        LEFT,           // Mouse button left
-        RIGHT,          // Mouse button right
-        MIDDLE,         // Mouse button middle (pressed wheel)
-        SIDE,           // Mouse button side (advanced mouse device)
-        EXTRA,          // Mouse button extra (advanced mouse device)
-        FORWARD,        // Mouse button fordward (advanced mouse device)
-        BACK,           // Mouse button back (advanced mouse device)
+        LEFT, // Mouse button left
+        RIGHT, // Mouse button right
+        MIDDLE, // Mouse button middle (pressed wheel)
+        SIDE, // Mouse button side (advanced mouse device)
+        EXTRA, // Mouse button extra (advanced mouse device)
+        FORWARD, // Mouse button fordward (advanced mouse device)
+        BACK, // Mouse button back (advanced mouse device)
     }
 
     [CCode (cname = "MouseCursor", cprefix = "MOUSE_CURSOR_", has_type_id = false)]
     public enum MouseCursor {
-        DEFAULT,        // Default pointer shape
-        ARROW,          // Arrow shape
-        IBEAM,          // Text writing cursor shape
-        CROSSHAIR,      // Cross shape
-        POINTING_HAND,  // Pointing hand cursor
-        RESIZE_EW,      // Horizontal resize/move arrow shape
-        RESIZE_NS,      // Vertical resize/move arrow shape
-        RESIZE_NWSE,    // Top-left to bottom-right diagonal resize/move arrow shape
-        RESIZE_NESW,    // The top-right to bottom-left diagonal resize/move arrow shape
-        RESIZE_ALL,     // The omni-directional resize/move cursor shape
-        NOT_ALLOWED     // The operation-not-allowed shape
+        DEFAULT, // Default pointer shape
+        ARROW, // Arrow shape
+        IBEAM, // Text writing cursor shape
+        CROSSHAIR, // Cross shape
+        POINTING_HAND, // Pointing hand cursor
+        RESIZE_EW, // Horizontal resize/move arrow shape
+        RESIZE_NS, // Vertical resize/move arrow shape
+        RESIZE_NWSE, // Top-left to bottom-right diagonal resize/move arrow shape
+        RESIZE_NESW, // The top-right to bottom-left diagonal resize/move arrow shape
+        RESIZE_ALL, // The omni-directional resize/move cursor shape
+        NOT_ALLOWED // The operation-not-allowed shape
     }
 
     [CCode (cname = "GamepadButton", cprefix = "GAMEPAD_BUTTON_", has_type_id = false)]
     public enum GamepadButton {
-        UNKNOWN,             // Unknown button, just for error checking
-        LEFT_FACE_UP,        // Gamepad left DPAD up button
-        LEFT_FACE_RIGHT,     // Gamepad left DPAD right button
-        LEFT_FACE_DOWN,      // Gamepad left DPAD down button
-        LEFT_FACE_LEFT,      // Gamepad left DPAD left button
-        RIGHT_FACE_UP,       // Gamepad right button up (i.e. PS3: Triangle, Xbox: Y)
-        RIGHT_FACE_RIGHT,    // Gamepad right button right (i.e. PS3: Square, Xbox: X)
-        RIGHT_FACE_DOWN,     // Gamepad right button down (i.e. PS3: Cross, Xbox: A)
-        RIGHT_FACE_LEFT,     // Gamepad right button left (i.e. PS3: Circle, Xbox: B)
-        LEFT_TRIGGER_1,      // Gamepad top/back trigger left (first), it could be a trailing button
-        LEFT_TRIGGER_2,      // Gamepad top/back trigger left (second), it could be a trailing button
-        RIGHT_TRIGGER_1,     // Gamepad top/back trigger right (one), it could be a trailing button
-        RIGHT_TRIGGER_2,     // Gamepad top/back trigger right (second), it could be a trailing button
-        MIDDLE_LEFT,         // Gamepad center buttons, left one (i.e. PS3: Select)
-        MIDDLE,              // Gamepad center buttons, middle one (i.e. PS3: PS, Xbox: XBOX)
-        MIDDLE_RIGHT,        // Gamepad center buttons, right one (i.e. PS3: Start)
-        LEFT_THUMB,          // Gamepad joystick pressed button left
-        RIGHT_THUMB          // Gamepad joystick pressed button right
+        UNKNOWN, // Unknown button, just for error checking
+        LEFT_FACE_UP, // Gamepad left DPAD up button
+        LEFT_FACE_RIGHT, // Gamepad left DPAD right button
+        LEFT_FACE_DOWN, // Gamepad left DPAD down button
+        LEFT_FACE_LEFT, // Gamepad left DPAD left button
+        RIGHT_FACE_UP, // Gamepad right button up (i.e. PS3: Triangle, Xbox: Y)
+        RIGHT_FACE_RIGHT, // Gamepad right button right (i.e. PS3: Square, Xbox: X)
+        RIGHT_FACE_DOWN, // Gamepad right button down (i.e. PS3: Cross, Xbox: A)
+        RIGHT_FACE_LEFT, // Gamepad right button left (i.e. PS3: Circle, Xbox: B)
+        LEFT_TRIGGER_1, // Gamepad top/back trigger left (first), it could be a trailing button
+        LEFT_TRIGGER_2, // Gamepad top/back trigger left (second), it could be a trailing button
+        RIGHT_TRIGGER_1, // Gamepad top/back trigger right (one), it could be a trailing button
+        RIGHT_TRIGGER_2, // Gamepad top/back trigger right (second), it could be a trailing button
+        MIDDLE_LEFT, // Gamepad center buttons, left one (i.e. PS3: Select)
+        MIDDLE, // Gamepad center buttons, middle one (i.e. PS3: PS, Xbox: XBOX)
+        MIDDLE_RIGHT, // Gamepad center buttons, right one (i.e. PS3: Start)
+        LEFT_THUMB, // Gamepad joystick pressed button left
+        RIGHT_THUMB // Gamepad joystick pressed button right
     }
 
     [CCode (cname = "GamepadAxis", cprefix = "GAMEPAD_AXIS_", has_type_id = false)]
     public enum GamepadAxis {
-        LEFT_X,            // Gamepad left stick X axis
-        LEFT_Y,            // Gamepad left stick Y axis
-        RIGHT_X,           // Gamepad right stick X axis
-        RIGHT_Y,           // Gamepad right stick Y axis
-        LEFT_TRIGGER,      // Gamepad back trigger left, pressure level: [1..-1]
-        RIGHT_TRIGGER      // Gamepad back trigger right, pressure level: [1..-1]
+        LEFT_X, // Gamepad left stick X axis
+        LEFT_Y, // Gamepad left stick Y axis
+        RIGHT_X, // Gamepad right stick X axis
+        RIGHT_Y, // Gamepad right stick Y axis
+        LEFT_TRIGGER, // Gamepad back trigger left, pressure level: [1..-1]
+        RIGHT_TRIGGER // Gamepad back trigger right, pressure level: [1..-1]
     }
 
     [CCode (cname = "MaterialMapIndex", cprefix = "MATERIAL_MAP_", has_type_id = false)]
     public enum MaterialMapIndex {
-        ALBEDO,            // Albedo material (same as: MATERIAL_MAP_DIFFUSE)
-        METALNESS,         // Metalness material (same as: MATERIAL_MAP_SPECULAR)
-        NORMAL,            // Normal material
-        ROUGHNESS,         // Roughness material
-        OCCLUSION,         // Ambient occlusion material
-        EMISSION,          // Emission material
-        HEIGHT,            // Heightmap material
-        CUBEMAP,           // Cubemap material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
-        IRRADIANCE,        // Irradiance material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
-        PREFILTER,         // Prefilter material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
+        ALBEDO, // Albedo material (same as: MATERIAL_MAP_DIFFUSE)
+        METALNESS, // Metalness material (same as: MATERIAL_MAP_SPECULAR)
+        NORMAL, // Normal material
+        ROUGHNESS, // Roughness material
+        OCCLUSION, // Ambient occlusion material
+        EMISSION, // Emission material
+        HEIGHT, // Heightmap material
+        CUBEMAP, // Cubemap material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
+        IRRADIANCE, // Irradiance material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
+        PREFILTER, // Prefilter material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
         BRDF
     }
 
     [CCode (cname = "ShaderUniformDataType", cprefix = "SHADER_UNIFORM_", has_type_id = false)]
     public enum ShaderUniformDataType {
-        FLOAT,           // Shader uniform type: float
-        VEC2,            // Shader uniform type: vec2 (2 float)
-        VEC3,            // Shader uniform type: vec3 (3 float)
-        VEC4,            // Shader uniform type: vec4 (4 float)
-        INT,             // Shader uniform type: int
-        IVEC2,           // Shader uniform type: ivec2 (2 int)
-        IVEC3,           // Shader uniform type: ivec3 (3 int)
-        IVEC4,           // Shader uniform type: ivec4 (4 int)
-        SAMPLER2D        // Shader uniform type: sampler2d
+        FLOAT, // Shader uniform type: float
+        VEC2, // Shader uniform type: vec2 (2 float)
+        VEC3, // Shader uniform type: vec3 (3 float)
+        VEC4, // Shader uniform type: vec4 (4 float)
+        INT, // Shader uniform type: int
+        IVEC2, // Shader uniform type: ivec2 (2 int)
+        IVEC3, // Shader uniform type: ivec3 (3 int)
+        IVEC4, // Shader uniform type: ivec4 (4 int)
+        SAMPLER2D // Shader uniform type: sampler2d
     }
 
     [CCode (cname = "ShaderAttributeDataType", cprefix = "SHADER_ATTRIB_", has_type_id = false)]
     public enum ShaderAttributeDataType {
-        FLOAT,            // Shader attribute type: float
-        VEC2,             // Shader attribute type: vec2 (2 float)
-        VEC3,             // Shader attribute type: vec3 (3 float)
-        VEC4              // Shader attribute type: vec4 (4 float)
+        FLOAT, // Shader attribute type: float
+        VEC2, // Shader attribute type: vec2 (2 float)
+        VEC3, // Shader attribute type: vec3 (3 float)
+        VEC4 // Shader attribute type: vec4 (4 float)
     }
 
     [CCode (cname = "PixelFormat", cprefix = "PIXELFORMAT_", has_type_id = false)]
     public enum PixelFormat {
-        UNCOMPRESSED_GRAYSCALE,         // 8 bit per pixel (no alpha)
-        UNCOMPRESSED_GRAY_ALPHA,        // 8*2 bpp (2 channels)
-        UNCOMPRESSED_R5G6B5,            // 16 bpp
-        UNCOMPRESSED_R8G8B8,            // 24 bpp
-        UNCOMPRESSED_R5G5B5A1,          // 16 bpp (1 bit alpha)
-        UNCOMPRESSED_R4G4B4A4,          // 16 bpp (4 bit alpha)
-        UNCOMPRESSED_R8G8B8A8,          // 32 bpp
-        UNCOMPRESSED_R32,               // 32 bpp (1 channel - float)
-        UNCOMPRESSED_R32G32B32,         // 32*3 bpp (3 channels - float)
-        UNCOMPRESSED_R32G32B32A32,      // 32*4 bpp (4 channels - float)
-        UNCOMPRESSED_R16,               // 16 bpp (1 channel - half float)
-        UNCOMPRESSED_R16G16B16,         // 16*3 bpp (3 channels - half float)
-        UNCOMPRESSED_R16G16B16A16,      // 16*4 bpp (4 channels - half float)
-        COMPRESSED_DXT1_RGB,            // 4 bpp (no alpha)
-        COMPRESSED_DXT1_RGBA,           // 4 bpp (1 bit alpha)
-        COMPRESSED_DXT3_RGBA,           // 8 bpp
-        COMPRESSED_DXT5_RGBA,           // 8 bpp
-        COMPRESSED_ETC1_RGB,            // 4 bpp
-        COMPRESSED_ETC2_RGB,            // 4 bpp
-        COMPRESSED_ETC2_EAC_RGBA,       // 8 bpp
-        COMPRESSED_PVRT_RGB,            // 4 bpp
-        COMPRESSED_PVRT_RGBA,           // 4 bpp
-        COMPRESSED_ASTC_4x4_RGBA,       // 8 bpp                                                                        // vala-lint=naming-convention
-        COMPRESSED_ASTC_8x8_RGBA        // 2 bpp                                                                        // vala-lint=naming-convention
+        UNCOMPRESSED_GRAYSCALE, // 8 bit per pixel (no alpha)
+        UNCOMPRESSED_GRAY_ALPHA, // 8*2 bpp (2 channels)
+        UNCOMPRESSED_R5G6B5, // 16 bpp
+        UNCOMPRESSED_R8G8B8, // 24 bpp
+        UNCOMPRESSED_R5G5B5A1, // 16 bpp (1 bit alpha)
+        UNCOMPRESSED_R4G4B4A4, // 16 bpp (4 bit alpha)
+        UNCOMPRESSED_R8G8B8A8, // 32 bpp
+        UNCOMPRESSED_R32, // 32 bpp (1 channel - float)
+        UNCOMPRESSED_R32G32B32, // 32*3 bpp (3 channels - float)
+        UNCOMPRESSED_R32G32B32A32, // 32*4 bpp (4 channels - float)
+        UNCOMPRESSED_R16, // 16 bpp (1 channel - half float)
+        UNCOMPRESSED_R16G16B16, // 16*3 bpp (3 channels - half float)
+        UNCOMPRESSED_R16G16B16A16, // 16*4 bpp (4 channels - half float)
+        COMPRESSED_DXT1_RGB, // 4 bpp (no alpha)
+        COMPRESSED_DXT1_RGBA, // 4 bpp (1 bit alpha)
+        COMPRESSED_DXT3_RGBA, // 8 bpp
+        COMPRESSED_DXT5_RGBA, // 8 bpp
+        COMPRESSED_ETC1_RGB, // 4 bpp
+        COMPRESSED_ETC2_RGB, // 4 bpp
+        COMPRESSED_ETC2_EAC_RGBA, // 8 bpp
+        COMPRESSED_PVRT_RGB, // 4 bpp
+        COMPRESSED_PVRT_RGBA, // 4 bpp
+        COMPRESSED_ASTC_4x4_RGBA, // 8 bpp                                                                        // vala-lint=naming-convention
+        COMPRESSED_ASTC_8x8_RGBA // 2 bpp                                                                        // vala-lint=naming-convention
     }
 
     [CCode (cname = "TextureFilter", cprefix = "TEXTURE_FILTER_", has_type_id = false)]
     public enum TextureFilter {
-        POINT,                   // No filter, just pixel approximation
-        BILINEAR,                // Linear filtering
-        TRILINEAR,               // Trilinear filtering (linear with mipmaps)
-        ANISOTROPIC_4X,          // Anisotropic filtering 4x
-        ANISOTROPIC_8X,          // Anisotropic filtering 8x
-        ANISOTROPIC_16X,         // Anisotropic filtering 16x
+        POINT, // No filter, just pixel approximation
+        BILINEAR, // Linear filtering
+        TRILINEAR, // Trilinear filtering (linear with mipmaps)
+        ANISOTROPIC_4X, // Anisotropic filtering 4x
+        ANISOTROPIC_8X, // Anisotropic filtering 8x
+        ANISOTROPIC_16X, // Anisotropic filtering 16x
     }
 
     [CCode (cname = "TextureWrap", cprefix = "TEXTURE_WRAP_", has_type_id = false)]
     public enum TextureWrap {
-        REPEAT,                    // Repeats texture in tiled mode
-        CLAMP,                     // Clamps texture to edge pixel in tiled mode
-        MIRROR_REPEAT,             // Mirrors and repeats the texture in tiled mode
-        MIRROR_CLAMP               // Mirrors and clamps to border the texture in tiled mode
+        REPEAT, // Repeats texture in tiled mode
+        CLAMP, // Clamps texture to edge pixel in tiled mode
+        MIRROR_REPEAT, // Mirrors and repeats the texture in tiled mode
+        MIRROR_CLAMP // Mirrors and clamps to border the texture in tiled mode
     }
 
     [CCode (cname = "CubemapLayout", cprefix = "CUBEMAP_LAYOUT_", has_type_id = false)]
     public enum CubemapLayout {
-        AUTO_DETECT,             // Automatically detect layout type
-        LINE_VERTICAL,           // Layout is defined by a vertical line with faces
-        LINE_HORIZONTAL,         // Layout is defined by an horizontal line with faces
-        CROSS_THREE_BY_FOUR,     // Layout is defined by a 3x4 cross with cubemap faces
-        CROSS_FOUR_BY_THREE,     // Layout is defined by a 4x3 cross with cubemap faces
-        PANORAMA                 // Layout is defined by a panorama image (equirectangular map)
+        AUTO_DETECT, // Automatically detect layout type
+        LINE_VERTICAL, // Layout is defined by a vertical line with faces
+        LINE_HORIZONTAL, // Layout is defined by an horizontal line with faces
+        CROSS_THREE_BY_FOUR, // Layout is defined by a 3x4 cross with cubemap faces
+        CROSS_FOUR_BY_THREE, // Layout is defined by a 4x3 cross with cubemap faces
+        PANORAMA // Layout is defined by a panorama image (equirectangular map)
     }
 
     [CCode (cname = "FontType", cprefix = "FONT_", has_type_id = false)]
     public enum FontType {
-        DEFAULT,                 // Default font generation, anti-aliased
-        BITMAP,                  // Bitmap font generation, no anti-aliasing
-        SDF                      // SDF font generation, requires external shader
+        DEFAULT, // Default font generation, anti-aliased
+        BITMAP, // Bitmap font generation, no anti-aliasing
+        SDF // SDF font generation, requires external shader
     }
 
     [CCode (cname = "BlendMode", cprefix = "BLEND_", has_type_id = false)]
     public enum BlendMode {
-        ALPHA,                   // Blend textures considering alpha (default)
-        ADDITIVE,                // Blend textures adding colors
-        MULTIPLIED,              // Blend textures multiplying colors
-        ADD_COLORS,              // Blend textures adding colors (alternative)
-        SUBTRACT_COLORS,         // Blend textures subtracting colors (alternative)
-        ALPHA_PREMULTIPLY,       // Blend premultiplied textures considering alpha
-        CUSTOM,                   // Blend textures using custom src/dst factors (use rlSetBlendMode())
-        BLEND_CUSTOM_SEPARATE    // Blend textures using custom rgb/alpha separate src/dst factors (use rlSetBlendFactorsSeparate())
+        ALPHA, // Blend textures considering alpha (default)
+        ADDITIVE, // Blend textures adding colors
+        MULTIPLIED, // Blend textures multiplying colors
+        ADD_COLORS, // Blend textures adding colors (alternative)
+        SUBTRACT_COLORS, // Blend textures subtracting colors (alternative)
+        ALPHA_PREMULTIPLY, // Blend premultiplied textures considering alpha
+        CUSTOM, // Blend textures using custom src/dst factors (use rlSetBlendMode())
+        BLEND_CUSTOM_SEPARATE // Blend textures using custom rgb/alpha separate src/dst factors (use rlSetBlendFactorsSeparate())
     }
 
     [Flags]
     [CCode (cname = "Gesture", cprefix = "GESTURE_", has_type_id = false)]
     public enum Gesture {
-        NONE,           // No gesture
-        TAP,            // Tap gesture
-        DOUBLETAP,      // Double tap gesture
-        HOLD,           // Hold gesture
-        DRAG,           // Drag gesture
-        SWIPE_RIGHT,    // Swipe right gesture
-        SWIPE_LEFT,     // Swipe left gesture
-        SWIPE_UP,       // Swipe up gesture
-        SWIPE_DOWN,     // Swipe down gesture
-        PINCH_IN,       // Pinch in gesture
-        PINCH_OUT       // Pinch out gesture
+        NONE, // No gesture
+        TAP, // Tap gesture
+        DOUBLETAP, // Double tap gesture
+        HOLD, // Hold gesture
+        DRAG, // Drag gesture
+        SWIPE_RIGHT, // Swipe right gesture
+        SWIPE_LEFT, // Swipe left gesture
+        SWIPE_UP, // Swipe up gesture
+        SWIPE_DOWN, // Swipe down gesture
+        PINCH_IN, // Pinch in gesture
+        PINCH_OUT // Pinch out gesture
     }
 
     [CCode (cname = "CameraMode", cprefix = "CAMERA_", has_type_id = false)]
     public enum CameraMode {
-        CUSTOM,                  // Custom camera
-        FREE,                    // Free camera
-        ORBITAL,                 // Orbital camera
-        FIRST_PERSON,            // First person camera
-        THIRD_PERSON             // Third person camera
+        CUSTOM, // Custom camera
+        FREE, // Free camera
+        ORBITAL, // Orbital camera
+        FIRST_PERSON, // First person camera
+        THIRD_PERSON // Third person camera
     }
 
     [CCode (cname = "CameraProjection", cprefix = "CAMERA_", has_type_id = false)]
     public enum CameraProjection {
-        PERSPECTIVE,             // Perspective projection
-        ORTHOGRAPHIC             // Orthographic projection
+        PERSPECTIVE, // Perspective projection
+        ORTHOGRAPHIC // Orthographic projection
     }
 
     [CCode (cname = "NPatchLayout", cprefix = "NPATCH_", has_type_id = false)]
     public enum NPatchLayout {
-        NINE_PATCH,              // Npatch layout: 3x3 tiles
-        THREE_PATCH_VERTICAL,    // Npatch layout: 1x3 tiles
-        THREE_PATCH_HORIZONTAL   // Npatch layout: 3x1 tiles
+        NINE_PATCH, // Npatch layout: 3x3 tiles
+        THREE_PATCH_VERTICAL, // Npatch layout: 1x3 tiles
+        THREE_PATCH_HORIZONTAL // Npatch layout: 3x1 tiles
     }
 
     // Callbacks to hook some internal functions
@@ -902,9 +902,9 @@ namespace Raylib {
     [CCode (cname = "SaveFileTextCallback")]
     public delegate bool SaveFileTextCallback (string filename, string text);
 
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     // Window and Graphics Device Functions (Module: core)
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
 
     // Window-related functions
     [CCode (cname = "InitWindow")]
@@ -992,7 +992,7 @@ namespace Raylib {
     public static void set_window_focused ();
 
     [CCode (cname = "GetWindowHandle")]
-    public static void* get_window_handle ();
+    public static void * get_window_handle ();
 
     [CCode (cname = "GetScreenWidth")]
     public static int get_screen_width ();
@@ -1092,16 +1092,16 @@ namespace Raylib {
     public static void end_drawing ();
 
     [CCode (cname = "BeginMode2D")]
-    public static void begin_mode_2D (Camera2D camera);                                                                 // vala-lint=naming-convention
+    public static void begin_mode_2D (Camera2D camera); // vala-lint=naming-convention
 
     [CCode (cname = "EndMode2D")]
-    public static void end_mode_2D ();                                                                                  // vala-lint=naming-convention
+    public static void end_mode_2D (); // vala-lint=naming-convention
 
     [CCode (cname = "BeginMode3D")]
-    public static void begin_mode_3D (Camera3D camera);                                                                 // vala-lint=naming-convention
+    public static void begin_mode_3D (Camera3D camera); // vala-lint=naming-convention
 
     [CCode (cname = "EndMode3D")]
-    public static void end_mode_3D ();                                                                                  // vala-lint=naming-convention
+    public static void end_mode_3D (); // vala-lint=naming-convention
 
     [CCode (cname = "BeginTextureMode")]
     public static void begin_texture_mode (RenderTexture2D target);
@@ -1172,7 +1172,7 @@ namespace Raylib {
     [CCode (cname = "UnloadShader")]
     public void unload_shader (Shader shader);
 
-    //  Screen-space-related functions
+    // Screen-space-related functions
     [CCode (cname = "GetMouseRay")]
     public static Ray get_mouse_ray (Vector2 mouse_position, Camera camera);
 
@@ -1180,21 +1180,21 @@ namespace Raylib {
     public static Matrix get_camera_matrix (Camera camera);
 
     [CCode (cname = "GetCameraMatrix2D")]
-    public static Matrix get_camera_matrix_2D (Camera2D camera);                                                        // vala-lint=naming-convention
+    public static Matrix get_camera_matrix_2D (Camera2D camera); // vala-lint=naming-convention
 
     [CCode (cname = "GetWorldToScreen")]
     public static Vector2 get_world_to_screen (Vector3 position, Camera camera);
 
     [CCode (cname = "GetScreenToWorld2D")]
-    public static Vector2 get_screen_to_world_2D (Vector2 position, Camera2D camera);                                   // vala-lint=naming-convention
+    public static Vector2 get_screen_to_world_2D (Vector2 position, Camera2D camera); // vala-lint=naming-convention
 
     [CCode (cname = "GetWorldToScreenEx")]
     public static Vector2 get_get_world_to_screen_ext (Vector3 position, Camera camera, int width, int height);
 
     [CCode (cname = "GetWorldToScreen2D")]
-    public static Vector2 get_world_to_screen_2D (Vector2 position, Camera2D camera);                                   // vala-lint=naming-convention
+    public static Vector2 get_world_to_screen_2D (Vector2 position, Camera2D camera); // vala-lint=naming-convention
 
-    //  Timing-related functions
+    // Timing-related functions
     [CCode (cname = "SetTargetFPS")]
     public static void set_target_fps (int fps);
 
@@ -1207,7 +1207,7 @@ namespace Raylib {
     [CCode (cname = "GetTime")]
     public static double get_time ();
 
-    //  Misc. functions
+    // Misc. functions
     [CCode (cname = "GetRandomValue")]
     public static int get_random_value (int minimum, int maximum);
 
@@ -1228,10 +1228,10 @@ namespace Raylib {
     public static void set_trace_log_level (TraceLogLevel level);
 
     [CCode (cname = "MemAlloc")]
-    public static void* memory_allocate (uint size);
+    public static void * memory_allocate (uint size);
 
     [CCode (cname = "MemRealloc")]
-    public static void* memory_realocate (void* pointer, uint size);
+    public static void * memory_realocate (void* pointer, uint size);
 
     [CCode (cname = "MemFree")]
     public static void memory_free (void* pointer);
@@ -1354,32 +1354,32 @@ namespace Raylib {
 
     // Automation events functionality
     [CCode (cname = "LoadAutomationEventList")]
-    public static AutomationEventList load_automation_event_list (string filename);                 // Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
+    public static AutomationEventList load_automation_event_list (string filename); // Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
 
     [CCode (cname = "UnloadAutomationEventList")]
-    public static void unload_automation_event_list (AutomationEventList[] list);                   // Unload automation events list from file
+    public static void unload_automation_event_list (AutomationEventList[] list); // Unload automation events list from file
 
     [CCode (cname = "ExportAutomationEventList")]
-    public static bool export_automation_event_list (AutomationEventList list, string filename);    // Export automation events list as text file
+    public static bool export_automation_event_list (AutomationEventList list, string filename); // Export automation events list as text file
 
     [CCode (cname = "SetAutomationEventList")]
-    public static void set_automation_event_list (AutomationEventList[] list);                      // Set automation event list to record to
+    public static void set_automation_event_list (AutomationEventList[] list); // Set automation event list to record to
 
     [CCode (cname = "SetAutomationEventBaseFrame")]
-    public static void set_automation_event_base_frame (int frame);                                 // Set automation event internal base frame to start recording
+    public static void set_automation_event_base_frame (int frame); // Set automation event internal base frame to start recording
 
     [CCode (cname = "StartAutomationEventRecording")]
-    public static void start_automation_event_recording ();                                         // Start recording automation events (AutomationEventList must be set)
+    public static void start_automation_event_recording (); // Start recording automation events (AutomationEventList must be set)
 
     [CCode (cname = "StopAutomationEventRecording")]
-    public static void stop_automation_event_recording ();                                          // Stop recording automation events
+    public static void stop_automation_event_recording (); // Stop recording automation events
 
     [CCode (cname = "PlayAutomationEvent")]
-    public static void play_automation_event (AutomationEvent event);                               // Play a recorded automation event
+    public static void play_automation_event (AutomationEvent event); // Play a recorded automation event
 
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     // Input Handling Functions (Module: core)
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
 
     // Input-related functions: keyboard
     [CCode (cname = "IsKeyPressed")]
@@ -1496,9 +1496,9 @@ namespace Raylib {
     [CCode (cname = "GetTouchPointCount")]
     public static int get_touch_point_count ();
 
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     // Gestures and Touch Handling Functions (Module: rgestures)
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     [CCode (cname = "SetGestureEnabled")]
     public static void set_gesture_enabled (Gesture flags);
 
@@ -1523,9 +1523,9 @@ namespace Raylib {
     [CCode (cname = "GetGesturePinchAngle")]
     public static float get_gesture_pinch_angle ();
 
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     // Camera System Functions (Module: rcamera)
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     [CCode (cname = "UpdateCamera")]
     public static void update_camera (Camera? camera, CameraMode mode);
 
@@ -1533,9 +1533,9 @@ namespace Raylib {
     public static void update_camera_pro (Camera? camera, Vector3 movement, Vector3 rotation, float zoom);
 
 
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     // Basic Shapes Drawing Functions (Module: shapes)
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     [CCode (cname = "SetShapesTexture")]
     public static void set_shapes_texture (Texture2D texture, Rectangle source);
 
@@ -1691,7 +1691,7 @@ namespace Raylib {
     [CCode (cname = "GetSplinePointBezierCubic")]
     public static Vector2 get_spline_point_bezier_cubic (Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float weight);
 
-    //  Basic shapes collision detection functions
+    // Basic shapes collision detection functions
     [CCode (cname = "CheckCollisionRecs")]
     public static bool check_collision_rectangles (Rectangle rectangle1, Rectangle rectangle2);
 
@@ -1722,9 +1722,9 @@ namespace Raylib {
     [CCode (cname = "GetCollisionRec")]
     public static Rectangle get_collision_rectangle (Rectangle rectangle1, Rectangle rectangle2);
 
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     // Texture Loading and Drawing Functions (Module: textures)
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
 
     // Image loading functions
     // NOTE: This functions do not require GPU access
@@ -2056,9 +2056,9 @@ namespace Raylib {
     [CCode (cname = "GetPixelDataSize")]
     public static int get_pixel_data_size (int width, int height, int format);
 
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     // Font Loading and Text Drawing Functions (Module: text)
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
 
     // Font loading/unloading functions
     [CCode (cname = "GetFontDefault")]
@@ -2080,7 +2080,7 @@ namespace Raylib {
     public static bool is_font_ready (Font font);
 
     [CCode (cname = "LoadFontData")]
-    public static GlyphInfo? load_font_data (uchar[] file_data, int font_size, int[] code_points, FontType type);
+    public static GlyphInfo ? load_font_data (uchar[] file_data, int font_size, int[] code_points, FontType type);
 
     [CCode (cname = "GenImageFontAtlas")]
     public static Image generate_image_font_atlas (GlyphInfo* characters, unowned Rectangle[] glyph_rectangles, int font_size, int padding, int pack_method);
@@ -2207,25 +2207,25 @@ namespace Raylib {
     [CCode (cname = "TextToInteger")]
     public static int text_to_integer (string text);
 
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     // Basic 3d Shapes Drawing Functions (Module: models)
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
 
     // Basic geometric 3D shapes drawing functions
     [CCode (cname = "DrawLine3D")]
-    public static void draw_line_3D (Vector3 start, Vector3 end, Color color);                                                      // vala-lint=naming-convention
+    public static void draw_line_3D (Vector3 start, Vector3 end, Color color); // vala-lint=naming-convention
 
     [CCode (cname = "DrawPoint3D")]
-    public static void draw_point_3D (Vector3 position, Color color);                                                               // vala-lint=naming-convention
+    public static void draw_point_3D (Vector3 position, Color color); // vala-lint=naming-convention
 
     [CCode (cname = "DrawCircle3D")]
-    public static void draw_circle_3D (Vector3 center, float radius, Vector3 rotation_axis, float rotation_angle, Color color);     // vala-lint=naming-convention
+    public static void draw_circle_3D (Vector3 center, float radius, Vector3 rotation_axis, float rotation_angle, Color color); // vala-lint=naming-convention
 
     [CCode (cname = "DrawTriangle3D")]
-    public static void draw_triangle_3D (Vector3 vector1, Vector3 vector2, Vector3 vector3, Color color);                           // vala-lint=naming-convention
+    public static void draw_triangle_3D (Vector3 vector1, Vector3 vector2, Vector3 vector3, Color color); // vala-lint=naming-convention
 
     [CCode (cname = "DrawTriangleStrip3D")]
-    public static void draw_triangle_strip_3D (Vector3[] points, Color color);                                                      // vala-lint=naming-convention
+    public static void draw_triangle_strip_3D (Vector3[] points, Color color); // vala-lint=naming-convention
 
     [CCode (cname = "DrawCube")]
     public static void draw_cube (Vector3 position, float width, float height, float length, Color color);
@@ -2275,9 +2275,9 @@ namespace Raylib {
     [CCode (cname = "DrawGrid")]
     public static void draw_grid (int slices, float spacing);
 
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     // Model 3d Loading and Drawing Functions (Module: models)
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
 
     // Model management functions
     [CCode (cname = "LoadModel")]
@@ -2400,7 +2400,7 @@ namespace Raylib {
 
     // Model animations loading/unloading functions
     [CCode (cname = "LoadModelAnimations")]
-    public static ModelAnimation? load_model_animations (string filename, out int animation_count);
+    public static ModelAnimation ? load_model_animations (string filename, out int animation_count);
 
     [CCode (cname = "UpdateModelAnimation")]
     public static void update_model_animations (Model model, ModelAnimation animation, int frame);
@@ -2439,9 +2439,9 @@ namespace Raylib {
     [CCode (cname = "GetRayCollisionQuad")]
     public static RayCollision get_ray_collision_quad (Ray ray, Vector3 point1, Vector3 point2, Vector3 point3, Vector3 point4);
 
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     // Audio Loading and Playing Functions (Module: audio)
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     [CCode (cname = "AudioCallback")]
     public delegate void AudioCallback (void* buffer_data, uint frames);
 

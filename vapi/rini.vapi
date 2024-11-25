@@ -4,9 +4,9 @@ namespace Rini {
     [CCode (cname = "RINI_VERSION")]
     public const string VERSION;
 
-    //----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
     // Defines and Macros
-    //----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
     [CCode (cname = "RINI_MAX_LINE_SIZE")]
     public const int MAX_LINE_SIZE;
 
@@ -35,45 +35,45 @@ namespace Rini {
     public const char LINE_SECTION_DELIMITER;
 
 
-    //----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
     // Types and Structures Definition
-    //----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
     [CCode (cname = "rini_config_value")]
     public struct ConfigValue {
-        public char key[MAX_KEY_SIZE];    // Config value key identifier
-        public char text[MAX_TEXT_SIZE];  // Config value text
-        public char desc[MAX_DESC_SIZE];  // Config value description
+        public char key[MAX_KEY_SIZE]; // Config value key identifier
+        public char text[MAX_TEXT_SIZE]; // Config value text
+        public char desc[MAX_DESC_SIZE]; // Config value description
     }
 
     [CCode (cname = "rini_config")]
     public struct RiniConfig {
-        public ConfigValue[] values;      // Config values array
-        public uint count;                // Config values count
-        public uint capacity;             // Config values capacity
+        public ConfigValue[] values; // Config values array
+        public uint count; // Config values count
+        public uint capacity; // Config values capacity
     }
 
 
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     // Functions declaration
-    //------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------
     [CCode (cname = "rini_load_config")]
-    public static RiniConfig load_config (string filename);                                 // Load config from file (*.ini) or create a new config object (pass NULL)
+    public static RiniConfig load_config (string filename); // Load config from file (*.ini) or create a new config object (pass NULL)
 
     [CCode (cname = "rini_unload_config")]
-    public static void unload_config (RiniConfig config);                                   // Unload config data from memory
+    public static void unload_config (RiniConfig config); // Unload config data from memory
 
     [CCode (cname = "rini_save_config")]
-    public static void save_config (RiniConfig config, string filename, string header);     // Save config to file, with custom header
+    public static void save_config (RiniConfig config, string filename, string header); // Save config to file, with custom header
 
 
     [CCode (cname = "rini_get_config_value")]
-    public static int get_config_value (RiniConfig config, string key);                     // Get config value int for provided key, returns -1 if not found
+    public static int get_config_value (RiniConfig config, string key); // Get config value int for provided key, returns -1 if not found
 
     [CCode (cname = "rini_get_config_value_text")]
-    public static string get_config_value_text (RiniConfig config, string key);             // Get config value text for provided key
+    public static string get_config_value_text (RiniConfig config, string key); // Get config value text for provided key
 
     [CCode (cname = "rini_get_config_value_description")]
-    public static string get_config_value_description (RiniConfig config, string key);      // Get config value description for provided key
+    public static string get_config_value_description (RiniConfig config, string key); // Get config value description for provided key
 
 
     // Set config value int/text and description for existing key or create a new entry
