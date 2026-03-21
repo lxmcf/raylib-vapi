@@ -34,7 +34,7 @@ public static int main (string[] args) {
 
             clear_background (RAYWHITE);
 
-            begin_mode_3D (camera);
+            begin_mode_3d (camera);
 
                 draw_plane ({ 0.0f, 0.0f, 0.0f }, { 32.0f, 32.0f }, { 200, 200, 200, 255 });
                 draw_cube ({ -16.0f, 2.5f, 0.0f }, 1.0f, 5.0f, 32.0f, BLUE);
@@ -47,7 +47,7 @@ public static int main (string[] args) {
                     draw_cube_wires (positions[i], 2.0f, heights[i], 2.0f, MAROON);
                 }
 
-            end_mode_3D ();
+            end_mode_3d ();
 
             draw_rectangle ( 10, 10, 220, 70, fade (SKYBLUE, 0.5f));
             draw_rectangle_lines ( 10, 10, 220, 70, BLUE);

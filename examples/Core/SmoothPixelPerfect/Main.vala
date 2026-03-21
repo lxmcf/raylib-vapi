@@ -56,25 +56,31 @@ public static int main () {
         screen_space_camera.target.y *= VIRTUAL_RATIO;
 
         begin_texture_mode (target);
+        {
             clear_background (RAYWHITE);
-
-            begin_mode_2D (world_space_camera);
+            begin_mode_2d (world_space_camera);
+            {
                 draw_rectangle_pro (rec01, origin, rotation, BLACK);
-                draw_rectangle_pro (rec02, origin, -rotation, RED);
+                draw_rectangle_pro (rec02, origin, - rotation, RED);
                 draw_rectangle_pro (rec03, origin, rotation + 45.0f, BLUE);
-            end_mode_2D ();
+            }
+            end_mode_2d ();
+        }
         end_texture_mode();
 
         begin_drawing ();
+        {
             clear_background (RED);
-
-            begin_mode_2D (screen_space_camera);
+            begin_mode_2d (screen_space_camera);
+            {
                 draw_texture_pro (target.texture, source_rectangle, destination_rectangle, origin, 0.0f, WHITE);
-            end_mode_2D ();
+            }
+            end_mode_2d ();
 
             draw_text (@"Screen resolution: $(SCREEN_WIDTH)x$(SCREEN_HEIGHT)", 10, 10, 20, DARKBLUE);
             draw_text (@"World resolution: $(VIRTUAL_SCREEN_WIDTH)x$(VIRTUAL_SCREEN_HEIGHT)", 10, 40, 20, DARKGREEN);
             draw_fps ( get_screen_width () - 95, 10);
+        }
         end_drawing ();
     }
 
