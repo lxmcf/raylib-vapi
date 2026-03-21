@@ -13,13 +13,13 @@ Some VAPI's will be released to follow a more [OOP design](https://en.wikipedia.
 
 | Module  | Supported          | OOP Available      | VAPI Name   | Version |
 |:-------:|:------------------:|:------------------:|:-----------:|:-------:|
-| raylib  | :heavy_check_mark: | :construction:     | raylib.vapi | 5.0     |
-| rlgl    | :heavy_check_mark: | :x:                | rlgl.vapi   | 4.5     |
+| raylib  | :heavy_check_mark: | :construction:     | raylib.vapi |   6.0   |
+| rlgl    | :heavy_check_mark: | :x:                | rlgl.vapi   |   6.0   |
 | raymath | :x:                | :x:                |             |         |
 | raudio  | :x:                | :x:                |             |         |
 | raygui  | :x:                | :x:                |             |         |
 | rpng    | :x:                | :x:                |             |         |
-| rini    | :heavy_check_mark: | :x:                | rini.vapi   | 1.0     |
+| rini    | :heavy_check_mark: | :x:                | rini.vapi   |   1.0   |
 | rres    | :x:                | :x:                |             |         |
 
 ## Example
@@ -58,5 +58,5 @@ cd build/
 
 Camera3D/application        # To run the 3D camera example
                             # or
-SmoothPixel/application     # To run the smooth pixel perfect example
+SmoothPixelPerfect/application     # To run the smooth pixel perfect example
 ```
