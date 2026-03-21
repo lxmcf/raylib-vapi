@@ -11,17 +11,16 @@ Some VAPI's will be released to follow a more [OOP design](https://en.wikipedia.
 
 ## Supported Modules
 
-| Module  |      Supported      | OOP Available |  VAPI Name   | Version |                                         Notes                                         |
-|:-------:|:-------------------:|:-------------:|:------------:|:-------:|:-------------------------------------------------------------------------------------:|
-| raylib  | :heavy_check_mark:  |      :x:      | raylib.vapi  |   6.0   |                                                                                       |
-|  rlgl   | :heavy_check_mark:  |      :x:      |  rlgl.vapi   |   6.0   |                                                                                       |
-| raymath | :heavy_check_mark:  |      :x:      | raymath.vapi |   6.0   |                                                                                       |
-| raudio  | :heavy_check_mark:  |      :x:      | raudio.vapi  |         | Implicit in raylib.vapi. Only use raudio.vapi if you only need audio and nothing else |
-| raygui  |         :x:         |      :x:      |              |         |                                                                                       |
-|  rpng   |         :x:         |      :x:      |              |         |                                                                                       |
-|  rini   | :heavy_check_mark:  |      :x:      |  rini.vapi   |   3.0   |                                                                                       |
-| physac  | :heavy_check_mark:  |      :x:      | physac.vapi  |   1.1   |                                                                                       |
-|  rres   |         :x:         |      :x:      |              |         |                                                                                       |
+| Module  |      Supported      | OOP Available |  VAPI Name   | Version |          Notes           |
+|:-------:|:-------------------:|:-------------:|:------------:|:-------:|:------------------------:|
+| raylib  | :heavy_check_mark:  |      :x:      | raylib.vapi  |   6.0   |                          |
+|  rlgl   | :heavy_check_mark:  |      :x:      |  rlgl.vapi   |   6.0   |                          |
+| raymath | :heavy_check_mark:  |      :x:      | raymath.vapi |   6.0   |                          |
+| raygui  |         :x:         |      :x:      |              |         |                          |
+|  rpng   |         :x:         |      :x:      |              |         |                          |
+|  rres   |         :x:         |      :x:      |              |         |                          |
+|  rini   | :heavy_check_mark:  |      :x:      |  rini.vapi   |   3.0   |                          |
+| physac  | :heavy_check_mark:  |      :x:      | physac.vapi  |   1.1   |                          |
 
 ## Example
 ```vala
