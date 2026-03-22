@@ -27,13 +27,13 @@ public static int main () {
             clear_background (RAYWHITE);
             draw_text ("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
         }
-        end_drawing();
+        end_drawing ();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    close_window(); // Close window and OpenGL context
+    close_window (); // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
     return 0;
 }

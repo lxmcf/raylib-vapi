@@ -24,7 +24,10 @@ public static int main () {
     Rectangle rec03 = { 80.0f, 65.0f, 15.0f, 25.0f };
 
     Rectangle source_rectangle = { 0.0f, 0.0f, target.texture.width, -target.texture.height };
-    Rectangle destination_rectangle = { -VIRTUAL_RATIO, -VIRTUAL_RATIO, SCREEN_WIDTH + (VIRTUAL_RATIO * 2), SCREEN_HEIGHT + (VIRTUAL_RATIO * 2) };
+    Rectangle destination_rectangle = { -VIRTUAL_RATIO,
+                                        -VIRTUAL_RATIO,
+                                        SCREEN_WIDTH + (VIRTUAL_RATIO * 2),
+                                        SCREEN_HEIGHT + (VIRTUAL_RATIO * 2) };
 
     Vector2 origin = { 0.0f, 0.0f };
 
@@ -66,7 +69,7 @@ public static int main () {
             }
             end_mode_2d ();
         }
-        end_texture_mode();
+        end_texture_mode ();
 
         begin_drawing ();
         {
