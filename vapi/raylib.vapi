@@ -570,7 +570,7 @@ namespace Raylib {
     [SimpleType]
     [CCode (cname = "FilePathList")]
     public struct FilePathList {
-        public uint count; // Filepaths entries count
+        [CCode (array_length_cname = "count", array_length_type = "uint")]
         public unowned string[] paths; // Filepaths entries
     }
 
