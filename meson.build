@@ -20,6 +20,7 @@ valac_arguments = [
 
 cc_arguments = [
     '-I' + include_dir,
+    '-DRAYGUI_IMPLEMENTATION',
     '-DPHYSAC_IMPLEMENTATION',
     '-DRINI_IMPLEMENTATION'
 ]
@@ -32,6 +33,7 @@ project_dependency = [
     valac.find_library ('raymath', dirs: vapi_dir),
     valac.find_library ('rlgl', dirs: vapi_dir),
     valac.find_library ('physac', dirs: vapi_dir),
+    valac.find_library ('raygui', dirs: vapi_dir),
 
     cc.find_library ('raylib'),
     cc.find_library ('m')

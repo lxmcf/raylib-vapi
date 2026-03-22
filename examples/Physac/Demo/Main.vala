@@ -73,8 +73,7 @@ public static int main () {
 
         // Draw created physics bodies
         bodies_count = get_physics_bodies_count ();
-        for (int i = 0; i < bodies_count; i++)
-        {
+        for (int i = 0; i < bodies_count; i++) {
             var body = get_physics_body (i);
             if (body != null) {
                 int vertex_count = get_physics_shape_vertices_count (i);
@@ -84,7 +83,7 @@ public static int main () {
                     Vector2 vertex_a = get_physics_shape_vertex (body, j);
 
                     int jj = (((j + 1) < vertex_count) ? (j + 1) : 0);   // Get next vertex or first to close the shape
-                    Vector2 vertex_b = get_physics_shape_vertex(body, jj);
+                    Vector2 vertex_b = get_physics_shape_vertex (body, jj);
 
                     draw_line_vector (vertex_a, vertex_b, GREEN); // Draw a line between two vertex positions
                 }
@@ -98,14 +97,14 @@ public static int main () {
         draw_text ("Physac", logo_x, logo_y, 30, WHITE);
         draw_text ("Powered by", logo_x + 50, logo_y - 7, 10, WHITE);
 
-        end_drawing();
+        end_drawing ();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
     close_physics (); // Unitialize physics
-    close_window(); // Close window and OpenGL context
+    close_window (); // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
     return 0;
 }
