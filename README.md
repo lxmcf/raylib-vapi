@@ -13,9 +13,9 @@ Some VAPI's will be released to follow a more [OOP design](https://en.wikipedia.
 
 | Module  |      Supported      | OOP Available |  VAPI Name   | Version |
 |:-------:|:-------------------:|:-------------:|:------------:|:-------:|
-| raylib  | :heavy_check_mark:  |      :x:      | raylib.vapi  |   6.0   |
-|  rlgl   | :heavy_check_mark:  |      :x:      |  rlgl.vapi   |   6.0   |
-| raymath | :heavy_check_mark:  |      :x:      | raymath.vapi |   6.0   |
+| raylib  | :heavy_check_mark:  |      :x:      | raylib.vapi  | 6.0-dev |
+|  rlgl   | :heavy_check_mark:  |      :x:      |  rlgl.vapi   | 6.0-dev |
+| raymath | :heavy_check_mark:  |      :x:      | raymath.vapi | 6.0-dev |
 | raygui  | :heavy_check_mark:  |      :x:      | raygui.vapi  | 5.0-dev |
 |  rpng   |         :x:         |      :x:      |              |         |
 |  rres   |         :x:         |      :x:      |              |         |
