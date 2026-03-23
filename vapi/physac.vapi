@@ -1,4 +1,5 @@
 using Raylib;
+using Raymath;
 
 [CCode (cprefix = "", cheader_filename = "physac.h")]
 namespace Physac {

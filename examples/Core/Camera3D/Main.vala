@@ -1,4 +1,5 @@
 using Raylib;
+using Raymath;
 
 public const int MAX_COLUMNS = 20;
 public const int SCREEN_WIDTH = 800;

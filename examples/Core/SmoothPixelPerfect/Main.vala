@@ -1,4 +1,5 @@
 using Raylib;
+using Raymath;
 
 public const int SCREEN_WIDTH = 800;
 public const int SCREEN_HEIGHT = 450;
