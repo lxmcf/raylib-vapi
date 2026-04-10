@@ -1,4 +1,4 @@
-[CCode (cprefix = "", cheader_filename = "raymath.h")]
+[CCode (cprefix = "", cheader_filename = "raylib.h,raymath.h")]
 namespace Raymath {
     //----------------------------------------------------------------------------------
     // Defines and Macros
