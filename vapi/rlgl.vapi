@@ -145,15 +145,15 @@ namespace Rlgl {
     [CCode (cname = "RL_DYNAMIC_COPY")]
     public const int DYNAMIC_COPY; // GL_DYNAMIC_COPY
 
-    // GL Shader type
-    [CCode (cname = "RL_FRAGMENT_SHADER")]
-    public const int FRAGMENT_SHADER; // GL_FRAGMENT_SHADER
-
-    [CCode (cname = "RL_VERTEX_SHADER")]
-    public const int VERTEX_SHADER; // GL_VERTEX_SHADER
-
-    [CCode (cname = "RL_COMPUTE_SHADER")]
-    public const int COMPUTE_SHADER; // GL_COMPUTE_SHADER
+    [CCode (cname = "int", has_type_id = false)]
+    public enum ShaderType {
+        [CCode (cname = "RL_VERTEX_SHADER")]
+        VERTEX,
+        [CCode (cname = "RL_FRAGMENT_SHADER")]
+        FRAGMENT,
+        [CCode (cname = "RL_COMPUTE_SHADER")]
+        COMPUTE;
+    }
 
     // GL blending factors
     [CCode (cname = "RL_ZERO")]
@@ -906,7 +906,8 @@ namespace Rlgl {
     public static uint rl_load_framebuffer (int width, int height); // Load an empty framebuffer
 
     [CCode (cname = "rlFramebufferAttach")]
-    public static void rl_framebuffer_attach (uint fbo_id, uint texture_id, int attach_type, int texture_type, int mipmap_level); // Attach texture/renderbuffer to a framebuffer
+    public static void rl_framebuffer_attach (uint id, uint texture_id, FramebufferAttachType attach_type,
+            FramebufferAttachTextureType texture_type, int mipmap_level); // Attach texture/renderbuffer to a framebuffer
 
     [CCode (cname = "rlFramebufferComplete")]
     public static bool rl_framebuffer_complete (uint id); // Verify framebuffer is complete
@@ -923,7 +924,7 @@ namespace Rlgl {
 
     // Shaders management
     [CCode (cname = "rlLoadShader")]
-    public static uint rl_load_shader (string code, int type); // Load (compile) custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
+    public static uint rl_load_shader (string code, ShaderType type); // Load (compile) custom shader and return shader id
 
     [CCode (cname = "rlLoadShaderProgram")]
     public static uint rl_load_shader_program (string vertex_shader_code, string fragment_shader_ode); // Load shader from code strings
@@ -947,7 +948,7 @@ namespace Rlgl {
     public static int rl_get_location_attribute (uint shader_location_id, string attribute_name); // Get shader location attribute
 
     [CCode (cname = "rlSetUniform")]
-    public static void rl_set_uniform (int location_index, void* value, int uniform_type, int count); // Set shader value uniform
+    public static void rl_set_uniform (int location_index, void* value, ShaderUniformDataType uniform_type, int count); // Set shader value uniform
 
     [CCode (cname = "rlSetUniformMatrix")]
     public static void rl_set_uniform_matrix (int location_index, Matrix matrix); // Set shader value matrix

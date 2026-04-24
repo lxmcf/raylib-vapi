@@ -15,18 +15,6 @@ namespace Raylib {
     public const string VERSION;
 
     // ----------------------------------------------------------------------------------
-    // Some basic Defines
-    // ----------------------------------------------------------------------------------
-    [CCode (cname = "PI")]
-    public const float PI;
-
-    [CCode (cname = "DEG2RAD")]
-    public const float DEG2RAD;
-
-    [CCode (cname = "RAD2DEG")]
-    public const float RAD2DEG;
-
-    // ----------------------------------------------------------------------------------
     // Some Basic Colors
     // ----------------------------------------------------------------------------
     // NOTE: Custom raylib color palette for amazing visuals on WHITE background
@@ -233,8 +221,9 @@ namespace Raylib {
         public unowned Vector3 target; // Camera target it looks-at
         public unowned Vector3 up; // Camera up vector (rotation over its axis)
 
-        public float fovy; // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
-        public int projection; // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+        [CCode (cname = "fovy")]
+        public float fov_y; // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
+        public CameraProjection projection; // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
     }
 
     [SimpleType]
@@ -244,8 +233,9 @@ namespace Raylib {
         public unowned Vector3 target; // Camera target it looks-at
         public unowned Vector3 up; // Camera up vector (rotation over its axis)
 
-        public float fovy; // Camera field-of-view aperture in Y (degrees) in perspective, used as near plane width in orthographic
-        public int projection; // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
+        [CCode (cname = "fovy")]
+        public float fov_y; // Camera field-of-view aperture in Y (degrees) in perspective, used as near plane width in orthographic
+        public CameraProjection projection; // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
     }
 
     [SimpleType]
@@ -757,7 +747,13 @@ namespace Raylib {
         CUBEMAP, // Cubemap material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
         IRRADIANCE, // Irradiance material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
         PREFILTER, // Prefilter material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
-        BRDF
+        BRDF;
+
+        [CCode (cname = "MATERIAL_MAP_ALBEDO")]
+        public const MaterialMapIndex DIFFUSE;
+
+        [CCode (cname = "MATERIAL_MAP_METALNESS")]
+        public const MaterialMapIndex SPECULAR;
     }
 
     [CCode (cname = "ShaderLocationIndex", cprefix = "SHADER_LOC_", has_type_id = false)]
@@ -788,10 +784,14 @@ namespace Raylib {
         MAP_IRRADIANCE,          // Shader location: samplerCube texture: irradiance
         MAP_PREFILTER,           // Shader location: samplerCube texture: prefilter
         MAP_BRDF,                // Shader location: sampler2d texture: brdf
-        VERTEX_BONEIDS,          // Shader location: vertex attribute: bone indices
-        VERTEX_BONEWEIGHTS,      // Shader location: vertex attribute: bone weights
-        MATRIX_BONETRANSFORMS,   // Shader location: matrix attribute: bone transforms (animation)
-        VERTEX_INSTANCETRANSFORM; // Shader location: vertex attribute: instance transforms
+        [CCode (cname = "SHADER_LOC_VERTEX_BONEIDS")]
+        VERTEX_BONE_IDS,          // Shader location: vertex attribute: bone indices
+        [CCode (cname = "SHADER_LOC_VERTEX_BONEWEIGHTS")]
+        VERTEX_BONE_WEIGHTS,      // Shader location: vertex attribute: bone weights
+        [CCode (cname = "SHADER_LOC_MATRIX_BONETRANSFORMS")]
+        MATRIX_BONE_TRANSFORMS,   // Shader location: matrix attribute: bone transforms (animation)
+        [CCode (cname = "SHADER_LOC_VERTEX_INSTANCETRANSFORM")]
+        VERTEX_INSTANCE_TRANSFORM; // Shader location: vertex attribute: instance transforms
 
         [CCode (cname = "SHADER_LOC_MAP_DIFFUSE")]
         public const ShaderLocationIndex MAP_DIFFUSE;
@@ -1053,7 +1053,7 @@ namespace Raylib {
     public static void set_window_focused ();
 
     [CCode (cname = "GetWindowHandle")]
-    public static void * get_window_handle ();
+    public static void* get_window_handle ();
 
     [CCode (cname = "GetScreenWidth")]
     public static int get_screen_width ();
@@ -1215,7 +1215,7 @@ namespace Raylib {
 
     [CCode (cname = "SetShaderValueV")]
     public void set_shader_value_vector (Shader shader, int location, void* value, ShaderUniformDataType type,
-                                         int count);
+            int count);
 
     [CCode (cname = "SetShaderValueMatrix")]
     public void set_shader_value_matrix (Shader shader, int location, Matrix matrix);
@@ -1693,24 +1693,24 @@ namespace Raylib {
 
     [CCode (cname = "DrawLineDashed")]
     public static void draw_line_dashed (Vector2 start_pos, Vector2 end_pos, int dash_size, int space_size,
-                                         Color color);
+            Color color);
 
     [CCode (cname = "DrawCircle")]
     public static void draw_circle (int center_x, int center_y, float radius, Color color);
 
+    [CCode (cname = "DrawCircleV")]
+    public static void draw_circle_vector (Vector2 center, float radius, Color color);
+
+    [CCode (cname = "DrawCircleGradient")]
+    public static void draw_circle_gradient (Vector2 center, float radius, Color inner, Color outer);
+
     [CCode (cname = "DrawCircleSector")]
     public static void draw_circle_sector (Vector2 center, float radius, float start_angle, float end_angle,
-                                           int segments, Color color);
+            int segments, Color color);
 
     [CCode (cname = "DrawCircleSectorLines")]
     public static void draw_circle_sector_lines (Vector2 center, float radius, float start_angle, float end_angle,
-                                                 int segments, Color color);
-
-    [CCode (cname = "DrawCircleGradient")]
-    public static void draw_circle_gradient (int center_x, int center_y, float radius, Color color1, Color color2);
-
-    [CCode (cname = "DrawCircleV")]
-    public static void draw_circle_vector (Vector2 center, float radius, Color color);
+            int segments, Color color);
 
     [CCode (cname = "DrawCircleLines")]
     public static void draw_circle_lines (int center_x, int center_y, float radius, Color color);
@@ -1720,27 +1720,27 @@ namespace Raylib {
 
     [CCode (cname = "DrawEllipse")]
     public static void draw_ellipse (int center_x, int center_y, float radius_horizontal, float radius_vertical,
-                                     Color color);
+            Color color);
 
     [CCode (cname = "DrawEllipseV")]
     public static void draw_ellipse_vector (Vector2 center, float radius_horizontal, float radius_vertical,
-                                            Color color);
+            Color color);
 
     [CCode (cname = "DrawEllipseLines")]
     public static void draw_ellipse_lines (int center_x, int center_y, float radius_horizontal, float radius_vertical,
-                                           Color color);
+            Color color);
 
     [CCode (cname = "DrawEllipseLinesV")]
     public static void draw_ellipse_lines_vector (Vector2 center, float radius_horizontal, float radius_vertical,
-                                                  Color color);
+            Color color);
 
     [CCode (cname = "DrawRing")]
     public static void draw_ring (Vector2 center, float inner_radius, float outer_radius, float start, float end,
-                                  int segments, Color color);
+            int segments, Color color);
 
     [CCode (cname = "DrawRingLines")]
     public static void draw_ring_lines (Vector2 center, float inner_radius, float outer_radius, float start, float end,
-                                        int segments, Color color);
+            int segments, Color color);
 
     [CCode (cname = "DrawRectangle")]
     public static void draw_rectangle (int x, int y, int width, int height, Color color);
@@ -1759,11 +1759,11 @@ namespace Raylib {
 
     [CCode (cname = "DrawRectangleGradientH")]
     public static void draw_rectangle_gradient_horizontal (int x, int y, int width, int height, Color color1,
-                                                           Color color2);
+            Color color2);
 
     [CCode (cname = "DrawRectangleGradientEx")]
     public static void draw_rectangle_gradient_ext (Rectangle rectangle, Color color1, Color color2, Color color3,
-                                                    Color color4);
+            Color color4);
 
     [CCode (cname = "DrawRectangleLines")]
     public static void draw_rectangle_lines (int x, int y, int width, int height, Color color);
@@ -1779,7 +1779,7 @@ namespace Raylib {
 
     [CCode (cname = "DrawRectangleRoundedLinesEx")]
     public static void draw_rectangle_rounded_lines_ext (Rectangle rectangle, float roundness, int segments,
-                                                         float thickness, Color color);
+            float thickness, Color color);
 
     [CCode (cname = "DrawTriangle")]
     public static void draw_triangle (Vector2 vector1, Vector2 vector2, Vector2 vector3, Color color);
@@ -1801,7 +1801,7 @@ namespace Raylib {
 
     [CCode (cname = "DrawPolyLinesEx")]
     public static void draw_poly_lines_ext (Vector2 center, int sides, float radius, float rotation, float thickness,
-                                            Color color);
+            Color color);
 
     // Splines drawing functions
     [CCode (cname = "DrawSplineLinear")]
@@ -1824,19 +1824,19 @@ namespace Raylib {
 
     [CCode (cname = "DrawSplineSegmentBasis")]
     public static void draw_spline_segment_basis (Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick,
-                                                  Color color);
+            Color color);
 
     [CCode (cname = "DrawSplineSegmentCatmullRom")]
     public static void draw_spline_segment_catmull_rom (Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick,
-                                                        Color color);
+            Color color);
 
     [CCode (cname = "DrawSplineSegmentBezierQuadratic")]
     public static void draw_spline_segment_bezier_quadratic (Vector2 p1, Vector2 c2, Vector2 p3, float thick,
-                                                             Color color);
+            Color color);
 
     [CCode (cname = "DrawSplineSegmentBezierCubic")]
     public static void draw_spline_segment_bezier_cubic (Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float thick,
-                                                         Color color);
+            Color color);
 
     // Spline segment point evaluation functions, for a given t [0.0f .. 1.0f]
     [CCode (cname = "GetSplinePointLinear")]
@@ -1884,7 +1884,7 @@ namespace Raylib {
 
     [CCode (cname = "CheckCollisionLines")]
     public static bool check_collision_lines (Vector2 start1, Vector2 end1, Vector2 start2, Vector2 end2,
-                                              Vector2[] collision_point);
+            Vector2[] collision_point);
 
     [CCode (cname = "GetCollisionRec")]
     public static Rectangle get_collision_rectangle (Rectangle rectangle1, Rectangle rectangle2);
@@ -1906,7 +1906,7 @@ namespace Raylib {
 
     [CCode (cname = "LoadImageAnimFromMemory")]
     public static Image load_image_animation_from_memory (string file_type, uchar[] file_data,
-                                                          [CCode (array_length = false)] int[] frames);
+            [CCode (array_length = false)] int[] frames);
 
     [CCode (cname = "LoadImageFromMemory")]
     public static Image load_image_from_memory (string filename, uchar[] file_data);
@@ -1947,7 +1947,7 @@ namespace Raylib {
 
     [CCode (cname = "GenImageChecked")]
     public static Image generate_image_checked (int width, int height, int checks_x, int checks_y, Color primary,
-                                                Color secondary);
+            Color secondary);
 
     [CCode (cname = "GenImageWhiteNoise")]
     public static Image generate_image_white_noise (int width, int height, float factor);
@@ -2012,7 +2012,7 @@ namespace Raylib {
 
     [CCode (cname = "ImageResizeCanvas")]
     public static void image_resize_canvas (Image? image, int width, int height, int offset_x, int offset_y,
-                                            Color fill);
+            Color fill);
 
     [CCode (cname = "ImageMipmaps")]
     public static void image_mipmaps (Image? image);
@@ -2121,7 +2121,7 @@ namespace Raylib {
 
     [CCode (cname = "ImageDrawTriangleEx")]
     public static void image_draw_triangle_ext (Image? image, Vector2 v1, Vector2 v2, Vector2 v3, Color c1, Color c2,
-                                                Color c3);
+            Color c3);
 
     [CCode (cname = "ImageDrawTriangleLines")]
     public static void image_draw_triangle_lines (Image? image, Vector2 v1, Vector2 v2, Vector2 v3, Color color);
@@ -2134,14 +2134,14 @@ namespace Raylib {
 
     [CCode (cname = "ImageDraw")]
     public static void image_draw (Image? image, Image source, Rectangle source_rectangle,
-                                   Rectangle destination_rectangle, Color tint);
+            Rectangle destination_rectangle, Color tint);
 
     [CCode (cname = "ImageDrawText")]
     public static void image_draw_text (Image? image, string text, int x, int y, int font_size, Color color);
 
     [CCode (cname = "ImageDrawTextEx")]
     public static void image_draw_text_ext (Image? image, Font font, string text, Vector2 position, float font_size,
-                                            float spacing, Color tint);
+            float spacing, Color tint);
 
     // Texture loading functions
     // NOTE: These functions require GPU access
@@ -2201,11 +2201,11 @@ namespace Raylib {
 
     [CCode (cname = "DrawTexturePro")]
     public static void draw_texture_pro (Texture2D texture, Rectangle source, Rectangle destination, Vector2 origin,
-                                         float rotation, Color tint);
+            float rotation, Color tint);
 
     [CCode (cname = "DrawTextureNPatch")]
     public static void draw_texture_npatch (Texture2D texture, NPatchInfo info, Rectangle destination, Vector2 origin,
-                                            float rotation, Color tint);
+            float rotation, Color tint);
 
     // Color/pixel related functions
     [CCode (cname = "ColorIsEqual")]
@@ -2287,7 +2287,7 @@ namespace Raylib {
 
     [CCode (cname = "GenImageFontAtlas")]
     public static Image generate_image_font_atlas (GlyphInfo* characters, Rectangle[] glyph_rectangles, int font_size,
-                                                   int padding, int pack_method);
+            int padding, int pack_method);
 
     [CCode (cname = "UnloadFontData")]
     public static void unload_font_data (GlyphInfo[] glyphs);
@@ -2307,18 +2307,18 @@ namespace Raylib {
 
     [CCode (cname = "DrawTextEx")]
     public static void draw_text_ext (Font font, string text, Vector2 position, float font_size, float spacing,
-                                      Color tint);
+            Color tint);
 
     [CCode (cname = "DrawTextPro")]
     public static void draw_text_pro (Font font, string text, Vector2 position, Vector2 origin, float rotation,
-                                      float font_size, float spacing, Color tint);
+            float font_size, float spacing, Color tint);
 
     [CCode (cname = "DrawTextCodepoint")]
     public static void draw_text_codepoint (Font font, int codepoint, Vector2 position, float font_size, Color tint);
 
     [CCode (cname = "DrawTextCodepoints")]
     public static void draw_text_codepoints (Font font, int[] codepoints, Vector2 position, float font_size,
-                                             float spacing, Color tint);
+            float spacing, Color tint);
 
     // Text font info functions
     [CCode (cname = "SetTextLineSpacing")]
@@ -2329,6 +2329,9 @@ namespace Raylib {
 
     [CCode (cname = "MeasureTextEx")]
     public static Vector2 measure_text_ext (Font font, string text, float font_size, float spacing);
+
+    [CCode (cname = "MeasureTextCodepoints")]
+    public static Vector2 measure_text_codepoints (Font font, int[] codepoints, float font_size, float spacing);
 
     [CCode (cname = "GetGlyphIndex")]
     public static int get_glyph_index (Font font, int codepoint);
@@ -2399,11 +2402,20 @@ namespace Raylib {
     [CCode (cname = "TextReplace")]
     public static string text_replace (string text, string search, string replacement);
 
+    [CCode (cname = "TextReplaceAlloc")]
+    public static string text_replace_alloc (string text, string search, string replacement);
+
     [CCode (cname = "TextReplaceBetween")]
     public static string text_replace_between (string text, string begin, string end, string replacement);
 
+    [CCode (cname = "TextReplaceBetweenAlloc")]
+    public static string text_replace_between_alloc (string text, string begin, string end, string replacement);
+
     [CCode (cname = "TextInsert")]
     public static string text_insert (string text, string insert, int position);
+
+    [CCode (cname = "TextInsertAlloc")]
+    public static string text_insert_alloc (string text, string insert, int position);
 
     [CCode (cname = "TextJoin")]
     public static string text_join (string[] text_list, string delimiter);
@@ -2451,7 +2463,7 @@ namespace Raylib {
 
     [CCode (cname = "DrawCircle3D")]
     public static void draw_circle_3d (Vector3 center, float radius, Vector3 rotation_axis, float rotation_angle,
-                                       Color color);
+            Color color);
 
     [CCode (cname = "DrawTriangle3D")]
     public static void draw_triangle_3d (Vector3 vector1, Vector3 vector2, Vector3 vector3, Color color);
@@ -2482,26 +2494,26 @@ namespace Raylib {
 
     [CCode (cname = "DrawCylinder")]
     public static void draw_cylinder (Vector3 position, float radius_top, float radius_bottom, float height, int slices,
-                                      Color color);
+            Color color);
 
     [CCode (cname = "DrawCylinderEx")]
     public static void draw_cylinder_ext (Vector3 start, Vector3 end, float start_radius, float end_radius, int sides,
-                                          Color color);
+            Color color);
 
     [CCode (cname = "DrawCylinderWires")]
     public static void draw_cylinder_wires (Vector3 position, float radius_top, float radius_bottom, float height,
-                                            int slices, Color color);
+            int slices, Color color);
 
     [CCode (cname = "DrawCylinderWiresEx")]
     public static void draw_cylinder_wires_ext (Vector3 start, Vector3 end, float start_adius, float end_radius,
-                                                int sides, Color color);
+            int sides, Color color);
 
     [CCode (cname = "DrawCapsule")]
     public static void draw_capsule (Vector3 start, Vector3 end, float radius, int slices, int rings, Color color);
 
     [CCode (cname = "DrawCapsuleWires")]
     public static void draw_capsule_wires (Vector3 start, Vector3 end, float radius, int slices, int rings,
-                                           Color color);
+            Color color);
 
     [CCode (cname = "DrawPlane")]
     public static void draw_plane (Vector3 center, Vector2 size, Color color);
@@ -2538,21 +2550,14 @@ namespace Raylib {
 
     [CCode (cname = "DrawModelEx")]
     public static void draw_model_ext (Model model, Vector3 position, Vector3 rotation_axis, float rotation_angle,
-                                       Vector3 scale, Color tint);
+            Vector3 scale, Color tint);
 
     [CCode (cname = "DrawModelWires")]
     public static void draw_model_wires (Model model, Vector3 position, float scale, Color tint);
 
     [CCode (cname = "DrawModelWiresEx")]
     public static void draw_model_wires_ext (Model model, Vector3 position, Vector3 rotation_axis, float rotation_angle,
-                                             Vector3 scale, Color tint);
-
-    [CCode (cname = "DrawModelPoints")]
-    public static void draw_model_points (Model model, Vector3 position, float scale, Color tint);
-
-    [CCode (cname = "DrawModelPointsEx")]
-    public static void draw_model_points_ext (Model model, Vector3 position, Vector3 rotation_axis,
-                                              float rotation_angle, Vector3 scale, Color tint);
+            Vector3 scale, Color tint);
 
     [CCode (cname = "DrawBoundingBox")]
     public static void draw_bounding_box (BoundingBox box, Color color);
@@ -2562,11 +2567,11 @@ namespace Raylib {
 
     [CCode (cname = "DrawBillboardRec")]
     public static void draw_billboard_rectangle (Camera camera, Texture2D texture, Rectangle source, Vector3 position,
-                                                 Vector2 size, Color tint);
+            Vector2 size, Color tint);
 
     [CCode (cname = "DrawBillboardPro")]
     public static void draw_billboard_pro (Camera camera, Texture2D texture, Rectangle source, Vector3 position,
-                                           Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
+            Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
 
     // Mesh management functions
     [CCode (cname = "UploadMesh")]
@@ -2658,8 +2663,8 @@ namespace Raylib {
 
     [CCode (cname = "UpdateModelAnimationEx")]
     public static void update_model_animation_ext (Model model, ModelAnimation anim_a, float frame_a,
-                                                   ModelAnimation anim_b, float frame_b,
-                                                   float blend);
+            ModelAnimation anim_b, float frame_b,
+            float blend);
 
     [CCode (cname = "UnloadModelAnimations")]
     public static void unload_model_animations (ModelAnimation[] animations);
@@ -2691,7 +2696,7 @@ namespace Raylib {
 
     [CCode (cname = "GetRayCollisionQuad")]
     public static RayCollision get_ray_collision_quad (Ray ray, Vector3 point1, Vector3 point2, Vector3 point3,
-                                                       Vector3 point4);
+            Vector3 point4);
 
     // ------------------------------------------------------------------------------------
     // Audio Loading and Playing Functions (Module: audio)
