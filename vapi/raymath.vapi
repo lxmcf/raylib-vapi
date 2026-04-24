@@ -498,14 +498,14 @@ namespace Raymath {
 
         [CCode (cname = "MatrixFrustum")]
         public Matrix.frustum (double left, double right, double bottom, double top, double near_plane,
-                               double far_plane);
+                double far_plane);
 
         [CCode (cname = "MatrixPerspective")]
         public Matrix.perspective (double fov, double aspec, double near_plane, double far_plane);
 
         [CCode (cname = "MatrixOrtho")]
         public Matrix.orthographic (double left, double right, double bottom, double top, double near_plane,
-                                    double far_plane);
+                double far_plane);
 
         [CCode (cname = "MatrixLookAt")]
         public Matrix.look_at (Vector3 eye, Vector3 target, Vector3 up);
@@ -639,7 +639,6 @@ namespace Raymath {
 
         [CCode (cname = "QuaternionCubicHermiteSpline")]
         public static Quaternion cubic_hermite_spline (Quaternion q1, Quaternion tangent1, Quaternion q2,
-                                                       Quaternion angent2, float t);
+                Quaternion angent2, float t);
     }
 }
-
