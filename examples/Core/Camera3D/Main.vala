@@ -12,7 +12,7 @@ public static int main (string[] args) {
     camera.position = { 4.0f, 2.0f, 4.0f };
     camera.target = { 0.0f, 1.8f, 0.0f };
     camera.up = { 0.0f, 1.0f, 0.0f };
-    camera.fovy = 60.0f;
+    camera.fov_y = 60.0f;
     camera.projection = CameraProjection.PERSPECTIVE;
 
     float heights[MAX_COLUMNS];
