@@ -1,4 +1,3 @@
-[Version (experimental = true)]
 [CCode (cprefix = "", cheader_filename = "rlgl.h")]
 namespace Rlgl {
     [CCode (cname = "RLGL_VERSION")]
